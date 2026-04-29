@@ -1,4 +1,4 @@
-v1.0.260414
+v1.0.260429
 	Inicialização.
 	Juntados os relatórios 3.1.1.a (parte do método-padrão para TTT), 3.1.1.b, e 3.1.1.d.
 	Resultados novos, reescrita, e reestruturação textual.
