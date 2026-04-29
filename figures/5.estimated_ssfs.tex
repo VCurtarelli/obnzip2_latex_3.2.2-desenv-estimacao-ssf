@@ -1,0 +1,123 @@
+\begin{figure*}[!t]
+	\centering
+	\begin{subfigure}{0.28\linewidth}
+		\centering
+		\begin{tikzpicture}
+			\begin{heatmap}{\ncols}[newhm,colorbar to name = {cberror},ylabel={\phantom{Depth}},xlabel={Offset ($\si{\kilo\meter}$)},]
+				\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=1, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/h71e8/it5_field_basic_comp.csv};
+			\end{heatmap}
+		\end{tikzpicture}
+		\caption{Básico, caso 1}
+	\end{subfigure}\hspace*{-1em}
+	\begin{subfigure}{0.28\linewidth}
+		\centering
+		\begin{tikzpicture}
+			\begin{heatmap}{\ncols}[newhm,colorbar=false, yticklabels={}, ylabel={},xlabel={Offset ($\si{\kilo\meter}$)},]
+				\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=1, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/h71e8/it5_field_trade_comp.csv};
+			\end{heatmap}
+		\end{tikzpicture}
+		\caption{Trade-off, caso 1}
+	\end{subfigure}\hspace*{-1em}
+	%
+	\begin{subfigure}{0.28\linewidth}
+		\centering
+		\begin{tikzpicture}
+			\begin{heatmap}{\ncols}[newhm,colorbar=false, yticklabels={\phantom{0.5}}, ylabel={Depth($\si{\kilo\meter}$)},xlabel={Offset ($\si{\kilo\meter}$)},]
+				\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=1, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/h71e8/it5_field_split_comp.csv};
+			\end{heatmap}
+		\end{tikzpicture}
+		\caption{Separado, caso 1}
+	\end{subfigure}\\[0.5em]
+	%
+	\begin{subfigure}{0.28\linewidth}
+		\centering
+		\begin{tikzpicture}
+			\begin{heatmap}{\ncols}[newhm,colorbar=false,ylabel={\phantom{Depth}}]
+				\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=1, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/h13ba4/it5_field_basic_comp.csv};
+			\end{heatmap}
+		\end{tikzpicture}
+		\caption{Básico, caso 2}
+	\end{subfigure}\hspace*{-1em}
+	\begin{subfigure}{0.28\linewidth}
+		\centering
+		\begin{tikzpicture}
+			\begin{heatmap}{\ncols}[newhm,colorbar=false, yticklabels={}, ylabel={}]
+				\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=1, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/h13ba4/it5_field_trade_comp.csv};
+			\end{heatmap}
+		\end{tikzpicture}
+		\caption{Trade-off, caso 2}
+	\end{subfigure}\hspace*{-1em}
+	%
+	\begin{subfigure}{0.28\linewidth}
+		\centering
+		\begin{tikzpicture}
+			\begin{heatmap}{\ncols}[newhm,colorbar=false, yticklabels={\phantom{0.5}}, ylabel={Depth($\si{\kilo\meter}$)}]
+				\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=1, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/h13ba4/it5_field_split_comp.csv};
+			\end{heatmap}
+		\end{tikzpicture}
+		\caption{Separado, caso 2}
+	\end{subfigure}\\[0.5em]
+	%
+	\begin{subfigure}{0.28\linewidth}
+		\centering
+		\begin{tikzpicture}
+			\begin{heatmap}{\ncols}[newhm,colorbar=false,ylabel={\phantom{Depth}}]
+				\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=1, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/h165c6/it5_field_basic_comp.csv};
+			\end{heatmap}
+		\end{tikzpicture}
+		\caption{Básico, caso 3}
+	\end{subfigure}\hspace*{-1em}
+	\begin{subfigure}{0.28\linewidth}
+		\centering
+		\begin{tikzpicture}
+			\begin{heatmap}{\ncols}[newhm,colorbar=false, yticklabels={}, ylabel={}]
+				\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=1, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/h165c6/it5_field_trade_comp.csv};
+			\end{heatmap}
+		\end{tikzpicture}
+		\caption{Trade-off, caso 3}
+	\end{subfigure}\hspace*{-1em}
+	%
+	\begin{subfigure}{0.28\linewidth}
+		\centering
+		\begin{tikzpicture}
+			\begin{heatmap}{\ncols}[newhm,colorbar=false, yticklabels={\phantom{0.5}}, ylabel={Depth($\si{\kilo\meter}$)}]
+				\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=1, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/h165c6/it5_field_split_comp.csv};
+			\end{heatmap}
+		\end{tikzpicture}
+		\caption{Separado, caso 3}
+	\end{subfigure}\\[0.5em]
+	%
+	\begin{subfigure}{0.28\linewidth}
+		\centering
+		\begin{tikzpicture}
+			\begin{heatmap}{\ncols}[newhm,colorbar =false,ylabel={\phantom{Depth}}]
+				\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=1, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/h158a8/it5_field_basic_comp.csv};
+			\end{heatmap}
+		\end{tikzpicture}
+		\caption{Básico, caso 4}
+	\end{subfigure}\hspace*{-1em}
+	\begin{subfigure}{0.28\linewidth}
+		\centering
+		\begin{tikzpicture}
+			\begin{heatmap}{\ncols}[newhm,colorbar =false, yticklabels={}, ylabel={}]
+				\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=1, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/h158a8/it5_field_trade_comp.csv};
+			\end{heatmap}
+		\end{tikzpicture}
+		\caption{Trade-off, caso 4}
+	\end{subfigure}\hspace*{-1em}
+	%
+	\begin{subfigure}{0.28\linewidth}
+		\centering
+		\begin{tikzpicture}
+			\begin{heatmap}{\ncols}[newhm,colorbar =false, yticklabels={\phantom{0.5}}, ylabel={Depth($\si{\kilo\meter}$)}]
+				\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=1, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/h158a8/it5_field_split_comp.csv};
+			\end{heatmap}
+		\end{tikzpicture}
+		\caption{Separado, caso 4}
+	\end{subfigure}\\[0.5em]
+	
+	\vspace*{.5em}
+	\colorbar{cberror}
+	\caption{Erro de estimação do SSF, para a $5$ª iteração, para os 4 casos, e 3 métodos.}
+	\label{fig:sec5:estimated_ssfs_all-cases_all-methods}
+\end{figure*}

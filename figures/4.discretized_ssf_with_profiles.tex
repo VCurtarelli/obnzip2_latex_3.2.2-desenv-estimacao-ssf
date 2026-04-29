@@ -1,0 +1,25 @@
+\begin{figure}[!t]
+	\centering
+	\begin{minipage}{0.6\linewidth}
+		\begin{tikzpicture}
+			\begin{heatmap}{\ncols}[colorbar to name={velocityHeatmap},hmstyle][fill opacity=0.8]
+				\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=0.8, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/\sympath/field_observed.csv};
+				%
+				{
+					\def\sympath{h298e}
+					\addplot[only marks, mark=o, gray, line width=3pt, mark size=0.5em+0.4pt] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_receivers.csv};
+					\addplot[only marks, mark=o, yellow!90!black, very thick, mark size=0.5em+0.4pt] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_receivers.csv};
+				}
+				%
+				{
+					\def\sympath{h386f}
+					\addplot[only marks, mark=x, white, line width=2.8pt, mark size=0.5em+0.8pt] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_receivers.csv};
+					\addplot[only marks, mark=x, red!50!black, very thick, mark size=0.5em] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_receivers.csv};
+				}
+			\end{heatmap}
+		\end{tikzpicture}
+		\colorbar{velocityHeatmap}
+	\end{minipage}
+    \caption{SSFs discretos com posição dos dispositivos: (a) no perímetro (vermelho $\times$), e (b) na horizontal (amarelo $\bigcirc$).}
+    \label{fig:sec4:discretized_ssf_true}
+\end{figure}

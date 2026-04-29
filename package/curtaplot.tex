@@ -1,0 +1,200 @@
+%% Requires:
+% PGFPlots
+
+\tikzexternalize[prefix=./figures/pgfexternal/]
+\NewDocumentCommand{\colorbar}{m}{%
+	\tikzexternaldisable \ref{#1} \tikzexternalenable%
+}
+\pgfplotsset{compat=1.18}
+
+%BEGIN_FOLD
+\usepgfplotslibrary{colorbrewer}
+\NewDocumentEnvironment{heatmap}{m O{} O{}}{
+	\begin{axis}[
+		colormap/viridis,
+		colorbar horizontal,
+		colorbar style={
+			colormap/viridis,
+			width=0.75\linewidth,
+			height=12pt,
+			%			xlabel = Beampattern,
+			xtick = {0.5*(\zmin+\zmax)},
+			xticklabel style={
+				/pgf/number format/.cd,
+				fixed,
+				%title=,
+				precision=0,
+				fixed zerofill,
+				%				opacity=1
+			},
+			tick label style={opacity=1},
+			major tick length=4pt,
+			xtick style={black},
+			xtick pos=top,
+			extra x ticks = {\zmin,\zmax},
+			extra x tick style = {major x tick style={draw=none}},
+			point meta min=\zmin,
+			point meta max=\zmax,
+			#3
+		},
+		width=0.9\linewidth,
+		height=0.9\linewidth,
+		point meta min=\zmin,
+		point meta max=\zmax,
+		mesh/cols=#1,
+		xlabel style = {anchor=north, yshift=0.9\linewidth-1.5em},
+		view={0}{90},
+		grid style = {draw=none},
+		ylabel style={anchor=center, yshift=-0.9\linewidth+1.5em},
+		major tick length=2pt,
+		ytick style = {black},
+		ytick pos = left,
+		mesh/ordering=x varies,
+		y dir=reverse,
+		#2
+		]
+		\centering
+	}{
+	\end{axis}
+}
+\NewDocumentCommand{\plotheatmap}{O{\ncols} O{\nrows} m O{}}{%
+	\addplot3[surf,mesh/cols={#1}, mesh/rows={#2}, opacity=1, draw opacity=0.0, #4] table[x=x,y=y,z=val,col sep=comma] {#3};%
+}
+%END_FOLD
+
+%BEGIN_FOLD
+\NewDocumentEnvironment{lineplot}{O{axis} m m O{}}{ % xlabel | ylabel | other arguments
+	\begin{#1}[
+		width=0.9\linewidth,
+		height=0.7\linewidth,
+		%
+		%		xtick = {1, 2 ,..., 7},
+		xtick align=outside,
+		xtick pos=bottom,
+		ytick align=outside,
+		ytick pos=right,
+		%
+		xlabel = #2,
+		ylabel = #3,
+		%		yticklabel style={text width=\wdtwenty, align=right},
+		ylabel style={yshift=-2em},
+		% xlabel style={yshift=0.5em},
+		%
+		%
+		%		legend pos={outer south},
+		%
+		legend cell align={left},
+		legend style={
+			fill=white,
+			%			fill opacity=0.5.6,
+			draw opacity=1,
+			text opacity=1,
+			%			at={(1.05, 0.5)},
+			%			anchor=west,
+			legend columns=2,
+			/tikz/every even column/.append style={column sep=1em}
+		},
+		yticklabel pos=right,
+		yticklabel style={
+			text width=2em,
+			anchor=west,
+			align=left,
+			% xshift=-0.2em,
+		},
+		#4,
+		]
+		%		\draw[thin, dash pattern = {on 4pt off 1pt}] (axis cs:\pgfkeysvalueof{/pgfplots/xmin},0) -- (axis cs:\pgfkeysvalueof{/pgfplots/xmax},0);
+	}{
+	\end{#1}
+}
+\NewDocumentCommand{\plotline}{O{resA} m O{}}{%
+	\addplot[draw, #1, #3] table[x=x,y=y, col sep=comma] {#2}; 
+}
+%END_FOLD
+
+%BEGIN_FOLD
+\tikzstyle{axis} = [
+black
+]
+
+\definecolor{ColA}{HTML}{F6002B} % red
+\definecolor{ColB}{HTML}{009400} % green
+\definecolor{ColC}{HTML}{8C7500} % yellow
+\definecolor{ColD}{HTML}{DB00CF} % purple
+\definecolor{ColE}{HTML}{0097CB} % blue
+\definecolor{ColF}{HTML}{FF8800} % orange
+
+\tikzstyle{resA} = [
+thick, ColA, dash pattern = {on 1pt off 0pt},
+mark=square*, mark size=2, mark options={
+	rotate=0,
+	solid,
+	opacity=0.5,
+	fill opacity=0.5
+}
+]
+\tikzstyle{resB} = [
+thick, ColB, dash pattern = {on 1pt off 1pt},
+mark=triangle*, mark size=3, mark options={
+	rotate=0,
+	solid,
+	opacity=0.5,
+	fill opacity=0.5
+}
+]
+\tikzstyle{resC} = [
+thick, ColC, dash pattern = {on 4pt off 2pt},
+mark=star, mark size=3, mark options={
+	rotate=0,
+	solid,
+	very thick,
+	opacity=0.5,
+	fill opacity=0.5
+}
+]
+\tikzstyle{resD} = [
+thick, ColD, dash pattern = {on 4pt off 2pt on 1pt off 2pt},
+mark=square*, mark size=2, mark options={
+	rotate=45,
+	solid,
+	opacity=0.5,
+	fill opacity=0.5
+}
+]
+\tikzstyle{resE} = [
+thick, ColE, dash pattern = {on 3pt off 1pt},
+mark=triangle*, mark size=1.5, mark options={
+	rotate=180,
+	solid,
+}
+]
+\tikzstyle{resF} = [
+thick, ColF, dash pattern = {on 3pt off 2pt},
+mark=x, mark size=2, mark options={
+	rotate=0,
+	solid,
+	very thick
+}
+]
+\tikzstyle{resG} = [
+thick, ColG, dash pattern = {on 3pt off 4pt},
+mark=+, mark size=2, mark options={
+	rotate=0,
+	solid,
+	very thick
+}
+]
+%END_FOLD
+
+\makeatletter
+\def\heatmapwarning{}
+\def\@heatmapwarning{\PackageWarningNoLine{CurtaTex}{Usage of the "plot" option may require defining the \protect\zmin, \protect\zmax, \protect\ncols, and \protect\nrows\space commands. This warning can be disabled with \protect\DisableWarningCurtatexHeatmap}}
+\def\DisableWarningCurtatexHeatmap{\gdef\@heatmapwarning{}}
+\AtEndDocument{
+	\ifdef{\zmin}{}{\gdef\heatmapwarning{\@heatmapwarning}}
+	\ifdef{\zmax}{}{\gdef\heatmapwarning{\@heatmapwarning}}
+	\ifdef{\ncols}{}{\gdef\heatmapwarning{\@heatmapwarning}}
+	\ifdef{\nrows}{}{\gdef\heatmapwarning{\@heatmapwarning}}
+	\heatmapwarning{}
+}
+\makeatother

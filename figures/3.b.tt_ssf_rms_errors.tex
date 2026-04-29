@@ -1,0 +1,54 @@
+\begin{figure}
+    \centering\setlength{\parindent}{0pt}
+    \begin{subfigure}[t]{0.45\linewidth}
+        \centering
+            \begin{tikzpicture}
+                \begin{lineplot}{Iterações}{$\rmse_{t}$ ($\si{\milli\second}$)}[legend to name=lineplots, xmin=0.5, xmax=10.5, ymode=log, ytick={0.00001, 0.001, 0.1, 10}, ymin=0.00001, ymax=10,  ]
+                    {
+                    \def\sympath{\sympathlayer}
+                    \addplot[draw, resA] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_svd.csv}; 
+                    \addplot[draw, resB] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_classic.csv};
+                    }
+                    {
+                    \def\sympath{\sympathsurround}
+                    \addplot[draw, resC] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_svd.csv}; 
+                    \addplot[draw, resD] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_classic.csv};
+                    }
+
+                    % \addplot[draw, resA]
+                    \addlegendentry{SVD - Camadas};
+                    \addlegendentry{TTT - Camadas};
+                    \addlegendentry{SVD - Entorno};
+                    \addlegendentry{TTT - Entorno};
+                \end{lineplot}
+            \end{tikzpicture}
+        \caption{Erro RMS de tempo de trânsito.}
+        \label{fig:sec4:tt_ssf_rms_errors:subfig1}
+    \end{subfigure} \hspace*{2em}
+    \begin{subfigure}[t]{0.45\linewidth}
+        \centering
+            \begin{tikzpicture}
+                \begin{lineplot}{Iterações}{$\rmse_{\ssf}$ ($\si{\meter/\second}$)}[ymode=log, 
+                	ytick={1, 2, 4, 10, 20}, yticklabels={$1$, $2$, $4$, $10$, $20$},
+                	 ]
+                    {
+                   	\def\sympath{\sympathlayer}
+                    \addplot[draw, resA] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_svd.csv}; 
+                    \addplot[draw, resB] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_classic.csv};
+                    }
+                    {
+                   	\def\sympath{\sympathsurround}
+                    \addplot[draw, resC] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_svd.csv}; 
+                    \addplot[draw, resD] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_classic.csv};
+                    }
+                \end{lineplot}
+            \end{tikzpicture}
+        \caption{Erro RMS do SSF.}
+        \label{fig:sec4:tt_ssf_rms_errors:subfig2}
+    \end{subfigure}
+
+    \vspace*{.5em}
+    \colorbar{lineplots}
+    \caption{Evolução dos erros RMS do processo de estimação do SSF, para os métodos TTT e SVD, nos cenários de dispositivos no perímetro e em camadas, ao longo de 10 iterações.}
+    \label{fig:sec4:tt_ssf_rms_errors}
+\end{figure}

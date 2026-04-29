@@ -1,0 +1,97 @@
+%\section{Mindmap}
+%\vfill
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}	
+		% --- Mindmap principal ---
+		\begin{scope}[
+			mindmap,
+			text width=2.5cm,
+			align=center,
+			every node/.style={concept},
+			concept color=gray!50,
+			level 1/.append style={
+				level distance=5cm,
+				minimum size=3cm,
+				text width=2.8cm,
+				font=\large,
+			},
+			level 2/.append style={
+				level distance=3.5cm,
+				minimum size=2cm,
+				text width=1.8cm
+			},
+			]
+			
+			\node (root) [minimum size=4.5cm, text width=4.3cm, line width=6pt, fill=gray!30]{\Large\textbf{\textsl{Sound Speed Field (SSF)}}}
+			child[concept color=blue!10, grow=240,] {
+				node{\textbf{Princípios}}
+				child[grow=270] { node{Parâmetros \\ TPS} }
+				child[grow=315] { node{Refração \\ (Snell)} }
+			}
+			child[concept color=red!10, grow=300] {
+				node{\textbf{Métodos de\\estimação}}
+				child[grow=315] { node{FWI} }
+				child[grow=360] { node{MFI} }
+				child[concept color=green!20, grow=270, level distance=5cm, minimum size=4.5cm] { 
+					node (ttt) {\large\textbf{TTT}} 
+				}
+			}
+			child[concept color=magenta!10, grow=0] {
+				node{\textbf{Limitações\\do projeto}}
+				child[grow=135] { node{Fontes} }
+				child[grow=45] { node{Receptores} }
+				child[grow=0] { node{Comunicação} }
+				child[grow=-45] { node{Informação\\obtida} }
+			}
+			;
+			
+		\end{scope}
+		
+		% --- Sub-mindmap do TTT ---
+		\begin{scope}[
+			shift={(ttt)},   % posiciona relativo ao nó TTT
+			%		yshift=-6cm,     % ajuste fino manual
+			mindmap,
+			text width=2.5cm,
+			align=center,
+			every node/.style={concept},
+			concept color=green!20,
+			level 1/.append style={
+				level distance=5cm,
+				minimum size=3cm,
+				text width=2.8cm,
+				font=\large,
+			},
+			level 2/.append style={
+				level distance=3.5cm,
+				minimum size=2cm,
+				text width=1.8cm
+			}
+			]
+			
+			\node[minimum size=4.5cm, text width=4.3cm, line width=6pt, fill=green!10]{\Large\textbf{\textsl{Travel-Time \mbox{Tomography} (TTT)}}}
+			child[concept color=green!20!brown!10,grow=225] { 
+				node{\textbf{Fundamentos}}
+				child[grow=180] { node{Distribuição\\de dispositivos} }
+				child[grow=225] { node{Discretização\\espacial} }
+				child[grow=270] { node{Princípio\\de Fermat} }
+				child[grow=135] { node{Tempo de\\trânsito} }
+			}
+			child[concept color=green!50!orange!10,grow=270] { 
+				node{\textbf{Problema\\direto}} 
+				child[grow=247.5] { node{\textsl{Ray-tracing}} }
+				child[grow=292.5] { node{Solver\\Eikonal} }
+			}
+			child[concept color=green!20!teal!10,grow=315] { 
+				node{\textbf{Problema\\inverso}}
+				child[grow=270] { node{Otimização} }
+				child[grow=315] { node{Regularização} }
+			}
+			;
+			
+		\end{scope}		
+	\end{tikzpicture}
+%	\caption{\textsl{Mindmap} do relatório.}
+%	\label{fig:mindmap_relatorio}
+\end{figure}

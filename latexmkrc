@@ -1,0 +1,1 @@
+$ENV{'TEXINPUTS'} = './package//:' . $ENV{'TEXINPUTS'};

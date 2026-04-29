@@ -1,0 +1,40 @@
+\documentclass{setup/obnzip2}
+
+\usepackage[math,bold,env,plot]{curtatex}
+\usepackage{siunitx}
+\usepackage{titlesec}
+\usepackage{float}
+\usetikzlibrary{positioning,trees,mindmap}
+\usepackage{subcaption}
+
+
+\input{setup/commands}
+\input{setup/comm_tikz}
+\input{setup/comm_symbols}
+
+\let\gls\textsc
+\let\ingles\textsl
+
+\addbibresource{setup/RelatorioExtReferencias.bib}
+
+\begin{document}	
+	\formarcabecalho
+	\input{parts/1.ModeloPadrao_TTT}
+	\input{parts/2.SVD_proposed}
+	\input{parts/3.Sims}
+	\input{parts/4.Modelos_Adap_TTT}
+	\input{parts/5.Modelos_Usando_TT}
+	
+%	\input{parts/1.Intro}
+%	\input{parts/2.Revisao_TTT}
+%	\input{parts/3.Revisao_invTT}
+%	\input{parts/4.Revisao_iSSF}
+%	\input{parts/5.Analise_revs}
+%	\input{parts/6.Conclusao}
+	\printbibliography[]	
+%	\appendix
+%	\crefalias{section}{appendix}
+%	\crefname{appendix}{Apêndice}{Apêndices}
+%	\input{parts/A.ModeloPadrao_TTT}
+\end{document}
+

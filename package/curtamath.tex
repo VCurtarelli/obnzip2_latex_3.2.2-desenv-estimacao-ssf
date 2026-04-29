@@ -1,0 +1,145 @@
+\NewDocumentCommand{\MakeSymbol}{m m}{
+	\ABD{\DeclareDocumentCommand{#1}{}{#2}}
+}
+
+% Real and imaginary
+\NewDocumentCommand{\real}{m}{%
+	\Re\left\{#1\right\}%
+}
+\NewDocumentCommand{\imag}{m}{%
+	\Im\left\{#1\right\}%
+}
+
+\DeclareDocumentCommand{\re}{}{%
+	\symbb{R}%
+}
+\DeclareDocumentCommand{\im}{}{%
+	\symbb{I}%
+}
+
+\DeclareMathOperator{\Sign}{sgn}
+\NewDocumentCommand{\sgn}{m}{\Sign\pts{#1}}
+
+% Ceil and floor functions
+\DeclareDocumentCommand{\ceil}{m}{%
+	\left\lceil #1 \right\rceil
+}
+\DeclareDocumentCommand{\floor}{m}{%
+	\left\lfloor #1 \right\rfloor
+}
+
+% Misc symbols
+\AtBeginDocument{\def\-{\text{-}}}
+\def\dg{^{\symsfup{o}}}
+\def\dd{\symsfup{d}}
+\def\div{\mathbin{//}}
+\def\mod{\mathbin{\%}}
+\def\x{\symsfup{x}}
+\def\y{\symsfup{y}}
+\def\z{\symsfup{z}}
+\def\w{\omega}
+\def\Nu{\mathcal{V}}
+\def\pos{{}^{+}}
+\def\neg{{}^{-}}
+
+% Misc commands
+\let\nfrac\nicefrac
+
+% My delimiters
+\newcommand{\pts}[1]{\udel{#1}}
+\newcommand{\bts}[1]{\udel[{[}]{#1}[{]}]}
+\newcommand{\cts}[1]{\udel[{\{}]{#1}[{\}}]}
+\newcommand{\abs}[1]{\udel[|]{#1}[|]}
+\newcommand{\norm}[1]{\udel[\lVert]{#1}[\rVert]}
+\NewDocumentCommand{\udel}{O{(} m O{)}}{%
+	\left#1 #2 \right#3%
+}%
+
+% My matrix operators
+\makeatletter
+\newcommand{\Sym@tr}{\symsfup{T}}
+\newcommand{\Sym@he}{\symsfup{H}}
+\NewDocumentCommand{\Sym@inv}{O{1}}{
+	\-\mkern-2mu\symsfup{#1}
+}
+\NewDocumentCommand{\Sym@pinv}{O{}}{%
+	\dagger%
+}
+
+\NewDocumentCommand{\inv}{s O{1} m}{
+	\IfBooleanTF{#1}{
+		\bts{#3}^{\Sym@inv[#2]}
+	}{
+		#3^{\Sym@inv[#2]}
+	}
+}
+\newcommand{\tr}[1]{#1^{\Sym@tr}}
+\newcommand{\he}[1]{#1^{\Sym@he}}
+\NewDocumentCommand{\invt}{m}{
+	#1^{\Sym@inv[T]}
+}
+%
+\NewDocumentCommand{\pinv}{s O{} m}{
+	\IfBooleanTF{#1}{
+		\bts{#3}^{\Sym@pinv_{#2}}
+	}{
+		#3^{\Sym@pinv_{#2}}
+	}
+}
+\NewDocumentCommand{\pinvR}{s m}{
+	\IfBooleanTF{#1}{
+		\pinv*[R]{#2}
+	}{
+		\pinv[R]{#2}
+	}
+}
+\NewDocumentCommand{\pinvL}{s m}{
+	\IfBooleanTF{#1}{
+		\pinv*[L]{#2}
+	}{
+		\pinv[L]{#2}
+	}
+}
+\makeatother
+
+\DeclareMathOperator{\Trace}{tr}
+\DeclareMathOperator{\Rank}{rank}
+\DeclareMathOperator{\Diag}{diag}
+\DeclareMathOperator{\Null}{nul}
+\DeclareMathOperator{\Kern}{kern}
+
+\NewDocumentCommand{\trace}{m}{\Trace\pts{#1}}
+\NewDocumentCommand{\rank}{m}{\Rank\pts{#1}}
+\NewDocumentCommand{\diag}{m}{\Diag\pts{#1}}
+\NewDocumentCommand{\nul}{m}{\Null\pts{#1}}
+\NewDocumentCommand{\kernel}{m}{\Kern\pts{#1}}
+
+\NewDocumentCommand{\var}{m}{\phi_{#1}}
+\NewDocumentCommand{\Corr}{m}{\bv{\Phi}_{#1}}
+
+\def\mtimes{\mkern-3mu\mathbin{\scalebox{0.7}{$\times$}}\mkern-3mu}
+\NewDocumentCommand{\sz}{s m m}{%
+	\IfBooleanTF{#1}{%
+		\bts{{#2} \mtimes {#3}}%
+	}{%
+		{#2} \mtimes {#3}%
+	}%
+}
+\NewDocumentCommand{\SubSize}{m m}{\IfValueT{#1}{_{\scalebox{0.7}{$ \sz{#1\!}{\!\IfValueTF{#2}{#2}{#1}} $}}}}
+\NewDocumentCommand{\el}{m m}{%
+	\bts{#1}_{(#2)}
+}
+
+\ProvideDocumentCommand{\Id}{}{\textrm{\textbf{I}}\setboldmathwarning}
+
+% Optimization commandas
+\NewDocumentCommand{\opt}{s m}{%
+	\IfBooleanTF{#1}{{#2}^{\star}}{#2^{\star}}%
+}
+\DeclareMathOperator{\obs}{obs}
+\DeclareMathOperator{\est}{est}
+\DeclareMathOperator{\rfr}{ref}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator{\End}{end}
+\DeclareMathOperator{\src}{src}
+%\newcommand{\argmin}{\Argmin\limits}

@@ -1,0 +1,96 @@
+\section{Métodos adaptados da TTT}
+\label{sec:modelos_adaptados_ttt}
+
+Como visto na seção anterior, nenhum dos métodos apresentados alcançou resultados satisfatórios na estimação do SSF, na situação de interesse/relevância para o projeto. Disso, será necessário desenvolver um método diferente, que seja capaz de obter resultado melhores.
+
+Pela simplicidade matemática e por os resultados serem muito semelhantes, aqui será usado como base o modelo-padrão TTT como desenvolvido na \cref{sec:modelo-padrão-TTT}, a partir do qual serão desenvolvidos dois novos métodos, que utilizem informações \ingles{a priori} novas.
+
+\subsection{Comportamento profundo}
+Conforme mostrado nos trabalhos de \citet{munk_ocean_1995,possenti_present_2024}, o comportamento global do SSF converge conforme a profundidade aumenta, com variações pequenas próximas ao SOFAR (profundidade de $1000\si{\meter}$), e imperceptíveis para profundidades abaixo de $2000\si{\meter}$.
+
+Essa informação pode ser utilizada na modelagem, determinando um comportamento esperado a partir de determinada profundidade, o que pode ser incluído no problema como uma segunda regularização.
+
+\subsubsection*{Perfil de Munk}
+
+O \gls{Perfil de Munk} \cite{munk_sound_1974} é um perfil teórico que descreve aproximadamente o comportamento da velocidade do som na água em oceanos, variando exclusivamente com a profundidade. Por ser um modelo teórico, ele simplifica muitos dos efeitos e das nuances que podem ocorrer, e serve primariamente como um guia. Ele é descrito por
+\begin{equation}
+	v(z) = V_0 \pts{ 1 + \epsilon_0 \bts{ e^{2\frac{z-z_0}{B_0} } + 2\frac{z-z_0}{B_0} - 1 } }
+	\label{eq:sec4:perfil_de_munk}
+\end{equation}
+em que $V_0 = 1500\si{\meter/\second}$, $\epsilon_0 = 0.00737$, $z_0 = 1300\si{\meter}$, e $B_0=1300\si{\meter}$ são os parâmetros que controlam o perfil de Munk. Os valores apresentados são os mais comumente utilizados na literatura, e podem variar em casos específicos.
+
+É possível modificar a formulação da TTT alcançada na \cref{sec:modelo-padrão-TTT} para incluir (de alguma forma) a informação de um perfil-referência, como o perfil de Munk apresentado, ou algum outro perfil obtido previamente. Serão apresentados dois perfis que utilizem essa informação \ingles{a priori}.
+
+\subsection{Método em camadas separadas}
+
+Nesse método, nós separamos o SSF em duas camadas: até uma profundidade-limite $z_{\lim}$ (que, sem perda de generalidade, assumiremos $z_{\lim} = 1000\si{\meter}$) o SSF será modelado através de otimização por minimização da função custo; e abaixo dessa profundidade, o SSF será tomado como sendo conhecido (pelo perfil \ingles{a priori}) e não precisa ser estimado.
+
+Matematicamente, assumimos que o SSF $\bvs{i}$ pode ser separado em dois vetores, $\bvs{1}$ e $\bvs{2}$. Sem perda de generalidade, assume-se que
+\begin{equation}
+	\bvs{i+1} = \tr{[\bvs[T]{1} | \bvs[T]{2}]}
+\end{equation}
+com $[\,\cdot\,|\,\cdot\,]$ sendo concatenação vetorial; omite-se a dependência de $\bvs{1}$ e $\bvs{2}$ em $i$ por clareza. Disso, e tomando a função-custo regularizada da \cref{eqs:sec2:iterative_minimization_Ezi} com regularização quadrática, através de manipulações algébricas chega-se a
+\begin{equation}
+	\begin{split}
+		E(\bvs{1})
+		& = \bvs[T]{1} \bvR[T]{i,1} \bvR{i,1} \bvs{1} + \bvs[T]{1} \bvR[T]{i,1} \pts{\bvR{i,2} \bvs{2} - \bvt{\obs}} + \tr{\pts{\bvR{i,2} \bvs{2} - \bvt{\obs}}} \bvR{i,1} \bvs{1} + \norm{\bvR{i,2} \bvs{2} - \bvt{\obs}}^2 \\
+		& + \alpha^2 \pts{ \bvs[T]{1} \bvD[T]{i,1} \bvD{i,1} \bvs{1} + \bvs[T]{1} \bvD[T]{i,1} \bvD{i,2} \bvs{2} + \bvs[T]{2} \bvD[T]{i,2} \bvD{i,1} \bvs{1} + \bvs[T]{2} \bvD[T]{i,2} \bvD{i,2} \bvs{2}}
+	\end{split}
+\end{equation}
+onde $\bvR{i,1}$ compreende as colunas iniciais de $\bvR{i}$ correspondentes a $\bvs{1}$, e $\bvR{2}$ as colunas finais correspondentes a $\bvs{2}$. O mínimo dessa função-custo é obtido com $\bvs[o]{i+1;s}$, dado por
+\begin{equation}
+	\bvs[o]{i+1;s} = \inv*{\bvR[T]{i,1} \bvR{i,1} + \alpha^2 \bvD[T]{1} \bvD{1} } \pts{ \bvR[T]{i,1} \bvt{\obs} - \bvR[T]{i,1} \bvR{i,2} \bvs{2} - \alpha^2 \bvD[T]{1} \bvD[T]{2} \bvs{2} }
+\end{equation}
+em que o subscrito $s$ de $\bvs[o]{i+1;s}$ identifica que esse é o mínimo para o caso de camadas separadas.
+
+É possível comparar esse resultado com a solução para o TTT regularizado base da \cref{eq:sec2:solution_regularization-problem_simple}. Tem-se que o termo inverso (em colchetes) é quase idêntico, com a única diferença sendo que aqui ele considera somente a camada a ser invertida. O outro termo (em parênteses) possui elementos adicionais: especificamente, o termo $\bvR[T]{i,1} \bvR{i,2} \bvs{2}$ está relacionado ao tempo de trânsito na camada conhecida (abaixo de $z_{\lim}$); e o termo $\alpha^2 \bvD[T]{1} \bvD[T]{2} \bvs{2}$ à suavidade entre as camadas estimada e a determinada \ingles{a priori}.
+
+Embora nesse método a vagarosidade só precisa ser estimada pra a parte superior no problema inverso, o solver Eikonal ainda precisa determinar as distâncias percorridas em todas as células, pois a solução $\bvs[o]{i+1,s}$ ainda depende de $\bvR{2}$, e esse pode mudar dependendo da solução anterior.
+
+\subsection{Método \textsl{trade-off}}
+\newcalbv{I}
+
+Enquanto no método anterior a informação \ingles{a priori} da região mais profunda era integrada de uma maneira impositiva à modelagem e à função custo, aqui será tomada uma abordagem mais suave; ou seja, ao invés de forçar que a velocidade é um valor conhecido, esse valor conhecido será usado como guia para as células abaixo de $z_{\lim}$.
+
+Isso pode ser traduzido matematicamente como uma regularização extra na função-custo definida na \cref{eq:sec2:solution_regularization-problem_simple}, agora escrita como
+\begin{equation}
+	E(\bvs{i+1}) = \norm{ \bvR{i} \bvs{i+1} - \bvt{\obs} }^2 + \alpha^2 \norm{ \bvD \bvs{i+1} }^2 + \beta^2 \norm{\calI \pts{\bvs{i+1} - \bvs{\obs}}}^2
+\end{equation}
+onde $\beta$ é um parâmetro de regularização para esse segundo termo; $\calI \in \re^{\sz{N}{N}}$ denota uma matriz diagonal, cujo $i$-ésimo elemento diagonal é $1$ se a célula correspondente (elemento de $\bvs$) está abaixo de $z_{\lim}$, e $0$ caso contrário; e $\bvs{\obs}$ é a velocidade do som referência. O mínimo dessa função-custo é obtido com $\bvs[o]{i+1;t}$,
+\begin{equation}
+	\bvs[o]{i+1;t} = \inv*{\bvR[T]{i} \bvR{i} + \alpha^2 \bvD[T] \bvD + \beta^2 \calI[T] \calI} \pts{\bvR[T]{i} \bvt{\obs} + \beta^2 \calI[T] \calI \bvs{\obs}}
+\end{equation}
+com o subscrito $t$ identificando que esse é o mínimo pelo método \ingles{trade-off}.
+
+Note que apenas $\bvR{i}$ depende da iteração anterior, enquanto as demais variáveis são constantes de modelagem ($\bvD$ e $\calI$), observações ($\bvt{\obs}$ obtido nos levantamentos, e $\bvs{\obs}$ de dados ambientais ou expedições anteriores), ou parâmetros ajustáveis ($\alpha$ e $\beta$). Um $\alpha$ maior favorece um ambiente menos variável, trocando acurácia por suavidade; enquanto um $\beta$ maior força o perfil de lentidão a aproximar-se mais da referência $\bvs{\obs}$.
+
+\subsection{Formas normalizadas}
+
+Da mesma forma que a formulação tradicional da TTT foi normalizada (de forma a aumentar a robustez da otimização à magnitude do ambiente), as duas formulações desenvolvidas aqui também podem. Em particular, novamente toma-se $\rho = \norm{\bvR{i}}_F$, $\delta = \norm{\bvD}_F$, e agora denota-se $\iota = \norm{\calI}_F$. Com isso, as novas soluções (normalizadas) são
+\begin{equation}
+	\bvs[o]{i+1;s}(\alpha) = \inv*{\bvR[dT]{i,1} \bvR[d]{i,1} + \alpha^2 \bvD[dT]{1} \bvD[d]{1}} \pts{\frac{1}{\rho} \bvR[dT]{i,1} \bvt{\obs} - \bvR[dT]{i,1} \bvR[d]{i,2} \bvs{2} - \alpha^2 \bvD[dT]{1} \bvD[d]{2} \bvs{2}}
+	\label{eq:sec4:solucao_separado_normalizado}
+\end{equation}
+para o método em camadas separadas, e
+\begin{equation}
+	\bvs[o]{i+1;t}(\alpha,\beta) = \inv*{\bvR[dT]{i} \bvR[d]{i} + \alpha^2 \bvD[dT]\bvD[d] + \beta^2 \calI[dT] \calI[d] } \pts{\frac{1}{\rho} \bvR[dT]{i} \bvt{\obs} + \beta^2 \calI[dT] \calI[d] \bvs{\obs}}
+	\label{eq:sec4:solucao_tradeoff_normalizado}
+\end{equation}
+para o método \ingles{trade-off}. Para o mesmo resultado, $\alpha$ será diferente, contudo por esse ser um parâmetro arbitrário, ele foi mantido. As novas matrizes normalizadas são $\bvR[d]{i} = \frac{\bvR{i}}{\rho}$ (com $\bvR[d]{i,1}$ e $\bvR[d]{i,2}$ construídas da mesma forma que anteriormente), $\bvD[d] = \frac{\bvD}{\delta}$, e $\calI[d] = \frac{\calI}{\iota}$.
+
+Aqui a dependência dos vetores de vagarosidade em relação aos parâmetros $\alpha$ e $\beta$ foi explicitada.
+
+\subsubsection*{Intercalação entre métodos}
+
+Por padronização, denotamos a solução do TTT tradicional como
+\begin{equation}
+	\bvs[o]{i+1;b}(\alpha) = \frac{1}{\rho} \inv*{\bvR[dT]{i} \bvR[d]{i} + \alpha^2 \bvD[dT] \bvD[d]} \bvR[dT]{i} \bvt{\obs}
+	\label{eq:sec4:solucao_basica_normalizado}
+\end{equation}
+com o subscrito $b$ denotando essa ser a solução ``básica''. Com essas soluções (\cref{eq:sec4:solucao_separado_normalizado,eq:sec4:solucao_tradeoff_normalizado,eq:sec4:solucao_basica_normalizado}), é possível mostrar que
+\begin{gather}
+	\bvs[o]{i+1;t}(\alpha,0) = \bvs[o]{i+1;b}(\alpha) \\
+	\bvs[o]{i+1;t}(\alpha,\infty) = \bvs[o]{i+1;s}(\alpha)
+\end{gather}
+
+Ou seja, o método de \ingles{trade-off} interpola entre o método TTT tradicional (da \cref{eq:sec2:solution_regularization-problem_simple_normalized}), e o método de camadas separadas, dependendo do valor do parâmetro $\beta$. Um valor intermediário desse parâmetro resultará em uma ``solução intermediária'' entre os outros dois (básico e separado).

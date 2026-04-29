@@ -1,0 +1,223 @@
+\section{Métodos alternativos de estimação do SSF com tempo de trânsito}
+
+Até o momento, foram tratados métodos para estimação do SSF que ou são a \ingles{Travel-Time Tomography} tradicional (\cref{sec:modelo-padrão-TTT}), ou são modificações pequenas em cima da TTT tradicional, incluindo informações diferentes (\cref{sec:modelos_adaptados_ttt}), ou com um método diferente para o passo da inversão (\cref{sec:svd}).
+
+Dado isso, é possível utilizar a estrutura da TTT (de minimização do erro de tempo de trânsito entre o modelo e o resultado), e aliá-la a outras ferramentas de modelagem, de forma a obter um resultado que mais proximamente se alinhe ao SSF real. Isso foi tentado através da SVD anteriormente (\cref{sec:svd}), mas como mostrado na \cref{sec:simulation_and_results} isso não foi suficiente para alcançar resultados satisfatórios na situação em camadas; essa sendo a mais alinhada com imposições práticas.
+
+\subsection{Método por parametrização de Munk}
+
+O primeiro método é uma adaptação do proposto por \citet{wu_inversion_2023}, expandindo-o para o caso multi-dimensional, e com uma escolha de parâmetros levemente modificada.
+
+Para esse método, retornaremos ao perfil de Munk da \cref{eq:sec4:perfil_de_munk}. Consideraremos um ambiente bidimensional (sem perda de generalidade), com $\sz{N_{\z}}{N_{\x}}$ células. Cada coluna de células (com posição $x$) será regida por um perfil de Munk diferente, com parâmetros $v_x$, $\epsilon_x$, $z_x$, e $B_x$; e, disso, pela \cref{eq:sec4:perfil_de_munk},
+\begin{equation}
+	v(x,z) = V_x \pts{ 1 + \epsilon_x \bts{ e^{2\frac{z-z_x}{B_x} } + 2\frac{z-z_x}{B_x} - 1 } }
+	\label{eq:sec5:perfil_munk_parametrizado}
+\end{equation}
+
+Denota-se $\bvV,\bvep,\bvz,\bvB \in \re^{\sz{N_{\x}}{1}}$ como vetores dos parâmetros de Munk, e $\bvbeta \in \re^{\sz{4N_{\x}}{1}}$ como um vetor de parâmetros, contemplando todos os $4N_{\x}$ parâmetros de modelagem, dado por
+\begin{equation}
+	\bvbeta = \tr{\bts{\bvV[T] ~ \bvep[T] ~ \bvz[T] ~ \bvB[T]}}
+	\label{eq:sec5:definicao_vetor_bvbeta}
+\end{equation}
+
+Por fim, $\bvv(\bvbeta)$ é o SSF para esse conjunto de parâmetros. Ou ainda, o campo de vagarosidade (também denotado SSF, por abuso de notação)
+\begin{equation}
+	\bvs(\bvbeta) = \frac{1}{\bvv(\bvbeta)}
+	\label{eq:sec5:ssf_usando_bvbeta}
+\end{equation}
+
+\subsubsection*{Função-custo e erro quadrático}
+
+De forma semelhante à TTT, será usada uma minimização iterativa, alternando entre encontrar o SSF (agora parametrizado por $\bvbeta$) e a matriz de distâncias. Matematicamente, $\bvbeta{i}$ é o vetor de parâmetros da $i$-ésima iteração, e $\bvR{i} \equiv \bvR(\bvs(\bvbeta{i})) \in \re^{\sz{M}{N}}$ é a matriz de distâncias para o SSF definido por $\bvbeta$. A função custo será
+\begin{equation}
+	E(\bvbeta{i}) = \norm{\bvR{i-1} \bvs(\bvbeta{i}) - \bvt{\obs}}^2
+	\label{eq:sec5:funcao-custo-beta}
+\end{equation}
+onde assume-se $\bvR{i-1}$ constante. Expandindo a norma $\ell_2$ da \cref{eq:sec5:funcao-custo-beta}, tem-se
+\begin{equation}
+	E(\bvbeta{i}) = \sum_{m=0}^{M-1} E_m^2(\bvbeta{i})
+\end{equation}
+onde
+\begin{equation}
+	E_m(\bvbeta{i}) = \sum_{n=0}^{N-1} r_{m,n;i-1} s_{n;i} - t_{\obs;m}
+\end{equation}
+em que $r_{m,n;i-1} = \el{\bvR{i-1}}{m,n}$ é a distância percorrida pela $m$-ésima onda (fonte-receptor) dentro da $n$-ésima célula na $i-1$-ésima iteração; $s_{n;i}$ é a vagarosidade da $n$-ésima célula na $(i)$-ésima iteração (a atual), sendo função de $\bvbeta{i}$ (ou mais especificamente, dos elementos de $\bvbeta{i}$ que correspondem à coluna na qual a $n$-ésima célula se encontra); e $t_{\obs;m}$ é o tempo de trânsito da $m$-ésima onda.
+
+Denota-se também $\bve{i-1} \in \re^{\sz{M}{1}}$ um vetor dos resíduos, com $\el{\bve{i}}{m} = E_m(\bvbeta{i})$.
+
+Ressaltaremos que, nas formulações anteriores, foi usada uma notação em $i$ que definia a próxima iteração ($i+1$) com base na atual. Por limpeza e espaço, aqui será usada uma notação que define a iteração atual $i$ com base na anterior $i-1$.
+
+\subsubsection*{Minimização e o algoritmo de Gauss-Newton}
+
+É notável que a relação entre a função-custo $E(\bvbeta{i})$ e a variável de minimização $\bvbeta{i}$ é não-linear. Enquanto na TTT clássica, a função-custo é estritamente uma função quadrática em relação aos parâmetros de otimização (o vetor de vagarosidade $\bvs{i}$), aqui o comportamento de $\bvs{i}$ é regido pelos parâmetros de $\bvbeta{i}$. Isso faz com que a solução por inversão não seja direta, e tampouco possua uma forma fechada para sua solução.
+
+Para tratar desse problema não-linear, utilizaremos o algoritmo de Gauss-Newton (GNa). Para tal, denota-se $\bvbeta{i,j}$ como a $j$-ésima iteração (dentro do GNa) do vetor de parâmetros, na $i$-ésima iteração da estimação do SSF. Também escrevemos $\bvJ{i,j} \in \re^{\sz{M}{4N_{\x}}}$ como o Jacobiano de $\bve{i,j}$ em relação a $\bvbeta{i,j}$; ou ainda,
+\begin{equation}
+	\el{\bvJ{i,j}}{m,k} = \frac{\partial E_m}{\partial \beta_{k;i,j}}(\bvbeta{i,j})
+\end{equation}
+
+O GNa é inicializado com $\bvbeta{i,\{j=0\}} = \bvbeta[o]{i-1}$, recebendo o vetor de parâmetros ótimo da solução anterior (em $i$).
+
+Lembrando que $s_{n;i-1,j} = \frac{1}{v_{n;i-1,j}}$, é fácil mostrar que
+\begin{subequations}
+	\begin{align}
+		\pdv{E_m}{V_{k;i,j}} & = \sum_{n=0}^{N-1} f_{m,n;i,j} \pts{1 + \epsilon_{k;i,j} g_z(z_{k;i,j},B_{k;i,j}) } \\
+		\pdv{E_m}{\epsilon_{k;i,j}} & = V_{k;i,j} \sum_{n=0}^{N-1} f_{m,n;i,j} g_z(z_{k;i,j},B_{k;i,j}) \\
+		\pdv{E_m}{z_{k;i,j}} & = V_{k;i,j} \epsilon_{k;i,j} \frac{2}{B_{k;i,j}} \sum_{n=0}^{N-1} f_{m,n;i,j} \pts{e^{-\eta_z(z_{k;i,j},B_{k;i,j})} - 1} \\
+		\pdv{E_m}{B_{k;i,j}} & = V_{k;i,j} \epsilon_{k;i,j} \sum_{n=0}^{N-1} f_{m,n;i,j} \frac{\eta_z(z_{k;i,j},B_{k;i,j})}{B_{k;i,j}} \pts{e^{-\eta_z(z_{k;i,j},B_{k;i,j})} - 1}
+	\end{align}
+	\begin{gather}
+		f_{m,n;i,j} = - \Delta_{n,k} s^2_{n;i,j} r_{m,n;i-1-1} \\
+		g_z(z_{k;i,j},B_{k;i,j}) = \bts{e^{-\eta_z(z_{k;i,j},B_{k;i,j})} + \eta_z(z_{k;i,j},z_{k;i,j}) - 1 } \\
+	\eta_z(z_{k;i,j},B_{k;i,j}) = \frac{2\pts{z_n - z_{k;i,j}}}{B_{k;i,j}}
+	\end{gather}	
+\end{subequations}
+em que $V_{k;i,j}$, $\epsilon_{k;i,j}$, $z_{k;i,j}$ e $B_{k;i,j}$ são os $[k,N_{\x}+k,2N_{\x}+k,3N_{\x}+k]$-ésimos elementos de $\bvbeta{i,j}$, e $z_n$ é a profundidade da $n$-ésima célula. $\Delta_{n,k}$ é uma versão modificada do delta de Dirac, sendo $1$ se a $n$-ésima célula pertence à $k$-ésima coluna, e $0$ caso contrário.
+
+Tendo o Jacobiano $\bvJ{i,j}$, o vetor de resíduos $\bve{i,j}$, e o vetor de parâmetros $\bvbeta{i,j}$, pelo GNa tem-se então
+\begin{equation}
+	\bvbeta{i,j+1} = \bvbeta{i,j} - \inv*{\bvJ[T]{i,j} \bvJ{i,j}} \bvJ[T]{i,j} \bve{i,j}
+\end{equation}
+
+Esse processo iterativo é repetido em $j$ até ocorrer a convergência em $\bvbeta{i,j+1}$; momento no qual se extrai $\bvbeta[o]{i} = \bvbeta{i,j}$.
+
+Para que esse processo seja válido, é necessário e suficiente que $\rank{\bvJ{i,j}} = 4N_{\x} \leq M$. Contudo, essa condição não é garantida verdadeira.
+
+\subsubsection*{Regularização com referência}
+
+O perfil de Munk é definido com um conjunto de parâmetros, geralmente $V_0 = 1500\si{\meter/\second}$, $\epsilon_0 = 0.00737$, $z_0 = 1300\si{\meter}$, e $B_0=1300\si{\meter}$. Esses valores podem ser usados como referências para a minimização apresentada anteriormente, através de uma regularização aditiva.
+
+Definimos $F(\bvbeta{i,j})$ como um erro quadrático entre os parâmetros a sere estimados e os valores-base de referência, dado por
+\begin{equation}
+	F(\bvbeta{i,j}) = \norm{\bvA \pts{\bvbeta{i,j} - \bvbeta{\rfr}}}^2
+\end{equation}
+em que $\bvbeta{\rfr} \in \re^{\sz{4N_{\x}}{1}}$ é o vetor de referência, em que cada bloco de $N_{\x}$ valores é igual ao respectivo valor de referência citado anteriormente; e $\bvA \in \re^{\sz{4N_{\x}}{4N_{\x}}}$ é uma matriz diagonal com parâmetros de regularização, dada por
+\begin{equation}
+	\bvA = \begin{bmatrix}
+		\alpha_v \Id & \bv0 & \bv0 & \bv0 \\
+		\bv0 & \alpha_{\epsilon} \Id & \bv0 & \bv0 \\
+		\bv0 & \bv0 & \alpha_z \Id & \bv0 \\
+		\bv0 & \bv0 & \bv0 & \alpha_B \Id
+	\end{bmatrix}
+	\label{eq:s1:matriz_param-regularizacao}
+\end{equation}
+
+Os elementos de $\bvA$ servem simultaneamente para controlar o quão ``pesada'' é a regularização, e também normalizar o impacto dos parâmetros, dada a diferença de ordem entre eles.
+
+Por usarmos uma regularização quadrática, seu Jacobiano será $\bvF{i,j}' = \bvA$. Com isso, a iteração do GNa se torna
+\begin{equation}
+	\bvbeta{i,j+1} = \bvbeta{i,j} - \inv*{ \bvJ[T]{i,j} \bvJ{i,j} + \bvF[pT]{i,j} \bvF[p]{i,j} } \pts{ \bvJ[T]{i,j} \bve{i,j} + \bvF[pT]{i,j} \bvF[p]{i,j} \bts{ \bvbeta{i,j} - \bvbeta{\rfr} } }
+\end{equation}
+
+Alternativamente, essa regularização poderia ser feita sobre o SSF reconstruído usando as \cref{eq:sec5:perfil_munk_parametrizado,eq:sec5:definicao_vetor_bvbeta,eq:sec5:ssf_usando_bvbeta}, ao invés do vetor de parâmetros; ou uma regularização que relacionasse os parâmetros entre colunas adjacentes. A regularização utilizada foi escolhida por simplicidade matemática, embora as duas outras avenidas permaneçam em aberto como vias de exploração futura.
+
+\subsection{Método por EOFs}
+Esse método será semelhante ao proposto por \cite{radhakrishnan_inversion_2024}, com as devidas modificações e adaptações para o caso multi-dimensional, além de algumas outras alterações.
+
+A modelagem por funções empíricas ortogonais (EOFs, do inglês \ingles{Empirical Orthogonal Functions}) são uma abordagem possível para reconstrução do SSF. Nela, cada coluna do SSF não é estimada diretamente, mas como uma combinação linear dentre possíveis perfis previamente estimados, a partir de um banco de dados.
+
+\subsubsection*{Construção da base de EOFs}
+
+A partir de um banco de dados com $K$ medições de temperatura, pressão, e salinidade (TPS) ao longo da coluna d'água em uma localidade ou região, é possível determinar o SSP (unidimensional) nessa localidade através de formulações já estabelecidas \cite{delgrosso_new_1974,mackenzie_nineterm_1981,wilson_equation_1960}.
+
+Denota-se $\bvs{k} \in \re^{\sz{N_{\z}}{1}}$ o SSP para o $k$-ésimo registro, e $\bvs[b]$ o perfil médio entre os $K$ registros,
+\begin{equation}
+	\bvs[b] = \frac{1}{K} \sum_{k=0}^{K-1} \bvs{k}
+\end{equation}
+a partir do qual define-se a matriz de covariância entre os $K$ registros $\Corr{\bvs} \in \re^{\sz{N_{\z}}{N_{\z}}}$,
+\begin{equation}
+	\Corr{\bvs} = \frac{1}{K} \sum_{k=0}^{K-1} \pts{\bvs{k} - \bvs[b]} \tr{\pts{\bvs{k} - \bvs[b]}}
+\end{equation}
+
+Assumindo que $\Corr{\bvs}$ seja uma matriz de posto cheio, com $\rank{\Corr{\bvs}} = N_{\z}$, então $\kernel{\Corr{\bvs}} = \re^{\sz{N_{\z}}{1}}$. Isso significa que qualquer vetor $\bvs[t]$ (inclusive SSP fisicamente impossíveis) pode ser obtido como uma combinação linear das colunas de $\Corr{\bvs}$. Por simplicidade, escreve-se que
+\begin{equation}
+	\bvs[t] = \bvs[b] + \Corr{\bvs} \bvalpha
+	\label{eq:sec5:ssp_combinacao-linear}
+\end{equation}
+onde $\bvalpha$ é um vetor de coeficientes. Essa explicitação da vagarosidade média $\bvs[b]$ é feita por $\Corr{\bvs}$ considerar somente a variação dos vetores $\bvs{k}$ em relação à média, e (em geral) vai fazer com que os coeficientes de $\bvalpha$ sejam mais bem comportados.
+
+É possível decompor $\Corr{\bvs}$ em função de seus autovalores e autovetores, levando a
+\begin{equation}
+	\begin{split}
+		\Corr{\bvs}
+		& = \sum_{n=0}^{N_{\z}-1} \lambda_n \bvv{n} \bvv[T]{n} \\
+		& = \bvV \bvLa \inv{\bvV}
+	\end{split}
+\end{equation}
+com $\abs{\lambda_1} \geq \abs{\lambda_2} \geq \cdots \geq \abs{\lambda_{N_{\z}-1}}$ os autovalores de $\Corr{\bvs}$, em ordem decrescente; e $\bvv{n}$ a $n$-ésima coluna de $\bvV$, também o autovetor de $\Corr{\bvs}$ referente ao autovalor $\lambda_n$. Assume-se que $\Corr{\bvs}$ seja uma matriz diagonalizável, tal que a auto-decomposição seja possível.
+
+É possível reescrever a \cref{eq:sec5:ssp_combinacao-linear} utilizando a auto-decomposição de $\Corr{\bvs}$, levando a
+\begin{equation}
+	\bvs[t] = \bvs[b] + \bvV \bva
+\end{equation}
+em que $\bva$ é um (novo) vetor de coeficientes. Por fim, toma-se que apenas $G$ dentre os $N_{\z}$ autovetores são suficientes para reconstruir os SSP com acurácia. Ou seja,
+\begin{equation}
+	\bvs[t] = \bvs[b] + \bvV{G} \bva{G}
+	\label{eq:sec5:modelagem_eof_truncado}
+\end{equation}
+em que $\bvV{G} \in \re^{\sz{N_{\z}}{1}}$ é composto pelas $G$ primeiras colunas de $\bvV$ --- essas, referentes aos $G$ maiores autovalores (em módulo).
+
+\subsubsection*{Estimação do SSP}
+\textsl{\footnotesize{} Nota: no artigo que inspirou essa formulação, foi utilizado um algoritmo genético para estimação das velocidades; aqui será usada a formulação por minimização do gradiente para estimação das vagarosidades.}
+
+Seguiremos uma estrutura semelhante à da TTT, com minimização do erro de tempo de trânsito entre o modelo e o medido. Ou seja, o problema-base é
+\begin{equation}
+	E(\bva{i+1}) = \norm{\bvR{i} \bvs(\bva{i+1}) - \bvt{\obs}}^2
+\end{equation}
+com $\bvR{i}$ sendo a $i$-ésima solução da equação Eikonal. Sabendo que $\bvs(\bva{i}) = \bvs[b] + \bvV{G} \bva{G}$, então a solução para esse problema será
+\begin{equation}
+	\bva{i+1} = \inv*{\bvV[T]{G} \bvR[T]{i} \bvR{i} \bvV{G}} \bvV[T]{G} \bvR[T]{i} \pts{ \bvt{\obs} - \bvR{i} \bvs[b] }
+\end{equation}
+
+\subsubsection*{Estimação do SSF}
+A formulação acima presume que a estimação é uni-dimensional. Portanto, é necessário expandi-la para o caso multi-dimensional, com algumas adaptações.
+
+Assumamos $N_{\x}$ colunas, cada uma com um SSP $\bvs{i,n} \in \re^{\sz{N_{\z}}{1}}$ ($0 \leq n < N_{\x}$). O SSF como um todo é dado por
+\begin{equation}
+	\bvs{i} = \tr{\bts{ \bvs[T]{i,0}~\bvs[T]{i,1}~\cdots~\bvs[T]{i,N_{\x}-1} }}
+\end{equation}
+
+De forma semelhante, $\bvR{i,n}$ é a matriz de distâncias para a $n$-ésima coluna. Disso,
+\begin{equation}
+	\bvR{i,n} \bvs{i+1} = \sum_{n=0}^{N_{\x}-1} \bvR{i,n} \bvs{i+1,n}
+\end{equation}
+
+Seguindo a formulação da \cref{eq:sec5:modelagem_eof_truncado} para a estimação dos SSPs, temos que
+\begin{equation}
+	\bvR{i,n} \bvs{i+1} = \sum_{n=0}^{N_{\x}-1} \bvR{i,n} \pts{\bvs[b]{j} + \bvV{G} \bva{i+1,n}}
+\end{equation}
+
+Denotando $\bvR[h]{i} \in \re^{\sz{M}{GN_{\x}}}$ como
+\begin{equation}
+	\bvR[h]{i} = \bts{ (\bvR{i,0} \bvV{G})~(\bvR{i,1} \bvV{G})~\cdots~(\bvR{i,N_{\x}-1} \bvV{G}) }
+\end{equation}
+então o problema torna-se
+\begin{equation}
+	E(\bva{i+1}) = \norm{\bvR[h]{i} \bva{i+1} + \bvR{i}\bvs[b] - \bvt{\obs}}
+	\label{eq:sec5:funcao-custo_eof_para_ssf}
+\end{equation}
+com solução
+\begin{equation}
+	\bva{i+1} = \inv*{\bvR[hT]{i} \bvR[h]{i}} \bvR[hT]{i} \pts{\bvt{\obs} - \bvR{i} \bvs[b]}
+\end{equation}
+Cada bloco $\sz{G}{1}$ de $\bva{i+1}$ corresponde a uma coluna do SSF $\bvs{i+1}$, com cada coluna sendo reconstruída através da \cref{eq:sec5:modelagem_eof_truncado}.
+
+\subsubsection*{Regularização}
+
+Duas formas de regularização podem ser consideradas aqui: sobre $\bva{i+1}$ (o vetor de coeficientes da EOF) ou sobre $\bvs{i+1}$ (o vetor de vagarosidades reconstruído). Por essas duas variáveis serem linearmente independentes, regularizar uma afeta diretamente a outra; contudo, a diferente notação permite uma melhor visualização da penalização adicionada.
+
+\textbf{a)} Na primeira regularização, usa-se que a presença do perfil-médio $\bvs[b]$ no modelo implica que os coeficientes de $\bva{i+1}$ serão pequenos. Portanto, a adição de um termo de regularização $\alpha^2 \norm{\bva{i+1}}^2$ à \cref{eq:sec5:funcao-custo_eof_para_ssf} modifica a solução para
+\begin{equation}
+	\bva{i+1} = \inv*{\bvR[hT]{i} \bvR[h]{i} + \alpha^2 \Id} \bvR[hT]{i} \pts{\bvt{\obs} - \bvR{i} \bvs[b]}
+\end{equation}
+
+\textbf{b)} Na segunda regularização, deseja-se melhorar a suavidade do perfil. Disso, o termo de regularização adicionado será $\alpha^2 \norm{\bvD \bvs{i+1}}^2$, que leva à solução
+\begin{equation}
+	\bva{i+1} = \inv*{\bvR[hT]{i} \bvR[h]{i} + \alpha^2 \bvD[hT] \bvD[h]} \bvR[hT]{i} \pts{\bvt{\obs} - \bvR{i} \bvs[b]}
+\end{equation}
+\begin{equation}
+	\bvD[h] = \bts{ (\bvD{0} \bvV{G})~(\bvD{1} \bvV{G})~\cdots~(\bvD{N_{\x}-1} \bvV{G}) }
+\end{equation}
+com cada $\bvD{n} \in \re^{\sz{N}{N_{\z}}}$ sendo o $n$-ésimo bloco de $\bvD$.
+
+Ambas regularizações possuem o mesmo formato, mas buscam impactar a solução de maneira diferente: a regularização (a) penaliza a variância dos coeficientes dos EOFs; enquanto a regularização (b) penaliza a variância (entre células) do SSF reconstruído.

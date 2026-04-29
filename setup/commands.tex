@@ -1,0 +1,40 @@
+\DeclareDocumentCommand{\quote}{m}{%
+	``#1''%
+}
+\DeclareDocumentCommand{\citeay}{s m}{{\IfBooleanT{#1}{\bfseries}\citeauthor{#2} - \citeyear{#2}}}
+\NewDocumentCommand{\citem}{s m}{\item[{\def\seleccite{\bfseries}\cite{#2}}]}
+\NewDocumentCommand{\papersec}{m}{\stepcounter{subsubsection} \noindent\textit{\vspace*{1ex}\\\Alph{subsubsection}.\hspace*{0pt-\widthof{\Alph{subsubsection}}} \hspace{1em} #1} \vspace*{1ex}}
+\let\citet\textcite
+
+\addbibresource{setup/RelatorioReferencias.bib}
+
+\definecolor{tomographycolor}{RGB}{0, 0, 0}
+\definecolor{ssfinvcolor}{RGB}{0, 0, 0}
+
+\def\seleccite{\relax}
+\makeatletter
+	\NewDocumentCommand{\ProcessKeyColor}{>{\SplitList{,}} m}{%
+		\ProcessList{#1}{\@MatchKeyColor}%
+	}
+	\NewDocumentCommand{\@MatchKeyColor}{m}{%
+		\ifkeyword{#1}{\hypersetup{citecolor=#1color}}{}%
+		\ifkeyword{selec}{\seleccite}{}%
+	}
+\makeatother
+
+
+\AtEveryCitekey{\ProcessKeyColor{tomography,ssfinv}}
+	
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}m{#1}}
+
+
+
+\let\oldhline\hline
+\def\tline{\oldhline\vphantom{\rule{0.4pt}{1.2em}}}
+\def\ttline{\oldhline\oldhline\vphantom{\rule{0.4pt}{1.2em}}}
+
+\pdfsuppresswarningpagegroup=1
+\BiblatexSplitbibDefernumbersWarningOff
+

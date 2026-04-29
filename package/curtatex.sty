@@ -1,0 +1,77 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{curtatex}[2026/03/10 curtatex]
+
+\RequirePackage{ifluatex}
+\RequirePackage{ifpdf}
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\RequirePackage{pgfplots}
+\RequirePackage{nicefrac}
+\usepgfplotslibrary{external}
+
+\ifluatex
+	\RequirePackage{fontspec}
+	\RequirePackage{anyfontsize}
+	\RequirePackage{amsmath, amsfonts, amsthm}
+	\let\amvec\vec
+	\RequirePackage{unicode-math}
+	\let\umvec\vec
+\else
+\ifpdf
+	\RequirePackage[utf8]{inputenc}
+	\RequirePackage{fontenc}
+	\RequirePackage{anyfontsize}
+	\RequirePackage{amsmath, amsfonts, amsthm}
+	\RequirePackage{upgreek}
+	\NewDocumentCommand{\symbfup}{m}{%
+		\boldsymbol{\mathrm{#1}}%
+	}
+	\NewDocumentCommand{\symbf}{m}{%
+		\boldsymbol{#1}%
+	}
+	\NewDocumentCommand{\symbfsfup}{m}{%
+		{\bfseries\sffamily #1}%
+	}
+	\NewDocumentCommand{\symsfup}{m}{%
+		{\textsf{#1}}%
+	}
+	\NewDocumentCommand{\symbb}{m}{%
+		\mathbb{#1}%
+	}
+	\NewDocumentCommand{\symup}{m}{%
+		\text{#1}%
+	}
+\fi
+\fi
+\RequirePackage{xparse}
+
+%%%%%
+% Basic commands
+\let\ABD\AtBeginDocument
+\ProvideDocumentCommand{\IfEmpty}{m m G{}}{\ifthenelse{\equal{#1}{}}{#2}{#3}}%
+\ProvideDocumentCommand{\ifdef}{m m m}{\ifdefined #1
+#2
+\else
+#3
+\fi
+}
+
+
+% Declare and process options
+\DeclareOption{math}{\input{curtamath}}
+\DeclareOption{bold}{\input{curtabold}}
+\DeclareOption{env}{\input{curtaenv}}
+\DeclareOption{plot}{\input{curtaplot}}
+\DeclareOption{ref}{\input{curtaref}}
+\ProcessOptions\relax
+
+% Other commands
+\DeclareDocumentCommand{\quote}{m}{``#1''}
+\let\nfrac\nicefrac
+
+% Warning
+\def\boldmathwarning{}
+\def\setboldmathwarning{\gdef\boldmathwarning{\PackageWarningNoLine{CurtaTex}{CurtaTex package with "bold" option is best along with "math" option}}}
+\AtEndDocument{
+	\boldmathwarning{}
+}

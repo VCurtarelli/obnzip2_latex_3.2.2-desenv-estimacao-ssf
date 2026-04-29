@@ -1,0 +1,159 @@
+\section{Pseudo-inversão pela Decomposição por Valores Singulares}
+\label{sec:svd}
+Dado o passo de inversão necessário no problema mal-posto de TTT, uma possibilidade para lidar com esse obstáculo --- como brevemente comentado --- é o uso de uma pseudo-inversão baseada em \gls{Decomposição por Valores Singulares} (SVD, do inglês \ingles{Singular Value Decomposition}) \cite{berrar_practical_2003}, para situações em que $\bvR{i}$ é deficiente em posto.
+
+Dada $\bvR{i}$, podemos escrevê-la por meio de sua decomposição em valores singulares, como
+\begin{equation}
+	\bvR{i} = \bvU \bvSi \bvV[T],
+\end{equation}
+em que $\bvU \in \re^{\sz{M}{M}}$ e $\bvV \in \re^{\sz{N}{N}}$ são os vetores singulares à esquerda e à direita de $\bvR{i}$, formando bases ortonormais; e $\bvSi \in \re^{\sz{M}{N}}$ é uma matriz diagonal não quadrada, cujas entradas diagonais $\lambda_1 \geq \lambda_2 \geq \cdots \geq \lambda_N$ são os valores singulares (estritamente não-negativos) de $\bvR{i}$, em ordem decrescente. Por definição, $\bvU$, $\bvSi$ e $\bvV$ dependem do iterador $i$, mas essa relação é omitida por clareza de notação.
+
+\subsection{Pseudo-inversa via SVD}
+
+Nós denotamos $R = \rank{\bvR{i}}$, e assumimos que $R < N$ (ou seja, $\bvR{i}$ é uma matriz de posto deficiente). Nessa situação, apenas $R$ dos valores singulares de $\bvR{i}$ são não-nulos, e portanto então $\lambda_{R+1} = \cdots = \lambda_{N} = 0$. Nesse cenário, a matriz $\pinv{[\bvR[T]{i} \bvR{i}]}$ --- onde $\pinv*{\cdot}$ denota a pseudo-inversa --- pode ser obtida como
+\begin{equation}
+	\begin{split}
+		\pinv*{\bvR[T]{i} \bvR{i}}
+		& = \pinv*{\bvV \bvSi[T] \bvU[T] \bvU \bvSi \bvV[T]} \\
+		& = \pinv*{\bvV \bvSi[T] \bvSi \bvV[T]} \\
+		& = \bvV \pinv*{\bvSi[T] \bvSi} \bvV[T] \\
+		& = \bvV \pinv{\bvSi} \pinv{{\bvSi[T]}} \bvV[T],
+	\end{split}
+\end{equation}
+onde foram utilizadas a ortogonalidade de $\bvV$ e a propriedade distributiva da pseudo-inversa (considerando a ortogonalidade de $\bvV$ e das colunas de $\bvSi$); e $\pinv{\bvSi} \in\re^{\sz{N}{M}}$ é a pseudo-inversa de $\bvSi$, obtida diretamente como a transposta de $\bvSi$ com as entradas diagonais não nulas reciprocadas. Com essa pseudo-inversão de $\pinv{\bvSi}$, e portanto de $\bvR[T]{i} \bvR{i}$, a solução para o problema de minimização é
+\begin{equation}
+	\begin{split}
+		\bvG{i}
+		& = \pinv*{\bvR[T]{i} \bvR{i}} \bvR[T]{i} \\
+		& = \bvV \pinv{\bvSi} \bvU[T],
+	\end{split}
+	\label{eq:sec2:solution-G_pseudo-inverse}
+\end{equation}
+que, pela definição da pseudo-inversa, leva a $\bvG{i} = \pinv{\bvR{i}}$. Essa forma será usada, a menos que algebricamente necessário.
+
+\subsubsection*{Função-custo}
+
+Com a solução $\bvG{i} = \pinv{\bvR{i}}$, a solução do problema inverso é $\bvs{i+1} = \pinv{\bvR{i}} \bvt{\obs}$; e disso, o gradiente é
+\begin{equation}
+	\begin{split}
+		\nabla E(\bvs{i+1})
+		& = 2\pts{\bvR[T]{i} \bvR{i} \pinv{\bvR{i}} \bvt{\obs} - \bvR[T]{i} \bvt{\obs}} \\
+		& = 2\pts{\bvV \bvSi[T] \bvU[T] \bvU \bvSi \bvV[T] \bvV \pinv{\bvSi} \bvU[T] \bvt{\obs} - \bvV \bvSi[T] \bvU[T] \bvt{\obs}} \\
+		& = 2\pts{\bvV \bvSi[T] \bvSi \pinv{\bvSi} \bvU[T] \bvt{\obs} - \bvV \bvSi[T] \bvU[T] \bvt{\obs}} \\
+		& = 2\pts{\bvV \bvSi[T] \bts{\Id{M;R} - \Id{M}} \bvU[T] \bvt{\obs}}
+	\end{split}
+\end{equation}
+onde $\Id{M;R} \in \re^{\sz{M}{M}}$ é uma matriz diagonal cujas primeiras $R$ entradas são $1$, e as $M-R$ restantes são $0$; e $\Id{M} \in \re^{\sz{M}{M}}$ é a matriz identidade. Portanto, $\Id{M;R} - \Id{M}$ possui suas primeiras $R$ entradas diagonais iguais a $0$, e as últimas $M-R$ entradas iguais a $-1$. Como todas as linhas de $\bvSi[T]$ pertencem ao espaço-nulo de $\Id{M;R} - \Id{M}$ (apenas as primeiras $R$ entradas de qualquer linha de $\bvSi[T]$ são não-nulas, exatamente onde $\Id{M;R} - \Id{M}$ é zero), então $\bvSi[T]\bts{\Id{M;R} - \Id{M}} = \bv0$. Portanto,
+\begin{equation}
+	\begin{split}
+		\nabla E(\pinv{\bvR{i}} \bvt{\obs})
+		& = 2\pts{\bvV \,\bv0\, \bvU[T] \bvt{\obs}} \\
+		& = \bv0
+	\end{split}
+\end{equation}
+
+Essa verificação garante que $\bvs{i+1} = \pinv{\bvR{i}} \bvt{\obs}$ é uma solução para o processo de minimização da \cref{eqs:sec2:iterative_minimization_Ezi}; esse resultado é importante, garantindo que a otimização do problema inverso opere corretamente.
+
+\subsubsection*{Gradiente}
+Denotamos $\bvU{k}$ como as primeiras $k$ colunas de $\bvU$, $\bvU{-k}$ como as últimas $k$ colunas de $\bvU$, e $\bvU{(j\sim k)}$ como as colunas de $j$ até $k$ (inclusive) de $\bvU$. Utilizando essa notação, a função-custo residual para a solução com a \cref{eq:sec2:solution-G_pseudo-inverse} pode ser obtida explicitamente, sendo dada por
+\begin{equation}
+	E(\bvs{i+1}) = \bvt[T]{\obs} \bvU{-R} \bvU[T]{-R} \bvt{\obs}
+	\label{eq:sec2:cost_func_explicit_svd}
+\end{equation}
+
+\subsection{Usando o espaço-nulo}
+\label{subsec:sec3:null-space_exploitation}
+
+Podemos expandir a solução $\bvs{i+1} = \pinv{\bvR{i}} \bvt{\obs}$ explorando o espaço-nulo de $\bvR{i}$. Escrevemos
+\begin{equation}
+	\bvV = \left[\begin{array}{c|c}
+		\!\bvV{1} & \bvV{2}\!
+	\end{array}\right]
+\end{equation}
+onde $\bvV{1}\in \re^{\sz{N}{R}}$ são as primeiras $R$ colunas de $\bvV$ (correspondentes aos valores singulares não-nulos), e $\bvV{2} \in \re^{\sz{N}{(N-R)}}$ são as $N-R$ colunas restantes de $\bvV$ (correspondentes aos valores singulares nulos); $[~\cdot~|~\cdot~]$ denota concatenação de matrizes. Como $\bvV{2}$ está associado aos valores singulares nulos de $\bvR{i}$, isso implica que as colunas de $\bvV{2}$ formam uma base ortonormal para o $\nul{\bvR{i}}$.
+
+Seja $\bvmu \in \re^{\sz{(N-R)}{1}}$ um vetor de coordenadas. Nesse caso, qualquer $\bvs[b] = \bvV{2} \bvmu$ estará dentro do espaço-nulo de $\bvR$; e portanto $\bvR \bvs[b] = \bvU \bvSi \bvV[T] \bvV{2} \bvmu = \bv0$ (pela ortogonalidade de $\bvV$, e pelas colunas nulas de $\bvSi$). Isso significa que, para $\bvs{i+1} \equiv \bvs{i+1}(\bvmu) = \pinv{\bvR{i}} \bvt{\obs} + \bvV{2} \bvmu$, temos
+\begin{subgather}{eq:sec3:mu_doesnt_affect_cost-or-gradient}
+		E(\pinv{\bvR{i}} \bvt{\obs} + \bvV{2} \bvmu) = E(\pinv{\bvR{i}} \bvt{\obs}) \\
+		\nabla E(\pinv{\bvR{i}} \bvt{\obs} + \bvV{2} \bvmu) = \bv0
+\end{subgather}
+
+Ou seja, a função-custo $E(\bvs{i+1}(\bvmu))$ e seu gradiente são invariantes em relação a $\bvmu$. Podemos usar essa informação para modificar a solução encontrada, explorando o espaço-nulo de $\bvR{i}$, e buscando uma solução que atenda algum outro critério.
+
+\subsection{Minimização de métrica secundária}
+\label{subsec:sec2:minim_secundaria}
+
+Dada uma solução para a minimização da \cref{eq:sec2:def_minimization_bvz}, que pela \cref{eq:sec2:solution-G_pseudo-inverse} terá a forma $\pinv{\bvR{i}} \bvt{\obs}$, definimos $F(\bvmu)$ como uma função custo secundária em função de $\bvmu$, da forma
+\begin{equation}
+	F(\bvmu) = \norm{\bvD \pts{\pinv{\bvR{i}} \bvt{\obs} + \bvV{2}\bvmu}}^2
+	\label{eq:sec3:cost_function_mu}
+\end{equation}
+onde $\bvD$ é a matriz que governa essa métrica secundária (semelhante à \cref{subsec:sec1:regularizacao}).
+
+Dado que a ortogonalidade das colunas de $\bvV{2}$ implica $\rank{\bvV{2}} = N-R$ (o que significa que $\bvV{2}$ é de posto completo), e assumindo que $\bvD$ também é uma matriz de posto completo, uma solução para esse problema pode ser encontrada diretamente, da forma
+\begin{equation}
+	\bvmu = -\inv*{\bvV[T]{2} \bvD[T] \bvD\bvV{2}} \bvV[T]{2} \bvD[T] \bvD \pinv{\bvR{i}} \bvt{\obs}
+\end{equation}
+
+Por propriedades da pseudo-inversa, isso pode ser escrito como
+\begin{equation}
+	\bvmu = -\pinv*{\bvD \bvV{2}} \bvD \pinv{\bvR{i}} \bvt{\obs}
+	\label{eq:sec2:definition_mu_full}
+\end{equation}
+Com isso, a solução completa para ambos --- minimizando o erro quadrático de tempo de viagem da \cref{eq:sec2:def_minimization_bvz} e a métrica de regularização da \cref{eq:sec3:cost_function_mu} --- será
+\begin{equation}
+	\begin{split}
+		\bvs{i+1}
+		& = \pinv{\bvR{i}} \bvt{\obs} - \bvV{2} \pinv*{\bvD \bvV{2}} \bvD \pinv{\bvR{i}} \bvt{\obs} \\
+		& = \pts{\Id{N} - \bvV{2} \pinv*{\bvD \bvV{2}} \bvD} \pinv{\bvR{i}} \bvt{\obs}
+	\end{split}
+	\label{eq:sec2:definition_zi+1_with_mu}
+\end{equation}
+
+Essa solução possui gradiente nulo na função-custo primária (\cref{subsec:sec3:null-space_exploitation}) e minimiza a função-custo secundária dentro do espaço de soluções de erro mínimo da função primária. A principal ideia por trás dessa expansão com $\bvmu$ é que, ao explorar o espaço-nulo de $\bvR$, minimizamos o objetivo primário no espaço-linha e o secundário no espaço-nulo. Note que esse procedimento só funciona se $\rank{\bvR{i}} = R < N$. Se $R = N$, não há espaço-nulo a ser explorado e a segunda minimização não pode ser realizada.
+
+Outra observação importante nesse cenário é que $\bvV{2} \pinv*{\bvD \bvV{2}} \bvD$ não pode ser simplificado. Isso exigiria que $\bvV{2}$ tivesse linhas linearmente independentes, o que não é possível dado que $N > N-R$, e que $\bvV{2} \in \re^{\sz{N}{N-R}}$. %Outro fator importante é que o gradiente de $F(\bvmu)$ é tomado em relação a $\bvmu$. Isso implica que dentro do subespaço definido por $\bvV{2}$, o $\bvmu$ encontrado é ótimo, mas ao tomar o gradiente em relação a $\pinv{\bvR{i}} \bvt{\obs}$, esse gradiente não será $\bv0$.
+
+\subsection{Truncamento da SVD}
+\label{subsec:sec2:truncamento}
+
+Nas \cref{subsec:sec3:null-space_exploitation,subsec:sec2:minim_secundaria}, $\bvV{2}$ foi construído como as colunas de $\bvV$ correspondentes ao espaço-nulo de $\bvV$; e, de forma equivalente, os valores singulares nulos de $\bvSi$.
+
+Assumamos que, das $R$ entradas diagonais não-nulas de $\bvSi$, apenas $\tilde{R}$ são relevantes; ou seja, $R-\tilde{R}$ das entradas não-nulas são tão pequenas que podem ser desprezadas. Efetivamente, isso é equivalente a truncar $\bvSi$, eliminando (forçando como zero) as $R-\tilde{R}$ menores entradas não-nulas. Definimos $\bvSi[t]$ como essa versão truncada de $\bvSi$.
+
+Esse truncamento serve duas funções: ele reduz o número de condicionamento efetivo (razão entre os maior e menor valores singulares não-nulos), consequentemente melhorando a estabilidade no problema de inversão da minimização da métrica primária; e aumenta o espaço-nulo prático a ser explorado na otimização secundária, permitindo que a métrica secundária seja minimizada de forma mais agressiva. Em contrapartida, esse truncamento introduzirá algum erro na minimização primária, fazendo com que o mínimo encontrado não possua gradiente nulo.
+
+Com esse truncamento, é fácil ver que a solução para a \cref{eq:sec2:solution-G_pseudo-inverse} será
+\begin{equation}
+	\begin{split}
+		\bvG(\bvs{i}) & \approx \bvG[t](\bvs{i}) \\
+		& = \bvV \pinv{\bvSi[t]} \bvU[T]
+	\end{split}
+\end{equation}
+
+Usando que os valores singulares de $\bvSi$ estão dispostos em ordem decrescente, o gradiente para uma solução usando esse $\bvG[t]{i}$ é
+\begin{equation}
+	\begin{split}
+		\nabla E(\bvs{i+1})
+%		& = 2\pts{\bvV \bvSi[T] \bvU[T] \bvU \bvSi \bvV[T] \bvV \pinv{\bvSi[t]} \bvU[T] \bvt{\obs} - \bvV \bvSi[T] \bvU[T] \bvt{\obs}} \\
+%		& = 2\pts{\bvV \bvSi[T] \bvSi \pinv{\bvSi[t]} \bvU[T] \bvt{\obs} - \bvV \bvSi[T] \bvU[T] \bvt{\obs}} \\
+%		& = 2\pts{\bvV \bvSi[T] \bts{\Id{M;\tilde{R}} - \Id{M}} \bvU[T] \bvt{\obs}} \\
+		& = 2\pts{\sum_{i=\tilde{R}+1}^{R} \sigma_i \bvv{i} \bvu[T]{i}} \bvt{\obs}
+	\end{split}
+\end{equation}
+onde $\bvv{i}$ e $\bvu{i}$ são a $i$-ésima linha de $\bvV$ e $\bvU$, respectivamente, e $\sigma_i$ é o $i$-ésimo elemento diagonal de $\bvSi$. Quanto menores forem as entradas de $\bvSi$ que foram definidas como zero ($\sigma_i$ para $i \in [\tilde{R}+1,~R]$), menor será o gradiente, e mais próxima a solução obtida estará do espaço de soluções ótimas ($\nabla E = 0$).
+
+%Destacamos que $\bvSi[t] \bvV[T] \bvV{2} \bvmu$ ainda é uma matriz nula, dado que $\bvV[T]{1} \bvV{2} = \bv0$ e $\pts{\bvV[T]{2} \bvV{2}} \in \nul{\bvSi} \subseteq \nul{\bvSi[t]}$. Com isso, as \cref{eq:sec2:definition_mu_full,eq:sec2:definition_zi+1_with_mu} continuam válidas, exceto pela substituição de ${\bvSi}$ por ${\bvSi[t]}$; e as propriedades de $\bvmu$ de não afetar nem a função-custo nem o gradiente permanecem válidas.
+
+Com a formulação anterior, a função-custo com a SVD truncada será
+\begin{equation}
+	E(\bvs{i+1}) = \bvt[T]{\obs} \bvU{-\tilde{R}} \bvU[T]{-\tilde{R}} \bvt{\obs}
+\end{equation}
+ou ainda, a variação na função-custo, comparada àquela sem valores singulares truncados, é dada por
+\begin{equation}
+	\Delta E(\bvs{i+1}) = \bvt[T]{\obs}  \bvU{\tilde{R}\sim R} \bvU[T]{\tilde{R}\sim R} \bvt{\obs}
+\end{equation}
+onde as colunas de $\bvU{\tilde{R} \sim R}$ são exatamente as colunas correspondentes aos valores singulares truncados.
+
+Note que esse erro $\Delta E$ é independente dos valores singulares truncados. Portanto, a escolha dos $\lambda$ a serem truncados não está relacionada ao aumento da função-custo. A escolha de quais valores singulares truncar determinará a matriz $\bvU{\tilde{R}\sim R}$ que define $\Delta E$, mas as magnitudes dos valores singulares não são relevantes.
+
