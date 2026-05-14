@@ -7,3 +7,5 @@ v1.0.260514
 	Grandes modificações na Seção V.
 	Adicionadas Seção VI de resultados dos métodos das Seções IV e V.
 	Iniciada Seção VII de métricas de qualidade.
+v1.0.260514b
+    Reload manual no Overleaf para re-sincronizar.
