@@ -1,0 +1,104 @@
+\begin{figure}
+    \centering\setlength{\parindent}{0pt}
+    \begin{subfigure}[t]{0.45\linewidth}
+        \centering
+            \begin{tikzpicture}
+                \begin{lineplot}{Iterações}{$\rmse_{t}$ ($\si{\milli\second}$)}[xmin=0.5, xmax=10.5, ymode=log, ytick={0.1, 1, 10}, yticklabels={0.1, 1, 10}, ymin=0.1, ymax=10,
+                	]
+                    {
+                    \def\sympath{\sympathlayer}
+                    \addplot[draw, resA] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_mean.csv}; 
+                    \addplot[draw, resB] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_split.csv};
+                    \addplot[draw, resC] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_trade.csv};
+                    \addplot[draw, resD] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_param.csv};
+                    \addplot[draw, resE] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_eof1.csv};
+                    \addplot[draw, resF] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_eof2.csv};
+                    }
+                \end{lineplot}
+            \end{tikzpicture}
+        \caption{Dispositivos em camadas.}
+        \label{fig:sec6:tt_rms_errors:subfig1}
+    \end{subfigure} \hspace*{2em}
+    \begin{subfigure}[t]{0.45\linewidth}
+		\centering
+		\begin{tikzpicture}
+			\begin{lineplot}{Iterações}{$\rmse_{t}$ ($\si{\milli\second}$)}[xmin=0.5, xmax=10.5, ymode=log, ytick={0.1, 1, 10}, yticklabels={0.1, 1, 10}, ymin=0.1, ymax=10,  ]
+				{
+					\def\sympath{\sympathsurround}
+					\addplot[draw, resA] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_mean.csv}; 
+					\addplot[draw, resB] table[x=x,y=y, col sep=comma]  {figures/data/\sympath/metric_time_split.csv};
+					\addplot[draw, resC] table[x=x,y=y, col sep=comma]  {figures/data/\sympath/metric_time_trade.csv};
+					\addplot[draw, resD] table[x=x,y=y, col sep=comma]  {figures/data/\sympath/metric_time_param.csv};
+					\addplot[draw, resE] table[x=x,y=y, col sep=comma]  {figures/data/\sympath/metric_time_eof1.csv};
+					\addplot[draw, resF] table[x=x,y=y, col sep=comma]  {figures/data/\sympath/metric_time_eof2.csv};
+				}
+			\end{lineplot}
+		\end{tikzpicture}
+		\caption{Dispositivos no entorno.}
+		\label{fig:sec6:tt_rms_errors:subfig2}
+	\end{subfigure}
+
+    \vspace*{.5em}
+    \colorbar{lineplots2}
+    \caption{Evolução dos erros RMS de tempo de trânsito da estimação do SSF, para os métodos mostrados, nos cenários de dispositivos (a) em camadas e (b) no entorno, ao longo de 10 iterações.}
+    \label{fig:sec6:tt_rms_errors}
+    \vspace*{2em}
+    \begin{subfigure}[t]{0.45\linewidth}
+    	\centering
+    	\begin{tikzpicture}
+    		\begin{lineplot}{Iterações}{$\rmse_{\ssf}$ ($\si{\milli\second}$)}[xmin=0.5, xmax=10.5, ymode=log, ytick={1, 2, 4, 10, 20, 40}, yticklabels={$1$, $2$, $4$, $10$, $20$, $40$}, ymin=0.75, ymax=50, legend to name=lineplots2,legend style={
+    				fill=white,
+    				%			fill opacity=0.5.6,
+    				draw opacity=1,
+    				text opacity=1,
+    				%			at={(1.05, 0.5)},
+    				%			anchor=west,
+    				legend columns=6,
+    				/tikz/every even column/.append style={column sep=1em}
+    			},]
+    			{
+    				\def\sympath{\sympathlayer}
+    				\addplot[draw, resA] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_mean.csv}; /
+    				\addplot[draw, resB] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_split.csv};
+    				\addplot[draw, resC] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_trade.csv};
+    				\addplot[draw, resD] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_param.csv};
+    				\addplot[draw, resE] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_eof1.csv};
+    				\addplot[draw, resF] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_eof2.csv};
+    			}
+    			
+    			% \addplot[draw, resA]
+    			\addlegendentry{Média};
+    			\addlegendentry{\ingles{Split}};
+    			\addlegendentry{\ingles{Trade-off}};
+    			\addlegendentry{Param.};
+    			\addlegendentry{EOF-p};
+    			\addlegendentry{EOF-s};
+    		\end{lineplot}
+    	\end{tikzpicture}
+    	\caption{Dispositivos em camadas.}
+    	\label{fig:sec6:ssf_rms_errors:subfig1}
+    \end{subfigure} \hspace*{2em}
+    \begin{subfigure}[t]{0.45\linewidth}
+    	\centering
+    	\begin{tikzpicture}
+    		\begin{lineplot}{Iterações}{$\rmse_{\ssf}$ ($\si{\milli\second}$)}[xmin=0.5, xmax=10.5, ymode=log, ytick={1, 2, 4, 10, 20, 40}, yticklabels={$1$, $2$, $4$, $10$, $20$, $40$}, ymin=0.75, ymax=50]
+    			{
+    				\def\sympath{\sympathsurround}
+    				\addplot[draw, resA] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_mean.csv}; 
+    				\addplot[draw, resB] table[x=x,y=y, col sep=comma]  {figures/data/\sympath/metric_ssf_split.csv};
+    				\addplot[draw, resC] table[x=x,y=y, col sep=comma]  {figures/data/\sympath/metric_ssf_trade.csv};
+    				\addplot[draw, resD] table[x=x,y=y, col sep=comma]  {figures/data/\sympath/metric_ssf_param.csv};
+    				\addplot[draw, resE] table[x=x,y=y, col sep=comma]  {figures/data/\sympath/metric_ssf_eof1.csv};
+    				\addplot[draw, resF] table[x=x,y=y, col sep=comma]  {figures/data/\sympath/metric_ssf_eof2.csv};
+    			}
+    		\end{lineplot}
+    	\end{tikzpicture}
+    	\caption{Dispositivos no entorno.}
+    	\label{fig:sec6:ssf_rms_errors:subfig2}
+    \end{subfigure}
+    
+    \vspace*{.5em}
+    \colorbar{lineplots2}
+    \caption{Evolução dos erros RMS de estimação do SSF, para os métodos mostrados, nos cenários de dispositivos (a) em camadas e (b) no entorno, ao longo de 10 iterações.}
+    \label{fig:sec6:ssf_rms_errors}
+\end{figure}

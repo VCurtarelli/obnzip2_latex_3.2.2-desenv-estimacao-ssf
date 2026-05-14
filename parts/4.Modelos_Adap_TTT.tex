@@ -22,6 +22,7 @@ em que $V_0 = 1500\si{\meter/\second}$, $\epsilon_0 = 0.00737$, $z_0 = 1300\si{\
 É possível modificar a formulação da TTT alcançada na \cref{sec:modelo-padrão-TTT} para incluir (de alguma forma) a informação de um perfil-referência, como o perfil de Munk apresentado, ou algum outro perfil obtido previamente. Serão apresentados dois perfis que utilizem essa informação \ingles{a priori}.
 
 \subsection{Método em camadas separadas}
+\label{subsec:sec4:metodo_em_camadas}
 
 Nesse método, nós separamos o SSF em duas camadas: até uma profundidade-limite $z_{\lim}$ (que, sem perda de generalidade, assumiremos $z_{\lim} = 1000\si{\meter}$) o SSF será modelado através de otimização por minimização da função custo; e abaixo dessa profundidade, o SSF será tomado como sendo conhecido (pelo perfil \ingles{a priori}) e não precisa ser estimado.
 
@@ -43,11 +44,12 @@ onde $\bvR{i,1}$ compreende as colunas iniciais de $\bvR{i}$ correspondentes a $
 \end{equation}
 em que o subscrito $s$ de $\bvs[o]{i+1;s}$ identifica que esse é o mínimo para o caso de camadas separadas.
 
-É possível comparar esse resultado com a solução para o TTT regularizado base da \cref{eq:sec2:solution_regularization-problem_simple}. Tem-se que o termo inverso (em colchetes) é quase idêntico, com a única diferença sendo que aqui ele considera somente a camada a ser invertida. O outro termo (em parênteses) possui elementos adicionais: especificamente, o termo $\bvR[T]{i,1} \bvR{i,2} \bvs{2}$ está relacionado ao tempo de trânsito na camada conhecida (abaixo de $z_{\lim}$); e o termo $\alpha^2 \bvD[T]{1} \bvD[T]{2} \bvs{2}$ à suavidade entre as camadas estimada e a determinada \ingles{a priori}.
+É possível comparar esse resultado com a solução para o TTT regularizado base da \cref{eq:sec2:solution_regularization-problem_simple}. Tem-se que o termo inverso (em colchetes) é quase idêntico, com a única diferença sendo que aqui ele considera somente a camada a ser invertida. O outro termo (em parênteses) possui elementos adicionais: especificamente, o termo $\bvR[T]{i,1} \bvR{i,2} \bvs{2}$ está relacionado ao tempo de trânsito na camada conhecida (abaixo de $z_{\lim}$); e o termo $\alpha^2 \bvD[T]{1} \bvD[T]{2} \bvs{2}$ à suavidade entre as camadas estimada e a determinada \ingles{a priori} (pelo perfil de Munk, ou algum outro meio).
 
 Embora nesse método a vagarosidade só precisa ser estimada pra a parte superior no problema inverso, o solver Eikonal ainda precisa determinar as distâncias percorridas em todas as células, pois a solução $\bvs[o]{i+1,s}$ ainda depende de $\bvR{2}$, e esse pode mudar dependendo da solução anterior.
 
 \subsection{Método \textsl{trade-off}}
+\label{subsec:sec4:metodo_trade-off}
 \newcalbv{I}
 
 Enquanto no método anterior a informação \ingles{a priori} da região mais profunda era integrada de uma maneira impositiva à modelagem e à função custo, aqui será tomada uma abordagem mais suave; ou seja, ao invés de forçar que a velocidade é um valor conhecido, esse valor conhecido será usado como guia para as células abaixo de $z_{\lim}$.
@@ -65,6 +67,7 @@ com o subscrito $t$ identificando que esse é o mínimo pelo método \ingles{tra
 Note que apenas $\bvR{i}$ depende da iteração anterior, enquanto as demais variáveis são constantes de modelagem ($\bvD$ e $\calI$), observações ($\bvt{\obs}$ obtido nos levantamentos, e $\bvs{\obs}$ de dados ambientais ou expedições anteriores), ou parâmetros ajustáveis ($\alpha$ e $\beta$). Um $\alpha$ maior favorece um ambiente menos variável, trocando acurácia por suavidade; enquanto um $\beta$ maior força o perfil de lentidão a aproximar-se mais da referência $\bvs{\obs}$.
 
 \subsection{Formas normalizadas}
+\label{subsec:sec4:formas_normalizadas}
 
 Da mesma forma que a formulação tradicional da TTT foi normalizada (de forma a aumentar a robustez da otimização à magnitude do ambiente), as duas formulações desenvolvidas aqui também podem. Em particular, novamente toma-se $\rho = \norm{\bvR{i}}_F$, $\delta = \norm{\bvD}_F$, e agora denota-se $\iota = \norm{\calI}_F$. Com isso, as novas soluções (normalizadas) são
 \begin{equation}

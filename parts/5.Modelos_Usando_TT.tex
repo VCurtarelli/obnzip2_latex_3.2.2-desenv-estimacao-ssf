@@ -1,10 +1,12 @@
 \section{Métodos alternativos de estimação do SSF com tempo de trânsito}
+\label{sec:modelos_alternativos_est-ssf}
 
 Até o momento, foram tratados métodos para estimação do SSF que ou são a \ingles{Travel-Time Tomography} tradicional (\cref{sec:modelo-padrão-TTT}), ou são modificações pequenas em cima da TTT tradicional, incluindo informações diferentes (\cref{sec:modelos_adaptados_ttt}), ou com um método diferente para o passo da inversão (\cref{sec:svd}).
 
 Dado isso, é possível utilizar a estrutura da TTT (de minimização do erro de tempo de trânsito entre o modelo e o resultado), e aliá-la a outras ferramentas de modelagem, de forma a obter um resultado que mais proximamente se alinhe ao SSF real. Isso foi tentado através da SVD anteriormente (\cref{sec:svd}), mas como mostrado na \cref{sec:simulation_and_results} isso não foi suficiente para alcançar resultados satisfatórios na situação em camadas; essa sendo a mais alinhada com imposições práticas.
 
 \subsection{Método por parametrização de Munk}
+\label{subsec:sec4:metodo_parametrizado_por_munk}
 
 O primeiro método é uma adaptação do proposto por \citet{wu_inversion_2023}, expandindo-o para o caso multi-dimensional, e com uma escolha de parâmetros levemente modificada.
 
@@ -112,6 +114,8 @@ Por usarmos uma regularização quadrática, seu Jacobiano será $\bvF{i,j}' = \
 Alternativamente, essa regularização poderia ser feita sobre o SSF reconstruído usando as \cref{eq:sec5:perfil_munk_parametrizado,eq:sec5:definicao_vetor_bvbeta,eq:sec5:ssf_usando_bvbeta}, ao invés do vetor de parâmetros; ou uma regularização que relacionasse os parâmetros entre colunas adjacentes. A regularização utilizada foi escolhida por simplicidade matemática, embora as duas outras avenidas permaneçam em aberto como vias de exploração futura.
 
 \subsection{Método por EOFs}
+\label{subsec:sec4:metodo_por_eof}
+
 Esse método será semelhante ao proposto por \cite{radhakrishnan_inversion_2024}, com as devidas modificações e adaptações para o caso multi-dimensional, além de algumas outras alterações.
 
 A modelagem por funções empíricas ortogonais (EOFs, do inglês \ingles{Empirical Orthogonal Functions}) são uma abordagem possível para reconstrução do SSF. Nela, cada coluna do SSF não é estimada diretamente, mas como uma combinação linear dentre possíveis perfis previamente estimados, a partir de um banco de dados.
@@ -129,7 +133,7 @@ a partir do qual define-se a matriz de covariância entre os $K$ registros $\Cor
 	\Corr{\bvs} = \frac{1}{K} \sum_{k=0}^{K-1} \pts{\bvs{k} - \bvs[b]} \tr{\pts{\bvs{k} - \bvs[b]}}
 \end{equation}
 
-Assumindo que $\Corr{\bvs}$ seja uma matriz de posto cheio, com $\rank{\Corr{\bvs}} = N_{\z}$, então $\kernel{\Corr{\bvs}} = \re^{\sz{N_{\z}}{1}}$. Isso significa que qualquer vetor $\bvs[t]$ (inclusive SSP fisicamente impossíveis) pode ser obtido como uma combinação linear das colunas de $\Corr{\bvs}$. Por simplicidade, escreve-se que
+Assumindo que $\Corr{\bvs}$ seja uma matriz de posto cheio\footnote{Isso pressupõe que $K > N_{\z}$, indicando mais medições que colunas, o que pode ser inviável ou indesejado na prática.}, com $\rank{\Corr{\bvs}} = N_{\z}$, então $\kernel{\Corr{\bvs}} = \re^{\sz{N_{\z}}{1}}$. Isso significa que qualquer vetor $\bvs[t]$ (inclusive SSP fisicamente impossíveis) pode ser obtido como uma combinação linear das colunas de $\Corr{\bvs}$. Por simplicidade, escreve-se que
 \begin{equation}
 	\bvs[t] = \bvs[b] + \Corr{\bvs} \bvalpha
 	\label{eq:sec5:ssp_combinacao-linear}
@@ -164,7 +168,7 @@ Seguiremos uma estrutura semelhante à da TTT, com minimização do erro de temp
 \begin{equation}
 	E(\bva{i+1}) = \norm{\bvR{i} \bvs(\bva{i+1}) - \bvt{\obs}}^2
 \end{equation}
-com $\bvR{i}$ sendo a $i$-ésima solução da equação Eikonal. Sabendo que $\bvs(\bva{i}) = \bvs[b] + \bvV{G} \bva{G}$, então a solução para esse problema será
+com $\bvR{i}$ sendo a $i$-ésima solução da equação Eikonal; aqui toma-se que $\bva{G;i} \equiv \bva{i}$, por simplicidade da notação. Sabendo que $\bvs(\bva{i}) = \bvs[b] + \bvV{G} \bva{i}$, então a solução para esse problema será
 \begin{equation}
 	\bva{i+1} = \inv*{\bvV[T]{G} \bvR[T]{i} \bvR{i} \bvV{G}} \bvV[T]{G} \bvR[T]{i} \pts{ \bvt{\obs} - \bvR{i} \bvs[b] }
 \end{equation}
@@ -172,52 +176,58 @@ com $\bvR{i}$ sendo a $i$-ésima solução da equação Eikonal. Sabendo que $\b
 \subsubsection*{Estimação do SSF}
 A formulação acima presume que a estimação é uni-dimensional. Portanto, é necessário expandi-la para o caso multi-dimensional, com algumas adaptações.
 
-Assumamos $N_{\x}$ colunas, cada uma com um SSP $\bvs{i,n} \in \re^{\sz{N_{\z}}{1}}$ ($0 \leq n < N_{\x}$). O SSF como um todo é dado por
+Assumamos $N_{\x}$ colunas, cada uma com um SSP $\bvs{i,n} \in \re^{\sz{N_{\z}}{1}}$ ($0 \leq n < N_{\x}$). Disso, o SSF em forma matricial $\bvS{i} \in \re^{\sz{N_{\z}}{N_{\x}}}$ é dado por
 \begin{equation}
-	\bvs{i} = \tr{\bts{ \bvs[T]{i,0}~\bvs[T]{i,1}~\cdots~\bvs[T]{i,N_{\x}-1} }}
+	\bvS{i} = \bts{\bvs{i,0}~|~\bvs{i,1}~|~\cdots~|~\bvs{i,N_{\x}-1} }
+\end{equation}
+com $\bvs{i} = \rvec(\bvS{i})$ sendo a vetorização por linhas de $\bvS{i}$. Como cada SSP $\bvs{i,n}$ pode ser dado pela \cref{eq:sec5:modelagem_eof_truncado}, então
+\begin{equation}
+	\bvS{i} = \bvS[b] + \bvV{G} \bvA{i}
+\end{equation}
+com $\bvS[b]$ sendo a concatenação horizontal de $N_{\x}$ cópias de $\bvs[b]$, e $\bvA{i}$ a concatenação horizontal de todos os $\bva{i,n}$ ($0 \leq n < N_{\x}$), representando os coeficientes a serem estimados. Pelas propriedades da vetorização por linhas, temos que
+\begin{equation}
+	\begin{split}
+		\bvs{i}
+		& = \rvec(\bvS{i}) \\
+		& = \rvec(\bvS[b]) + \rvec(\bvV{G} \bvA{i}) \\
+		& = \rvec(\bvS[b]) + \pts{\bvV{G} \otimes \Id{N_{\x}}} \rvec(\bvA{i})
+	\end{split}
+	\label{eq:sec5:estimacao_ssf_otimizada_basica}
+\end{equation}
+com $\otimes$ simbolizando o produto de Kronecker.
+
+Denotando $\bvV[t]{G} = \pts{\bvV{G} \otimes \Id{N_{\x}}}$, $\bva[t]{i} = \rvec(\bvA{i})$, e $\bvs[t]{v} = \rvec(\bvS[b])$, o problema torna-se
+\begin{equation}
+	\bvs{i} = \bvs[t]{v} + \bvV[t]{G} \bva[t]{i}
 \end{equation}
 
-De forma semelhante, $\bvR{i,n}$ é a matriz de distâncias para a $n$-ésima coluna. Disso,
+Aliando esse resultado à estrutura de minimização quadrática,
 \begin{equation}
-	\bvR{i,n} \bvs{i+1} = \sum_{n=0}^{N_{\x}-1} \bvR{i,n} \bvs{i+1,n}
-\end{equation}
-
-Seguindo a formulação da \cref{eq:sec5:modelagem_eof_truncado} para a estimação dos SSPs, temos que
-\begin{equation}
-	\bvR{i,n} \bvs{i+1} = \sum_{n=0}^{N_{\x}-1} \bvR{i,n} \pts{\bvs[b]{j} + \bvV{G} \bva{i+1,n}}
-\end{equation}
-
-Denotando $\bvR[h]{i} \in \re^{\sz{M}{GN_{\x}}}$ como
-\begin{equation}
-	\bvR[h]{i} = \bts{ (\bvR{i,0} \bvV{G})~(\bvR{i,1} \bvV{G})~\cdots~(\bvR{i,N_{\x}-1} \bvV{G}) }
-\end{equation}
-então o problema torna-se
-\begin{equation}
-	E(\bva{i+1}) = \norm{\bvR[h]{i} \bva{i+1} + \bvR{i}\bvs[b] - \bvt{\obs}}
+	E(\bva[t]{i+1}) = \norm{\bvR{i} \bvV[t]{G} \bva[t]{i+1} + \bvR{i} \bvs[t]{v} - \bvt{\obs} }^2
 	\label{eq:sec5:funcao-custo_eof_para_ssf}
 \end{equation}
-com solução
+cuja solução é
 \begin{equation}
-	\bva{i+1} = \inv*{\bvR[hT]{i} \bvR[h]{i}} \bvR[hT]{i} \pts{\bvt{\obs} - \bvR{i} \bvs[b]}
+	\bva[t]{i+1} = \inv*{\bvV[tT]{G} \bvR[T]{i} \bvR{i} \bvV[t]{G}} \bvV[tT]{G} \bvR[T]{i} \pts{\bvt{\obs} - \bvR{i} \bvs[b]{v}}
 \end{equation}
-Cada bloco $\sz{G}{1}$ de $\bva{i+1}$ corresponde a uma coluna do SSF $\bvs{i+1}$, com cada coluna sendo reconstruída através da \cref{eq:sec5:modelagem_eof_truncado}.
+
+Notavelmente, o perfil $\bvs{i+1}$ pode ser obtido pela \cref{eq:sec5:estimacao_ssf_otimizada_basica}.
 
 \subsubsection*{Regularização}
 
-Duas formas de regularização podem ser consideradas aqui: sobre $\bva{i+1}$ (o vetor de coeficientes da EOF) ou sobre $\bvs{i+1}$ (o vetor de vagarosidades reconstruído). Por essas duas variáveis serem linearmente independentes, regularizar uma afeta diretamente a outra; contudo, a diferente notação permite uma melhor visualização da penalização adicionada.
+Duas formas de regularização podem ser consideradas aqui: sobre $\bva{i+1}$ (o vetor de coeficientes da EOF), ou sobre $\bvs{i+1}$ (o vetor de vagarosidades reconstruído). Por essas duas variáveis serem linearmente independentes, regularizar uma afeta diretamente a outra; contudo, a diferente notação permite uma melhor visualização da penalização adicionada.
 
-\textbf{a)} Na primeira regularização, usa-se que a presença do perfil-médio $\bvs[b]$ no modelo implica que os coeficientes de $\bva{i+1}$ serão pequenos. Portanto, a adição de um termo de regularização $\alpha^2 \norm{\bva{i+1}}^2$ à \cref{eq:sec5:funcao-custo_eof_para_ssf} modifica a solução para
+\paragraph{a)} Na primeira regularização, usa-se que a presença do perfil-médio $\bvs[b]$ no modelo implica que os coeficientes de $\bva{i+1}$ serão pequenos. Portanto, a adição de um termo de regularização $\alpha^2 \norm{\bva[t]{i+1}}^2$ à \cref{eq:sec5:funcao-custo_eof_para_ssf} modifica a solução para
 \begin{equation}
-	\bva{i+1} = \inv*{\bvR[hT]{i} \bvR[h]{i} + \alpha^2 \Id} \bvR[hT]{i} \pts{\bvt{\obs} - \bvR{i} \bvs[b]}
+	\bva[t]{i+1} = \inv*{\bvV[tT]{G} \bvR[T]{i} \bvR{i} \bvV[t]{G} + \alpha^2 \bvI{GN_{\x}}} \bvV[tT]{G} \bvR[T]{i} \pts{\bvt{\obs} - \bvR{i} \bvs[b]{v}}
+	\label{eq:sec5:metodo_eof:reg_peq-coef}
 \end{equation}
 
-\textbf{b)} Na segunda regularização, deseja-se melhorar a suavidade do perfil. Disso, o termo de regularização adicionado será $\alpha^2 \norm{\bvD \bvs{i+1}}^2$, que leva à solução
+\paragraph{b)} Na segunda regularização, deseja-se melhorar a suavidade do perfil. Disso, o termo de regularização adicionado será $\alpha^2 \norm{\bvD \bvs{i+1}}^2$, que leva à solução
 \begin{equation}
-	\bva{i+1} = \inv*{\bvR[hT]{i} \bvR[h]{i} + \alpha^2 \bvD[hT] \bvD[h]} \bvR[hT]{i} \pts{\bvt{\obs} - \bvR{i} \bvs[b]}
+	\bva[t]{i+1} = \inv*{ \bvV[tT]{G} \pts{\bvR[T]{i} \bvR{i} + \alpha^2 \bvD[T] \bvD} \bvV[t]{G} } \bvV[tT]{G} \pts{ \bvR[T]{i} \bts{\bvt{\obs} - \bvR{i} \bvs[b]{v}} - \alpha^2 \bvD[T] \bvD \bvs[b]{v} }
+	\label{eq:sec5:metodo_eof:reg_suavidade}
 \end{equation}
-\begin{equation}
-	\bvD[h] = \bts{ (\bvD{0} \bvV{G})~(\bvD{1} \bvV{G})~\cdots~(\bvD{N_{\x}-1} \bvV{G}) }
-\end{equation}
-com cada $\bvD{n} \in \re^{\sz{N}{N_{\z}}}$ sendo o $n$-ésimo bloco de $\bvD$.
+Em ambos os casos, dado que a regularização não afeta o SSF objetivo, o perfil $\bvs{i+1}$ é reconstruído também utilizando a \cref{eq:sec5:estimacao_ssf_otimizada_basica}.
 
-Ambas regularizações possuem o mesmo formato, mas buscam impactar a solução de maneira diferente: a regularização (a) penaliza a variância dos coeficientes dos EOFs; enquanto a regularização (b) penaliza a variância (entre células) do SSF reconstruído.
+Ambas regularizações possuem formato semelhante, mas buscam impactar a solução de maneira diferente: a regularização (a) penaliza a variância dos coeficientes dos EOFs; enquanto a regularização (b) penaliza a variância (entre células) do SSF reconstruído.

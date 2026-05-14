@@ -6,7 +6,7 @@
     \centering
         \begin{tikzpicture}
             \begin{lineplot}{Erro do SSF ($\si{\meter/\second}$)}{Profundidade ($\si{\kilo\meter}$)}[y dir=reverse,
-            	ytick={0, 500, 1000, 1500, 2000}, yticklabels={0, 0.5, 1, 1.5, 2}, xmin=-6, xmax=3]%[colorbar to name = {dump1},hmstyle]
+            	ytick={0, 500, 1000, 1500, 2000}, yticklabels={0, 0.5, 1, 1.5, 2}, xmin=-6, xmax=4]%[colorbar to name = {dump1},hmstyle]
                 \foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
                 	\def\sympath{\sympathsurround}
                 	\addplot[draw=none, resA]
@@ -22,7 +22,7 @@
     	\centering
     	\begin{tikzpicture}
     		\begin{lineplot}{Erro do SSF ($\si{\meter/\second}$)}{Profundidade ($\si{\kilo\meter}$)}[y dir=reverse,
-    			ytick={0, 500, 1000, 1500, 2000}, yticklabels={0, 0.5, 1, 1.5, 2}, xmin=-6, xmax=3]%[colorbar to name = {dump1},hmstyle]
+    			ytick={0, 500, 1000, 1500, 2000}, yticklabels={0, 0.5, 1, 1.5, 2}, xmin=-6, xmax=4]%[colorbar to name = {dump1},hmstyle]
     			\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
     				\def\sympath{\sympathsurround}
     				\addplot[draw=none, resB]
@@ -38,7 +38,7 @@
     	\centering
     	\begin{tikzpicture}
     		\begin{lineplot}{Erro do SSF ($\si{\meter/\second}$)}{Profundidade ($\si{\kilo\meter}$)}[y dir=reverse,
-    			ytick={0, 500, 1000, 1500, 2000}, yticklabels={0, 0.5, 1, 1.5, 2}, xmin=-60, xmax=30]%[colorbar to name = {dump1},hmstyle]
+    			ytick={0, 500, 1000, 1500, 2000}, yticklabels={0, 0.5, 1, 1.5, 2}, xmin=-22, xmax=22]%[colorbar to name = {dump1},hmstyle]10
     			\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
     				\def\sympath{\sympathlayer}
     				\addplot[draw=none, resC]
@@ -54,7 +54,7 @@
     	\centering
     	\begin{tikzpicture}
     		\begin{lineplot}{Erro do SSF ($\si{\meter/\second}$)}{Profundidade ($\si{\kilo\meter}$)}[y dir=reverse,
-    			ytick={0, 500, 1000, 1500, 2000}, yticklabels={0, 0.5, 1, 1.5, 2}, xmin=-60, xmax=30]%[colorbar to name = {dump1},hmstyle]
+    			ytick={0, 500, 1000, 1500, 2000}, yticklabels={0, 0.5, 1, 1.5, 2}, xmin=-65, xmax=65]%[colorbar to name = {dump1},hmstyle]
     			\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
     				\def\sympath{\sympathlayer}
     				\addplot[draw=none, resD]
@@ -67,6 +67,6 @@
     \end{subfigure}\\[0.5em]
 
 	\colorbar{lineplots}
-    \caption{Erros de estimação do perfil para cada coluna d'água, para os métodos TTT e SVD, nos cenários de dispositivos no perímetro e em cadas, para a iteração final.}
+    \caption{Erros de estimação de cada SSP, para os métodos TTT e SVD, nos cenários de dispositivos no perímetro e em camadas, para a iteração final.}
     \label{fig:sec4:estimated_ssfs}
 \end{figure*}

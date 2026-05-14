@@ -1,0 +1,137 @@
+\section{Métricas de qualidade}
+
+Tomemos o processo da TTT tradicional iterativa com regularização. Enquanto $\bvD$ é fixado \ingles{a priori} e é escolhido com base na métrica secundária e $\bvt{\obs}$ depende diretamente das medições realizadas, ambas interferindo diretamente no problema de minimização; o problema de inversão é primariamente afetado pelo operador direto $\bvR{i}$. Além disso, esse operador é diretamente afetado pelas condições de contorno do problema, em específico a distribuição de dispositivos (fontes e receptores) no ambiente, a resolução da discretização do ambiente, e outras variáveis relacionadas aos dispositivos (como possivelmente direcionalidade, ruído, etc.).
+
+Portanto, ser capaz de relacionar a qualidade da inversão (ou seja, quão próximo o $\bvs{i+1}$ estimado é do $\bvs{\true}$) com as informações a priori (em particular, com $\bvR{i}$) é importante.
+
+
+\subsection{Métricas de solução ótima sem regularização}
+
+Para desacoplar o problema de inversão do resultado esperado, as métricas serão auferidas considerando $\bvR$, a solução da equação Eikonal obtida através do vetor de vagarosidades real $\bvs{\true}$; ou seja, assumindo que partiu-se da solução exata, qual o desempenho do processo de inversão. Isso dará um limite superior para a performance da etapa de inversão.
+
+\subsubsection*{Número de condicionamento}
+\textsl{A notação utilizada aqui será derivada e equivalente à apresentada na \cref{sec:svd}.}
+
+Dada a matriz $\bvR$, com $M$ valores singulares $\sigma_m$, o número de condicionamento será $\kappa$, dado por
+\begin{equation}
+	\kappa = \norm{\bvR}_2 \norm{\inv{\bvR}}_2
+\end{equation}
+em que $\norm{\bvR}_2$ é a norma Euclidiana; que, nesse caso, $\norm{\bvR}_2 = \sigma_1$, o maior valor singular de $\bvR$. Dada a suposição que $\bvR \in \re^{\sz{M}{N}}$, com $M < N$, então $\bvR$ não é inversível, e portanto $\kappa \to \infty$. Alternativamente, define-se $\kappa_p$ utilizando a pseudo-inversa,
+\begin{equation}
+	\begin{split}
+		\kappa_p
+		& = \norm{\bvR}_2 \norm{\bvR^\dagger}_2 \\
+		& = \frac{\sigma_1}{\sigma_R}
+	\end{split}
+\end{equation}
+com $\sigma_R$ sendo o menor valor singular não-nulo de $\bvR$. 
+
+Ambas essas métricas ($\kappa$ e $\kappa_p$) aferem primariamente a sensibilidade da inversão a perturbações em $\bvt$, e a estabilidade da inversão.
+
+Para obter uma métrica em um domínio limitado, define-se $K$
+\begin{equation}
+	\begin{split}
+		K
+		& = \frac{1}{\kappa_p} \\
+		& = \frac{\sigma_R}{\sigma_1}
+	\end{split}
+\end{equation}
+em que $K \approx 1$ indica que a inversão é estável e pouco sensível a perturbações no tempo de trânsito, e $K \approx 0$ indica uma solução instável. Essa métrica será chamada de ``recíproco de condicionamento''.
+
+%\subsubsection*{Espectro da SVD}
+%
+%Dada novamente a SVD de $\bvR$ (como discutida na \cref{sec:svd}), o espectro $\bvsi \in \re^{\sz{M}{1}}$ (assumindo $M < N$) é um vetor com os valores singulares que compõem a matriz diagonal $\bvSi$. Um decaimento rápido dos valores singulares indica um problema mal-posto, ou (equivalentemente) que uma quantidade pequena dos vetores de $\bvV$ (a base ortonormal direita de $\bvR$) carrega a maior parte da informação de $\bvR$.
+
+\subsubsection*{Ranque}
+
+O ranque de uma matriz $\rank{\bvR}$ é a dimensão do espaço gerado pelas suas colunas, e pode ser definido como a quantidade de valores singulares não-nulos. No nosso contexto, $\rank{\bvR} = R$ está associado ao número de condicionamento, e ao espectro da SVD. Contudo, ele é sensível a valores singulares muito pequenos, que podem surgir em problemas mal-postos.
+
+Disso, é comum usar o ranque estável $r$ \cite{ipsen_stable_2025}, dado por
+\begin{equation}
+	\begin{split}
+		r
+		& = \frac{\bvsi[T]\bvsi}{\sigma_1^2} \\
+		& = \frac{\sum\limits_{m=0}^{M-1} \sigma_m^2}{\sigma_1^2}
+	\end{split}
+\end{equation}
+como uma métrica mais robusta para medir a dimensão do espaço alcançável através do operador direto $\bvR$.
+
+Outra métrica disponível baseada no ranque é o ranque entrópico $r_\text{e}$ \cite{roy_effective_2007}, cuja derivação assemelha-se à definição de entropia da teoria da informação \cite{gray_entropy_2011}. Uma de suas formulações é
+\begin{equation}
+	\begin{split}
+		r_\text{e}
+		& = \exp\cts{-\sum_{m=0}^{M-1} p_m \ln p_m} \\
+		& = \prod_{m=0}^{M-1} p_m^{-p_m}
+	\end{split}
+\end{equation}
+com $p_m = \sigma_m \inv*{\sum\limits_{m'=0}^{M-1} |\sigma_{m'}|}$. A interpretação desse coeficiente é como a ``dimensão média'' dentre todas as soluções alcançáveis usando $\bvR$.
+
+\subsubsection*{Resolução}
+
+Como já debatido, a solução para o problema (sem regularização) pode ser dada por $\bvs = \pinv{\bvR} \bvt{\obs}$. Dado que tomou-se $\bvR$ como sendo a solução do problema Eikonal utilizando o vetor de vagarosidades $\bvs{\true}$, então $\bvt{\obs} = \bvR \bvs{\true}$, e portanto $\bvs = \pinv{\bvR} \bvR \bvs{\true}$. Para que mantenha-se a relação $\bvs = \bvs{\true}$ (ou seja, a vagarosidade real é um ponto estacionário do problema iterativo de estimação), é necessário que $\pinv{\bvR} \bvR = \Id$.
+
+Além disso, a estrutura de $\pinv{\bvR} \bvR$ (caso essa não seja a identidade) também revela informações quanto ao problema de inversão, especificamente o elemento $(i,j)$ de $\pinv{\bvR} \bvR$ indica a correlação entre os $i$- e $j$-ésimos elementos de $\bvs$.
+
+A ``diagonalidade'' da matriz pode ser mensurada com diferentes métricas, a mais simples delas sendo
+\begin{equation}
+	\mathcal{D} = \frac{\norm{\diag{\pinv{\bvR} \bvR}}^2}{\norm{\pinv{\bvR} \bvR}_F^2}
+\end{equation}
+em que $\diag{\pinv{\bvR} \bvR}$ extrai o vetor que está na diagonal principal de $\pinv{\bvR} \bvR$. Naturalmente, $\mathcal{D} = 1$ indica que $\pinv{\bvR} \bvR = \Id$, e $\mathcal{D}$ pequeno indica um forte acoplamento entre os diferentes coeficientes, após a inversão.
+
+\subsubsection*{Coerência}
+
+Dada $\bvrho{n}$ a $n$-ésima coluna de $\bvR$ ($0 \leq n < N$), a coerência entre $\bvrho{i}$ e $\bvrho{j}$ é dada por
+\begin{equation}
+	\alpha_{i,j} = \frac{\bvrho[T]{i} \bvrho{j}}{\sqrt{\bvrho[T]{i}\bvrho{i} \bvrho[T]{j} \bvrho{j}}}
+\end{equation}
+essa sendo uma métrica da proximidade do efeito que duas células diferentes tem na construção de $\bvt = \bvR \bvs$. A coerência de $\bvR$ é
+\begin{equation}
+	\alpha = \frac{2}{N(N-1)} \sum_{\substack{0 \leq i,j < N\\i \leq j}} \alpha_{i,j}
+\end{equation}
+indicando a coerência máxima entre duas colunas diferentes de $\bvR$. Um $\alpha$ pequeno indica que a coerência máxima é pequena, e portanto as células são distinguíveis na reconstrução do tempo de trânsito. Por outro lado, um $\alpha \approx 1$ indica que há células que são indistinguíveis.
+
+Assim como foi definida a coerência entre as colunas, é possível definir a coerência entre as linhas de $\bvR$. Denota-se $\bvr{n}$ a $n$-ésima linha de $\bvR$ ($0 \leq n < M$), e
+\begin{equation}
+	a_{i,j} = \frac{\bvr[T]{i} \bvr{j}}{\sqrt{\bvr[T]{i}\bvr{i} \bvr[T]{j} \bvr{j}}}
+\end{equation}
+é a coerência entre as linhas $i$ e $j$. Enquanto a coerência entre colunas media a identificabilidade de cada um dos parâmetros, a coerência entre linhas mede a colinearidade entre medições. Um $a_{i,j}$ pequeno indica que os trajetos das medições $i$ e $j$ são distintos, com poucas células em comum; enquanto um $a_{i,j} \approx 1$ indica que os trajetos são muito semelhantes.
+
+ Agora, ao invés de definirmos a coerência como a máxima entre linhas, define-se (com uma formulação semelhante à da entropia)
+\begin{equation}
+	A = -\frac{2}{\frac{1}{e} M(M-1)} \sum_{\substack{0\leq i,j < M\\i\leq j}} a_{i,j} \ln (a_{i,j})
+\end{equation}
+
+Essa métrica mede o quão redundantes/interdependentes são as medições que produzem a matriz $\bvR$. A intuição em utilizar a notação de entropia é de que trajetos idênticos não trazem informação útil já que eles são iguais; mas trajetos estritamente diferentes (sem um mínimo de \ingles{crosstalk}) também não são úteis, já que isso causa desatrelamento entre conjuntos de células, tornando o problema separável e induzindo \ingles{overfitting}. Nesses dois casos ($a_{i,j} \to 0$ e $a_{i,j} \to 1$), temos que $a_{i,j} \ln (a_{i,j}) \to 0$.
+
+\subsubsection*{Resumo}
+
+Reapresentaremos as métricas mostradas, de uma maneira mais sucinta.
+
+\begin{tabular}{p{0.32\linewidth} | p{0.05\linewidth} | p{0.4\linewidth}}
+	Recíproco de condicionamento $K$ & $(0, 1]$ & Estabilidade e sensibilidade a perturbações \\
+	Ranque $R$ & $[1, M]$ & Dimensão do espaço estimável \\
+	Ranque estável $r$ & $[1, M]$ & Dimensão robusta do espaço \\
+	Ranque entrópico $r_e$ & $[1, M]$ & Dimensão média do espaço \\
+	Resolução $\mathcal{D}$ & $[0, 1]$ & Independência entre células \\
+	Coerência-coluna $\alpha$ & $[0, 1]$ & Individualidade entre células \\
+	Coerência-linha $A$ & $[0, 1]$ & Redundância e dependência entre medições
+\end{tabular}
+
+%\subsection{Métricas com regularização}
+%
+%Enquanto as métricas anteriores tratavam do problema sem regularização, avaliando a qualidade assumindo ter alcançado a solução $\bvs{\true}$, é relevante também avaliar métricas que incorporem a regularização, bem como métricas que 
+
+\subsection{Análise qualitativa das métricas}
+
+Dadas as métricas apresentadas, elas serão qualitativamente avaliadas de forma a verificar se os valores obtidos para diferentes condições se alinham com o esperado dada a interpretação de cada métrica.
+
+Considerando que essas métricas são primariamente afetadas pelo ambiente, serão consideradas 5 distribuições diferentes de dispositivos:
+\begin{itemize}
+	\item Em camadas,
+	\item e no entorno, ambas já apresentadas e utilizadas anteriormente nas simulações;
+	\item Fontes no fundo em uma camada única, e receptores como várias camadas próximas à superfície, simulando várias passagens em profundidades diferentes;
+	\item Fontes no fundo em uma camada única, e receptores em uma camada na superfície + uma coluna única até determinada profundidade, simulando uma passagem horizontal e uma vertical;
+	\item Fontes no fundo em uma camada única, e receptores em uma camada na superfície + um trajeto ``diagonal'' até determinada profundidade, simulando uma passagem horizontal e uma diagonal.
+\end{itemize}
+
+\input{figures/7.a.ssf_discretizado}

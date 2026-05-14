@@ -1,7 +1,7 @@
 \section{Resultados para TTT tradicional e SVD}
 \label{sec:simulation_and_results}
-\def\sympathlayer{test-bas-vs-svd-layer-260417-11h49m16s}
-\def\sympathsurround{test-bas-vs-svd-surround-260417-12h23m07s}
+\def\sympathlayer{optimal-import-sweep-layer-260507-14h17m26s}
+\def\sympathsurround{optimal-import-sweep-surround-260507-14h17m39s}
 \def\sympath{\sympathlayer}
 \input{figures/data/\sympath/params.tex}
 
@@ -9,9 +9,8 @@ Para comparar as duas técnicas apresentadas (TTT pelo modelo-padrão com regula
 
 \subsection{Ambiente} % h1103f - Condições para a simulação 1.
 
-Consideraremos um ambiente com $2000\si{\meter}$ de largura, e $2000\si{\meter}$ de profundidade. Também consideraremos que $N_{\x} = 9$ e $N_{\y} = 25$, com uma resolução vertical maior que a horizontal.
 
-O campo de velocidade do som esperado seguirá a equação de Del Grosso, com perfis artificiais de temperatura e pressão próximos à termoclina e haloclina. O SSF utilizado pode ser visto na \cref{fig:sec4:discretized_ssf_true}.
+Foram utilizados dados do World Ocean Atlas (WOA) \cite{garcia_world_2024} de temperatura, pressão, e salinidade, aliados à biblioteca \texttt{GSW} em Python \cite{mcdougall_getting_2011}, para construir SSPs para cada coluna d'água de medições/estimativas dos parâmetros. A partir desses dados, foi selecionado um recorte próximo ao sul do Brasil (próximo a $-36.5\dg$S, $-50.5\dg$W), de onde foram extraídos $N_{\x} = 9$ perfis, e assumiu-se que o SSF fosse uma concatenação 2D desses perfis. Esses perfis são referentes aos valores anuais do WOA (não necessariamente uma média anual), e foram limitados a $z = 1500\si{\meter}$ com um \ingles{downsampling} de 2 vezes; ou seja, o SSF é estratificado em $N_{\z} = 29$ camadas.
 
 \input{figures/3.a.ssf_discretizado}
 
@@ -30,7 +29,7 @@ Essa condição emula uma situação em que há o máximo de informação espaci
 
 \subsubsection*{Camadas}
 
-A segunda distribuição é mais alinhada com as limitações do projeto \cite{revisao_bibliografica}; ou seja, as fontes estão localizadas exclusivamente no solo (9 fontes, $z = 2000\si{\meter}$, $x$ variando), e os receptores exclusivamente na superfície (9 receptores, $z = 0\si{\meter}$, $x$ variando).
+A segunda distribuição é mais alinhada com as limitações do projeto \cite{revisao_bibliografica}; ou seja, as fontes estão localizadas exclusivamente no solo (9 fontes, $z = 1500\si{\meter}$, $x$ variando), e os receptores exclusivamente na superfície (9 receptores, $z = 0\si{\meter}$, $x$ variando).
 
 Essa condição é mais próxima às limitações impostas pelo projeto e pelos dispositivos disponíveis, e portanto mais alinhada ao desejado de implementação dos métodos.
 
@@ -69,9 +68,9 @@ O pacote Python \texttt{EikonalFM} \cite{ganster_eikonalfm_2025} será utilizado
 
 \subsubsection*{Parâmetros}
 
-Para cada uma das distribuições especificadas na \cref{subsec:sec3:distribuicao_dispositivos}, os parâmetros da regularização para os dois métodos (TTT e SVD) será diferente. Além disso, enquanto matematicamente o método SVD foi definido em relação a um $\tilde{R}$, aqui será usado um parâmetro $\alpha$, e serão truncados os valores singulares $\lambda_n$ tal que $\lambda_n < 0.5\lambda_0$; ou seja, o truncamento é proporcional ao maior valor singular.
+Para cada uma das distribuições especificadas na \cref{subsec:sec3:distribuicao_dispositivos}, os parâmetros da regularização para os dois métodos (TTT e SVD) será diferente. Além disso, enquanto matematicamente o método SVD foi definido em relação a um $\tilde{R}$, aqui será usado um parâmetro $\alpha$, e serão truncados os valores singulares $\sigma_n$ tal que $\sigma_n < 0.5\sigma_0$; ou seja, o truncamento é proporcional ao maior valor singular.
 
-Para a distribuição no entorno, o método TTT usará $\alpha = 3.04$, e o método SVD utilizará $\alpha = 0.32$. Já para a distribuição em camadas, o método TTT usará $\alpha = 4.92$, e o método SVD utilizará $\alpha = 0.32$.
+Para a distribuição no entorno, o método TTT usará $\alpha = 3.51$, e o método SVD utilizará $\alpha = 0.2622$. Já para a distribuição em camadas, o método TTT usará $\alpha = 7.02$, e o método SVD utilizará $\alpha = 0.6735$.
 
 \subsubsection*{Regularização}
 Será usada uma regularização que aproxime discretamente o Laplaciano. Essa regularização tem o objetivo de suavizar o SSF estimado, levando a um campo mais regular e polido. Para essa regularização, a matriz $D$ é definida por blocos
@@ -100,20 +99,17 @@ onde $\bvQ,\bvQ' \in \re^{\sz{N_{\x}}{N_{\x}}}$ são matrizes de bloco dadas por
 \input{figures/3.b.tt_ssf_rms_errors}
 
 \subsection{Resultados e discussão}
+\label{subsec:sec3:resultados_e_discussao}
 
 A \cref{fig:sec4:tt_ssf_rms_errors} mostra os erros RMS de tempo de trânsito (\cref{fig:sec4:tt_ssf_rms_errors:subfig1}) e do SSF estimado (\cref{fig:sec4:tt_ssf_rms_errors:subfig2}), para cada iteração. Note que em ambas as figuras, o eixo $\y$ está em escala logarítmica.
 
 Em ambas as figuras, tem 2 comportamentos que podem ser vistos:
 
-\subsubsection*{Comparação entre métodos}
-
-De forma geral, o resultado utilizando o método TTT baseado na literatura, e utilizando o SVD truncado proposto aqui, levam a resultados semelhantes. Eles não necessariamente são iguais, mas seguem tendências semelhantes. Os resultados para o método SVD são marginalmente superiores, mas isso pode estar relacionado à escolha de parâmetros ou aleatoriamente ao campo real escolhido, e não necessariamente ao desempenho da técnica.
-
 \subsubsection*{Comparação entre distribuições}
 
-É nítido que (para ambos métodos), comparando o desempenho para a distribuição no entorno, e em camadas, a distribuição em camadas apresenta um erro menor no tempo de trânsito (com um erro final $\sim10\times$ menor), mas um erro consideravelmente maior no erro RMS do SSF.
+Comparando os desempenhos, ambos os dois métodos tiveram performance semelhantes no caso no entorno, e esse sendo estritamente superior (para o erro de SSF) em relação ao caso em camadas. Além disso, enquanto o SVD em camadas teve uma performance aceitável e constante de $\rmse_{t}$ (mas não de $\rmse_{\ssf}$), o resultado da TTT deteriorou com o passar das iterações, para ambas as métricas. Isso indica um descasamento entre os problemas direto e inverso, levando a um processo de minimização disfuncional.
 
-Ambos esses comportamentos estão relacionados à distribuição dos dispositivos: com os dispositivos no entorno, os raios atravessam o meio em direções diferentes, gerando uma maior quantidade de informação espacial sobre o ambiente, e portanto permitindo uma estimação melhor do SSF. Por outro lado, com os dispositivos em camadas próximas ao solo e à superfície, não há informação espacial o suficiente, levando a um \ingles{overfitting} sobre os dados e disso um erro menor de tempo de trânsito.
+Esses comportamentos estão relacionados à distribuição dos dispositivos: com os dispositivos no entorno, os raios atravessam o meio em direções diferentes, gerando uma maior quantidade de informação espacial sobre o ambiente, e portanto permitindo uma estimação melhor do SSF. Por outro lado, com os dispositivos em camadas próximas ao solo e à superfície, não há informação espacial o suficiente, levando a \ingles{overfitting} sobre os dados, podendo até causar piora com a minimização (como no caso da TTT).
 
 \subsubsection*{Perfis estimados}
 
@@ -121,10 +117,10 @@ Ambos esses comportamentos estão relacionados à distribuição dos dispositivo
 
 Por abrangência, a \cref{fig:sec4:estimated_ssfs} mostra, para cada método + distribuição, o erro do SSF estimado em relação ao perfil real (conforme a \cref{fig:sec4:discretized_ssf_true}), ao longo da profundidade (no eixo $\y$).
 
-Note que as \cref{fig:sec4:estimated_ssfs:subfig1,fig:sec4:estimated_ssfs:subfig2} referem-se à distribuição no entorno, e nelas o eixo $\x$ se estende no intervalo $[-6, 3]$; enquanto as \cref{fig:sec4:estimated_ssfs:subfig3,fig:sec4:estimated_ssfs:subfig4} referem-se à distribuição em camadas, e o eixo $\x$ se estende no intervalo $[-60, 30]$. Além disso, comparando os perfis que se desenham em cada distribuição, nota-se que o erro para os dispositivos no entorno é próximo a zero e com um comportamento quase aleatório; e para os dispositivos no entorno o erro é consistente e com um comportamento característico, que se comparado aos perfis da \cref{fig:sec4:distrezied_ssf_profiles}, revela que o SSF é quase uniforme, para esse caso.
+Note que as \cref{fig:sec4:estimated_ssfs:subfig1,fig:sec4:estimated_ssfs:subfig2} referem-se à distribuição no entorno, e nelas o eixo $\x$ se estende no intervalo $[-6, 3]$; enquanto as \cref{fig:sec4:estimated_ssfs:subfig3,fig:sec4:estimated_ssfs:subfig4} referem-se à distribuição em camadas, e o eixo $\x$ se estende no intervalo $[-60, 30]$. Além disso, comparando os perfis que se desenham em cada distribuição, nota-se que o erro para os dispositivos no entorno é próximo a zero e com um comportamento quase aleatório; e para os dispositivos no entorno o erro é consistente e com um comportamento característico, que se comparado aos perfis da \cref{fig:sec4:discretized_ssf_profiles}, revela que o SSF é quase uniforme, para esse caso.
 
 \subsubsection*{Discussão}
 
-Como visto pelos resultados na distribuição no entorno, ambos os métodos são capazes de alcançar um desempenho bom de estimação do SSF (com erro médio de $1\si{\meter/\second}$ ou menos). Por outro lado, os resultados com a distribuição em camadas --- essa sendo a distribuição de interesse para o projeto, como já previamente discutido --- revelam que nenhuma das duas técnicas é capaz de alcançar resultados razoáveis, com erros de até $40\si{\meter/\second}$, e erro médio de mais de $20\si{\meter/\second}$.
+Como visto pelos resultados na distribuição no entorno, ambos os métodos são capazes de alcançar um desempenho bom de estimação do SSF (com erro médio de $1\si{\meter/\second}$ ou menos). Por outro lado, os resultados com a distribuição em camadas --- essa sendo a distribuição de interesse para o projeto, como já previamente discutido --- revelam que nenhuma das duas técnicas é capaz de alcançar resultados razoáveis, com erros absolutos de até $60\si{\meter/\second}$, e erro médio de mais de $20\si{\meter/\second}$.
 
 Isso indica que nenhuma das duas técnicas é suficiente para conseguir inverter o SSF para o caso de dispositivos em camadas, e portanto outras técnicas --- que utilizem outras informações adquiridas nos receptores, ou informações \textsl{a priori} --- precisariam ser empregadas.

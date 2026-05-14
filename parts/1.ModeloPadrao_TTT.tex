@@ -153,13 +153,13 @@ Na modelagem apresentada, assume-se que todas as medições são igualmente impo
 
 Matematicamente, isso é modelado adaptando a \cref{eq:sec2:iterative_minimization_cost-function}. Essa equação pode ser expandida e escrita como
 \begin{equation}
-	\bvs{i+1} = \arg \min_{\bvs} \sum_{m=1}^{M} \pts{\bvR[T]{m,i} \bvs - t_{\obs;m}}^2
+	\bvs{i+1} = \arg \min_{\bvs} \sum_{m=0}^{M-1} \pts{\bvR[T]{m,i} \bvs - t_{\obs;m}}^2
 \end{equation}
 na qual $\bvr{m,i}$ é um vetor das distâncias percorridas em cada célula pelo $m$-ésimo raio, na $i$-ésima iteração; e $t_{\obs;m}$ é o tempo total de percurso observado para o $m$-ésimo raio.
 
 Com essa formulação, uma ponderação $w_i$ pode ser adicionada a cada raio, levando a
 \begin{equation}
-	\bvs{i+1} = \arg \min_{\bvs} \sum_{m=1}^{M} w_m \pts{\bvR[T]{m,i} \bvs - t_{\obs;m}}^2
+	\bvs{i+1} = \arg \min_{\bvs} \sum_{m=0}^{M-1} w_m \pts{\bvR[T]{m,i} \bvs - t_{\obs;m}}^2
 \end{equation}
 onde $w_m > 0$ é o peso da $m$-ésima medição. Retornando à formulação matricial, obtemos
 \begin{equation}

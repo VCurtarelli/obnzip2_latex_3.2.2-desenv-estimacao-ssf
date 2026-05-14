@@ -6,11 +6,11 @@ Dada $\bvR{i}$, podemos escrevê-la por meio de sua decomposição em valores si
 \begin{equation}
 	\bvR{i} = \bvU \bvSi \bvV[T],
 \end{equation}
-em que $\bvU \in \re^{\sz{M}{M}}$ e $\bvV \in \re^{\sz{N}{N}}$ são os vetores singulares à esquerda e à direita de $\bvR{i}$, formando bases ortonormais; e $\bvSi \in \re^{\sz{M}{N}}$ é uma matriz diagonal não quadrada, cujas entradas diagonais $\lambda_1 \geq \lambda_2 \geq \cdots \geq \lambda_N$ são os valores singulares (estritamente não-negativos) de $\bvR{i}$, em ordem decrescente. Por definição, $\bvU$, $\bvSi$ e $\bvV$ dependem do iterador $i$, mas essa relação é omitida por clareza de notação.
+em que $\bvU \in \re^{\sz{M}{M}}$ e $\bvV \in \re^{\sz{N}{N}}$ são os vetores singulares à esquerda e à direita de $\bvR{i}$, formando bases ortonormais; e $\bvSi \in \re^{\sz{M}{N}}$ é uma matriz diagonal não quadrada, cujas entradas diagonais $\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_N$ são os valores singulares (estritamente não-negativos) de $\bvR{i}$, em ordem decrescente. Por definição, $\bvU$, $\bvSi$ e $\bvV$ dependem do iterador $i$, mas essa relação é omitida por clareza de notação.
 
 \subsection{Pseudo-inversa via SVD}
 
-Nós denotamos $R = \rank{\bvR{i}}$, e assumimos que $R < N$ (ou seja, $\bvR{i}$ é uma matriz de posto deficiente). Nessa situação, apenas $R$ dos valores singulares de $\bvR{i}$ são não-nulos, e portanto então $\lambda_{R+1} = \cdots = \lambda_{N} = 0$. Nesse cenário, a matriz $\pinv{[\bvR[T]{i} \bvR{i}]}$ --- onde $\pinv*{\cdot}$ denota a pseudo-inversa --- pode ser obtida como
+Nós denotamos $R = \rank{\bvR{i}}$, e assumimos que $R < N$ (ou seja, $\bvR{i}$ é uma matriz de posto deficiente). Nessa situação, apenas $R$ dos valores singulares de $\bvR{i}$ são não-nulos, e portanto então $\sigma_{R+1} = \cdots = \sigma_{N} = 0$. Nesse cenário, a matriz $\pinv{[\bvR[T]{i} \bvR{i}]}$ --- onde $\pinv*{\cdot}$ denota a pseudo-inversa --- pode ser obtida como
 \begin{equation}
 	\begin{split}
 		\pinv*{\bvR[T]{i} \bvR{i}}
@@ -155,5 +155,5 @@ ou ainda, a variação na função-custo, comparada àquela sem valores singular
 \end{equation}
 onde as colunas de $\bvU{\tilde{R} \sim R}$ são exatamente as colunas correspondentes aos valores singulares truncados.
 
-Note que esse erro $\Delta E$ é independente dos valores singulares truncados. Portanto, a escolha dos $\lambda$ a serem truncados não está relacionada ao aumento da função-custo. A escolha de quais valores singulares truncar determinará a matriz $\bvU{\tilde{R}\sim R}$ que define $\Delta E$, mas as magnitudes dos valores singulares não são relevantes.
+Note que esse erro $\Delta E$ é independente dos valores singulares truncados. Portanto, a escolha dos $\sigma$ a serem truncados não está relacionada ao aumento da função-custo. A escolha de quais valores singulares truncar determinará a matriz $\bvU{\tilde{R}\sim R}$ que define $\Delta E$, mas as magnitudes dos valores singulares não são relevantes.
 
