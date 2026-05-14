@@ -1,11 +1,11 @@
 %% Requires:
 % PGFPlots
 
-\tikzexternalize[prefix=./figures/pgfexternal/]
+% \tikzexternalize[prefix=./figures/pgfexternal/]
 \NewDocumentCommand{\colorbar}{m}{%
-	\tikzexternaldisable \ref{#1} \tikzexternalenable%
+	\tikzexternaldisable \ref*{#1} \tikzexternalenable%
 }
-\pgfplotsset{compat=1.18}
+% \pgfplotsset{compat=1.18}
 
 %BEGIN_FOLD
 \usepgfplotslibrary{colorbrewer}
