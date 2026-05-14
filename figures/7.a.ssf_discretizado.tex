@@ -1,0 +1,102 @@
+%\input{figures/data/\sympath/params_comp.tex}
+
+
+\begin{figure*}[!t]
+	\centering
+	\def\sympath{optimal-import-metrics-all-260512-15h19m37s}
+	\begin{subfigure}[c]{0.4\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\addplot[draw=none, resA]
+					table[y=ssfe,x=rcond, col sep=comma] {figures/data/\sympath/rcond.csv};
+				}
+			\end{lineplot}
+		\end{tikzpicture}
+		%	\caption{Média}
+		%	\label{fig:sec6:estimated_ssfs_layer:subfig1}
+	\end{subfigure}
+	\begin{subfigure}[c]{0.4\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\addplot[draw=none, resA]
+					table[y=ssfe,x=rank, col sep=comma] {figures/data/\sympath/rank.csv};
+				}
+			\end{lineplot}
+		\end{tikzpicture}
+		%	\caption{Média}
+		%	\label{fig:sec6:estimated_ssfs_layer:subfig1}
+	\end{subfigure} \\
+	\begin{subfigure}[c]{0.4\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\addplot[draw=none, resA]
+					table[y=ssfe,x=s_rank, col sep=comma] {figures/data/\sympath/s_rank.csv};
+				}
+			\end{lineplot}
+		\end{tikzpicture}
+		%	\caption{Média}
+		%	\label{fig:sec6:estimated_ssfs_layer:subfig1}
+	\end{subfigure}
+	\begin{subfigure}[c]{0.4\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\addplot[draw=none, resA]
+					table[y=ssfe,x=e_rank, col sep=comma] {figures/data/\sympath/e_rank.csv};
+				}
+			\end{lineplot}
+		\end{tikzpicture}
+		%	\caption{Média}
+		%	\label{fig:sec6:estimated_ssfs_layer:subfig1}
+	\end{subfigure} \\
+	\begin{subfigure}[c]{0.4\linewidth}
+	\raggedleft
+	\begin{tikzpicture}
+		\begin{lineplot}{}{}[]%[colorbar to name = {dump1},hmstyle]
+			\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				\addplot[draw=none, resA]
+				table[y=ssfe,x=resolution, col sep=comma] {figures/data/\sympath/resolution.csv};
+			}
+		\end{lineplot}
+	\end{tikzpicture}
+	%	\caption{Média}
+	%	\label{fig:sec6:estimated_ssfs_layer:subfig1}
+	\end{subfigure}
+	\begin{subfigure}[c]{0.4\linewidth}
+	\raggedleft
+	\begin{tikzpicture}
+		\begin{lineplot}{}{}[]%[colorbar to name = {dump1},hmstyle]
+			\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				\addplot[draw=none, resA]
+				table[y=ssfe,x=c_coherence, col sep=comma] {figures/data/\sympath/c_coherence.csv};
+			}
+		\end{lineplot}
+	\end{tikzpicture} \\
+	\end{subfigure}
+	\begin{subfigure}[c]{0.4\linewidth}
+	\raggedleft
+	\begin{tikzpicture}
+		\begin{lineplot}{}{}[]%[colorbar to name = {dump1},hmstyle]
+			\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				\addplot[draw=none, resA]
+				table[y=ssfe,x=r_coherence, col sep=comma] {figures/data/\sympath/r_coherence.csv};
+			}
+		\end{lineplot}
+	\end{tikzpicture}
+	%	\caption{Média}
+	%	\label{fig:sec6:estimated_ssfs_layer:subfig1}
+	\end{subfigure}
+	
+	
+%	\vspace*{.5em}
+%	\colorbar{lineplots2}
+%	\caption{Erros de estimação de cada SSP, para os métodos mostrados, no cenário de dispositivos no entorno, para a iteração final.}
+%	\label{fig:sec6:estimated_ssfs_surround}
+\end{figure*}

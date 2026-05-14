@@ -2,3 +2,8 @@ v1.0.260429
 	Inicialização.
 	Juntados os relatórios 3.1.1.a (parte do método-padrão para TTT), 3.1.1.b, e 3.1.1.d.
 	Resultados novos, reescrita, e reestruturação textual.
+v1.0.260514
+	Pequenas modificações no texto.
+	Grandes modificações na Seção V.
+	Adicionadas Seção VI de resultados dos métodos das Seções IV e V.
+	Iniciada Seção VII de métricas de qualidade.
