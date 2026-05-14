@@ -1,11 +1,11 @@
 %% Requires:
 % PGFPlots
 
-% \tikzexternalize[prefix=./figures/pgfexternal/]
+%\tikzexternalize[prefix=./figures/pgfexternal/]
 \NewDocumentCommand{\colorbar}{m}{%
-	\tikzexternaldisable \ref*{#1} \tikzexternalenable%
+	\tikzexternaldisable \ref{#1} \tikzexternalenable%
 }
-% \pgfplotsset{compat=1.18}
+\pgfplotsset{compat=1.18}
 
 %BEGIN_FOLD
 \usepgfplotslibrary{colorbrewer}
@@ -65,19 +65,20 @@
 %BEGIN_FOLD
 \NewDocumentEnvironment{lineplot}{O{axis} m m O{}}{ % xlabel | ylabel | other arguments
 	\begin{#1}[
-		width=0.9\linewidth,
+		width=0.8\linewidth,
 		height=0.7\linewidth,
 		%
 		%		xtick = {1, 2 ,..., 7},
 		xtick align=outside,
 		xtick pos=bottom,
 		ytick align=outside,
-		ytick pos=right,
+		ytick pos=left,
 		%
 		xlabel = #2,
 		ylabel = #3,
+		ylabel near ticks,
 		%		yticklabel style={text width=\wdtwenty, align=right},
-		ylabel style={yshift=-2em},
+		ylabel style={yshift=-3pt},
 		% xlabel style={yshift=0.5em},
 		%
 		%
@@ -94,13 +95,14 @@
 			legend columns=2,
 			/tikz/every even column/.append style={column sep=1em}
 		},
-		yticklabel pos=right,
-		yticklabel style={
-			text width=2em,
-			anchor=west,
-			align=left,
-			% xshift=-0.2em,
-		},
+%		yticklabel pos=right,
+%		yticklabel style={
+%			text width=2em,
+%			anchor=west,
+%			align=left,
+%			% xshift=-0.2em,
+%		},
+		scale only axis,
 		#4,
 		]
 		%		\draw[thin, dash pattern = {on 4pt off 1pt}] (axis cs:\pgfkeysvalueof{/pgfplots/xmin},0) -- (axis cs:\pgfkeysvalueof{/pgfplots/xmax},0);
@@ -166,6 +168,7 @@ thick, ColE, dash pattern = {on 3pt off 1pt},
 mark=triangle*, mark size=1.5, mark options={
 	rotate=180,
 	solid,
+	fill opacity=0.5
 }
 ]
 \tikzstyle{resF} = [
@@ -173,7 +176,8 @@ thick, ColF, dash pattern = {on 3pt off 2pt},
 mark=x, mark size=2, mark options={
 	rotate=0,
 	solid,
-	very thick
+	very thick,
+	fill opacity=0.5
 }
 ]
 \tikzstyle{resG} = [
@@ -181,7 +185,8 @@ thick, ColG, dash pattern = {on 3pt off 4pt},
 mark=+, mark size=2, mark options={
 	rotate=0,
 	solid,
-	very thick
+	very thick,
+	fill opacity=0.5
 }
 ]
 %END_FOLD

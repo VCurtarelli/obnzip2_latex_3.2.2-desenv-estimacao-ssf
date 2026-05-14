@@ -9,3 +9,5 @@ v1.0.260514
 	Iniciada Seção VII de métricas de qualidade.
 v1.0.260514b
     Reload manual no Overleaf para re-sincronizar.
+v1.0.260514c
+	Atualizando o package Curtatex na fonte.
