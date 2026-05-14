@@ -1,0 +1,157 @@
+\section{Mais resultados}
+\def\sympathA{optimal-import-petro-layer-260514-14h05m22s}
+\def\sympathB{optimal-import-petro-layer-blob-260514-14h05m28s}
+\def\sympathC{optimal-import-petro-layer-layer-diag-260514-14h05m36s}
+\def\sympathD{optimal-import-petro-layer-layer-column-260514-14h05m32s}
+\def\sympathE{optimal-import-petro-layer-bracket-260514-14h05m43s}
+\def\sympathF{optimal-import-petro-surround-260514-14h05m24s}
+\def\sympathG{optimal-import-petro-layer-scolumn-layer-260514-14h05m40s}
+\def\sympathH{optimal-import-petro-layer-layer-scolumn-260514-14h05m38s}
+\def\sympathI{optimal-import-petro-semi-surround-260514-14h05m42s}
+\def\sympathJ{optimal-import-petro-layer-cap-260514-14h05m45s}
+
+\definecolor{ColA}{HTML}{E0BB00}
+\definecolor{ColB}{HTML}{86AF00}
+\definecolor{ColC}{HTML}{13E000}
+\definecolor{ColD}{HTML}{00C133}
+\definecolor{ColE}{HTML}{00CCCC}
+\definecolor{ColF}{HTML}{0066FF}
+\definecolor{ColG}{HTML}{3300FF}
+\definecolor{ColH}{HTML}{CC00FF}
+\definecolor{ColI}{HTML}{FF0099}
+\definecolor{ColJ}{HTML}{FF0000}
+\def\|{\text{\textbar}}
+\tikzstyle{resA} = [
+thick, ColA, dash pattern = {on 1pt off 0pt},
+%mark=square*, mark size=2, mark options={
+%	rotate=0,
+%	solid,
+%	opacity=0.5,
+%	fill opacity=0.5
+%}
+]
+\tikzstyle{resB} = [
+thick, ColB, dash pattern = {on 1pt off 1pt},
+%mark=triangle*, mark size=3, mark options={
+%	rotate=0,
+%	solid,
+%	opacity=0.5,
+%	fill opacity=0.5
+%}
+]
+\tikzstyle{resC} = [
+thick, ColC, dash pattern = {on 4pt off 2pt},
+%mark=star, mark size=3, mark options={
+%	rotate=0,
+%	solid,
+%	very thick,
+%	opacity=0.5,
+%	fill opacity=0.5
+%}
+]
+\tikzstyle{resD} = [
+thick, ColD, dash pattern = {on 4pt off 2pt on 1pt off 2pt},
+%mark=square*, mark size=2, mark options={
+%	rotate=45,
+%	solid,
+%	opacity=0.5,
+%	fill opacity=0.5
+%}
+]
+\tikzstyle{resE} = [
+thick, ColE, dash pattern = {on 3pt off 1pt},
+%mark=triangle*, mark size=1.5, mark options={
+%	rotate=180,
+%	solid,
+%	fill opacity=0.5
+%}
+]
+\tikzstyle{resF} = [
+thick, ColF, dash pattern = {on 3pt off 2pt},
+%mark=x, mark size=2, mark options={
+%	rotate=0,
+%	solid,
+%	very thick,
+%	fill opacity=0.5
+%}
+]
+\tikzstyle{resG} = [
+thick, ColG, dash pattern = {on 3pt off 4pt},
+%mark=+, mark size=2, mark options={
+%	rotate=0,
+%	solid,
+%	very thick,
+%	fill opacity=0.5
+%}
+]
+\tikzstyle{resH} = [
+thick, ColH, dash pattern = {on 3pt off 4pt},
+%mark=diamond*, mark size=2, mark options={
+%	rotate=90,
+%	solid,
+%	very thick,
+%	fill opacity=0.5
+%}
+]
+\tikzstyle{resI} = [
+thick, ColI, dash pattern = {on 3pt off 4pt},
+%mark=pentagon*, mark size=2, mark options={
+%	rotate=0,
+%	solid,
+%	very thick,
+%	fill opacity=0.5
+%}
+]
+\tikzstyle{resJ} = [
+thick, ColJ, dash pattern = {on 3pt off 4pt},
+%mark=*, mark size=2, mark options={
+%	rotate=0,
+%	solid,
+%	very thick,
+%	fill opacity=0.5
+%}
+]
+\tikzstyle{resTTT} = [
+	mark=square*, mark size=2, mark options={
+		rotate=45,
+		solid,
+		opacity=0.5,
+		fill opacity=0.5
+	}
+]
+\tikzstyle{resSVD} = [
+	mark=triangle*, mark size=3, mark options={
+		rotate=0,
+		solid,
+		opacity=0.5,
+		fill opacity=0.5
+	}	
+]
+
+Como sugerido, os métodos utilizados na \cref{sec:simulation_and_results} (TTT e SVD) serão reaplicados aqui, em uma gama maior de condições de dispositivos. Serão testadas as seguintes configurações:
+
+\begin{itemize}
+	\item Camada\|Camada (C\|C) - Idêntico à configuração em camadas da \cref{sec:simulation_and_results}.
+	\item Camada\|Bolha (C\|B) - Fontes no leito em uma camada, e receptores em 3 camadas próximas à superfície de 9 dispositivos cada, emulando várias viagens de um ROV.
+	\item Camada\|Camada+Diagonal (C\|CD) - Fontes no leito em uma camada, e duas viagens de receptores: uma camada horizontal próxima à superfície, e uma viagem na diagonal até $500\si{\meter}$.
+	\item Camada\|Camada+Apêndice (C\|CA) - Fontes no leito em uma camada, e duas viagens de receptores: uma camada horizontal próxima à superfície, e uma vertical até $500\si{\meter}$.
+	\item Camada\|Garra (C\|G) - Fontes no leito em uma camada, receptores em uma cada próxima à superfície, e receptores em dois apêndices próximos às laterais da viagem horizontal.
+	
+	\item Camada+Coluna\|Camada+Coluna (CC\|CC) - Semelhante à configuração no entorno da \cref{sec:simulation_and_results}, mas com mais dispositivos.
+	\item Camada+Vertical\|Camada (CV\|C) - Fontes no leito em uma camada + alguns (poucos) verticalmente, e receptores na superfície em uma camada.
+	\item Camada\|Camada+Vertical (C\|CV) - Fontes no leito em uma camada, e receptores na superfície em uma camada + alguns (poucos) verticalmente.
+	\item Camada+Vertical\|Camada+Vertical (CV\|CV) - Fontes no leito em uma camada + alguns (poucos) verticalmente, e receptores na superfície em uma camada + alguns (poucos) verticalmente.
+	\item Camada\|Camada+Verticais (C\|CVs) - Fontes no leito em uma camada, e receptores na superfície em uma camada + duas colunas.
+\end{itemize}
+
+As configurações referentes a cada um desses casos encontram-se na \cref{fig:sec7:dispositivos}. Note que as configurações apresentam quantidades diferentes de dispositivos, em especial de fontes. Apesar de ser mais ``justo'' comparar configurações com quantidades iguais de dispositivos, a escolha aqui feita foi pensando na prática, em que não seria necessário reduzir a quantidade de medições (receptores) horizontais para medir na vertical, por exemplo.
+
+\input{figures/A.a.ssf_discretizado}
+
+Além disso, para facilitar visualização, os resultados serão apresentados para dois grupos diferentes:
+
+\paragraph{Grupo 1)} consiste das 5 primeiras configurações (C\|C, C\|B, C\|CD, C\|CA, C\|G), em que os receptores permanecem exclusivamente próximo à superfície (acima de $500\si{\meter}$), e as fontes estão exclusivamente no leito.
+
+\paragraph{Grupo 2)} consiste das 5 últimas configurações (CC\|CC, CV\|C, C\|CV, CV\|CV, C\|CVs), em que ambos os dispositivos podem ser alocados ao longo de toda a profundidade.
+
+\input{figures/A.b.tt_ssf_rms_errors}
