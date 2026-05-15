@@ -1,19 +1,20 @@
 \begin{figure}
     \centering\setlength{\parindent}{0pt}
-    \begin{subfigure}[t]{0.45\linewidth}
+    \begin{subfigure}[t]{0.9\linewidth}
         \centering
             \begin{tikzpicture}
                 \begin{lineplot}{Iterações}{$\rmse_{t}$ ($\si{\milli\second}$)}[legend to name=lineplots3, xmin=0.5, xmax=10.5, ymode=log,
-                	legend style={
-                		fill=white,
-                		%			fill opacity=0.5.6,
-                		draw opacity=1,
-                		text opacity=1,
-                		%			at={(1.05, 0.5)},
-                		%			anchor=west,
-                		legend columns=4,
-                		/tikz/every even column/.append style={column sep=1em}
-                	},]
+                legend style={
+                    fill=white,
+                    %			fill opacity=0.5.6,
+                    draw opacity=1,
+                    text opacity=1,
+                    %			at={(1.05, 0.5)},
+                    %			anchor=west,
+                    legend columns=4,
+                    /tikz/every even column/.append style={column sep=1em}
+                },
+                height=0.5\linewidth,]
                     {
                     	\def\sympath{\sympathA}
 	                    \addplot[draw, resA, resSVD] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_svd.csv};  
@@ -98,11 +99,12 @@
             \end{tikzpicture}
         \caption{Erro RMS de tempo de trânsito.}
         \label{fig:sec7:tt_ssf_rms_errors:subfig1}
-    \end{subfigure} \hspace*{2em}
-    \begin{subfigure}[t]{0.45\linewidth}
+    \end{subfigure} \\[0.5cm]
+    \begin{subfigure}[t]{0.9\linewidth}
         \centering
             \begin{tikzpicture}
-                \begin{lineplot}{Iterações}{$\rmse_{\ssf}$ ($\si{\meter/\second}$)}[xmin=0.5, xmax=10.5, ymode=log,]
+                \begin{lineplot}{Iterações}{$\rmse_{\ssf}$ ($\si{\meter/\second}$)}[xmin=0.5, xmax=10.5, ymode=log,
+                height=0.5\linewidth,]
                     {
                     	\def\sympath{\sympathA}
                     	\addplot[draw, resA, resSVD] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_svd.csv};  
