@@ -11,3 +11,5 @@ v1.0.260514
 	v1.0.260514c - Atualizando o package Curtatex na fonte.
 	Iniciado Apêndice A de novos resultados.
     Continuado Apêndice A, com discussões, figuras, etc.
+v1.0.260516
+	Continuando Apêndice A.

@@ -2,11 +2,11 @@
 \usetikzlibrary{decorations.pathmorphing}
 \usetikzlibrary{shapes.geometric}
 \tikzset{->-/.style={
-		decoration={
-			markings,
-			mark={at position .5 with {\pgftransformscale{2}\arrow{>}}}
-		},
-		postaction={decorate}
+		postaction={decorate, decoration={
+				markings,
+				mark=at position 0.5 with {\arrow{>}},
+				mark=at position 0.8 with {\arrow{>}}
+		}}
 	}
 }
 \tikzset{
@@ -21,6 +21,12 @@
 		regular polygon sides=3,
 		minimum size=0.5cm,scale=0.7,
 		draw
+	}
+}
+\pgfplotsset{last/.style={
+		x filter/.code={
+			\ifnum\coordindex=9\else\def\pgfmathresult{}\fi
+		}
 	}
 }
 \tikzstyle{snake it}=[decorate,decoration={snake, #1,}]

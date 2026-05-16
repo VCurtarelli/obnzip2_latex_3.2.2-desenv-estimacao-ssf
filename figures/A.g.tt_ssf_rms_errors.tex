@@ -1,0 +1,152 @@
+\begin{figure}
+	\centering\setlength{\parindent}{0pt}
+	\begin{subfigure}[t]{0.9\linewidth}
+		\centering
+		\begin{tikzpicture}
+			\begin{lineplot}{Iterações}{$\rmse_{t}$ ($\si{\milli\second}$)}[xmin=0.5, xmax=10.5, ymode=log,
+				legend style={
+					fill=white,
+					%			fill opacity=0.5.6,
+					draw opacity=1,
+					text opacity=1,
+					%			at={(1.05, 0.5)},
+					%			anchor=west,
+					legend columns=4,
+					/tikz/every even column/.append style={column sep=1em}
+				},
+				height=0.5\linewidth,]
+				{
+					\def\sympath{\sympathA}
+					\addplot[draw, resA, resSVD] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_svd.csv};  
+					\addplot[draw, resA, resTTT] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_classic.csv}; 
+				}
+				{
+					\def\sympath{\sympathB}
+					\addplot[draw, resB, resSVD] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_svd.csv};  
+					\addplot[draw, resB, resTTT] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathC}
+					\addplot[draw, resC, resSVD] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_svd.csv};  
+					\addplot[draw, resC, resTTT] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathD}
+					\addplot[draw, resD, resSVD] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_svd.csv};  
+					\addplot[draw, resD, resTTT] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathE}
+					\addplot[draw, resE, resSVD] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_svd.csv};  
+					\addplot[draw, resE, resTTT] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathF}
+					\addplot[draw, resF, resSVD] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_svd.csv};  
+					\addplot[draw, resF, resTTT] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_classic.csv}; 
+				}
+				{
+					\def\sympath{\sympathG}
+					\addplot[draw, resG, resSVD] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_svd.csv};  
+					\addplot[draw, resG, resTTT] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathH}
+					\addplot[draw, resH, resSVD] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_svd.csv};  
+					\addplot[draw, resH, resTTT] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathI}
+					\addplot[draw, resI, resSVD] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_svd.csv};  
+					\addplot[draw, resI, resTTT] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathJ}
+					\addplot[draw, resJ, resSVD] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_svd.csv};  
+					\addplot[draw, resJ, resTTT] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_classic.csv}; 
+				}
+			\end{lineplot}
+		\end{tikzpicture}
+		\caption{Erro RMS de tempo de trânsito.}
+		\label{fig:sec7:tt_ssf_rms_errors_sem-hiper-otimizacao:subfig1}
+	\end{subfigure} \\[0.5cm]
+	\begin{subfigure}[t]{0.9\linewidth}
+		\centering
+		\begin{tikzpicture}
+			\begin{lineplot}{Iterações}{$\rmse_{\ssf}$ ($\si{\meter/\second}$)}[xmin=0.5, xmax=10.5, ymode=log,
+				height=0.5\linewidth,]
+				{
+					\def\sympath{\sympathA}
+					\addplot[draw, resA, resSVD] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_svd.csv};  
+					\addplot[draw, resA, resTTT] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_classic.csv}; 
+				}
+				{
+					\def\sympath{\sympathB}
+					\addplot[draw, resB, resSVD] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_svd.csv};  
+					\addplot[draw, resB, resTTT] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathC}
+					\addplot[draw, resC, resSVD] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_svd.csv};  
+					\addplot[draw, resC, resTTT] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathD}
+					\addplot[draw, resD, resSVD] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_svd.csv};  
+					\addplot[draw, resD, resTTT] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathE}
+					\addplot[draw, resE, resSVD] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_svd.csv};  
+					\addplot[draw, resE, resTTT] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathF}
+					\addplot[draw, resF, resSVD] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_svd.csv};  
+					\addplot[draw, resF, resTTT] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_classic.csv}; 
+				}
+				{
+					\def\sympath{\sympathG}
+					\addplot[draw, resG, resSVD] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_svd.csv};  
+					\addplot[draw, resG, resTTT] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathH}
+					\addplot[draw, resH, resSVD] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_svd.csv};  
+					\addplot[draw, resH, resTTT] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathI}
+					\addplot[draw, resI, resSVD] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_svd.csv};  
+					\addplot[draw, resI, resTTT] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathJ}
+					\addplot[draw, resJ, resSVD] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_svd.csv};  
+					\addplot[draw, resJ, resTTT] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_ssf_classic.csv}; 
+				}
+			\end{lineplot}
+		\end{tikzpicture}
+		\caption{Erro RMS do SSF.}
+		\label{fig:sec7:tt_ssf_rms_errors_sem-hiper-otimizacao:subfig2}
+	\end{subfigure}
+	
+	\vspace*{.5em}
+	\colorbar{lineplots3}
+	\caption{Evolução dos erros RMS do processo de estimação do SSF, para os métodos TTT e SVD, nos cenários apresentados, ao longo de 10 iterações, \textbf{sem otimização de hiper-parâmetros}.}
+	\label{fig:sec7:tt_ssf_rms_errors_sem-hiper-otimizacao}
+\end{figure}

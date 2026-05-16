@@ -1,86 +1,15 @@
-\def\sympathA{optimal-import-petro-layer-260514-14h05m22s}
-\def\sympathB{optimal-import-petro-layer-blob-260514-14h05m28s}
-\def\sympathC{optimal-import-petro-layer-layer-diag-260514-14h05m36s}
-\def\sympathD{optimal-import-petro-layer-layer-column-260514-14h05m32s}
-\def\sympathE{optimal-import-petro-layer-bracket-260514-14h05m43s}
-\def\sympathF{optimal-import-petro-surround-260514-14h05m24s}
-\def\sympathG{optimal-import-petro-layer-scolumn-layer-260514-14h05m40s}
-\def\sympathH{optimal-import-petro-layer-layer-scolumn-260514-14h05m38s}
-\def\sympathI{optimal-import-petro-semi-surround-260514-14h05m42s}
-\def\sympathJ{optimal-import-petro-layer-cap-260514-14h05m45s}
+\def\sympathA{optimal-import--petro--260515-12h23m37s--layer}
+\def\sympathB{optimal-import--petro--260515-12h23m39s--layer;blob}
+\def\sympathC{optimal-import--petro--260515-12h23m43s--layer;layer-diag}
+\def\sympathD{optimal-import--petro--260515-12h23m45s--layer;layer-column}
+\def\sympathE{optimal-import--petro--260515-12h23m48s--layer;bracket}
+\def\sympathF{optimal-import--petro--260515-12h23m52s--surround}
+\def\sympathG{optimal-import--petro--260515-12h23m56s--layer-scolumn;layer}
+\def\sympathH{optimal-import--petro--260515-12h23m58s--layer;layer-scolumn}
+\def\sympathI{optimal-import--petro--260515-12h24m00s--semi-surround}
+\def\sympathJ{optimal-import--petro--260515-12h24m02s--layer;cap}
 
-\definecolor{ColA}{HTML}{006D4D}  % 00A080
-\definecolor{ColB}{HTML}{006572}  % 00A0A0
-\definecolor{ColC}{HTML}{005E97}  % 0090D0
-\definecolor{ColD}{HTML}{245BB8}  % 5080E0
-\definecolor{ColE}{HTML}{764CB3}  % A070E0
-\definecolor{ColF}{HTML}{E56A6A}  % FF8080
-\definecolor{ColG}{HTML}{E88429}  % FFA040
-\definecolor{ColH}{HTML}{ECA400}  % FFB000
-\definecolor{ColI}{HTML}{D8C200}  % E0D000
-\definecolor{ColJ}{HTML}{97D500}  % B0E000
-
-\def\|{\text{\textbar}}
-
-\tikzstyle{resA} = [
-very thick, ColA, dash pattern = {on 1pt off 0pt},
-]
-\tikzstyle{resB} = [
-very thick, ColB, dash pattern = {on 1pt off 1pt},
-]
-\tikzstyle{resC} = [
-very thick, ColC, dash pattern = {on 4pt off 2pt},
-]
-\tikzstyle{resD} = [
-very thick, ColD, dash pattern = {on 4pt off 2pt on 1pt off 2pt},
-]
-\tikzstyle{resE} = [
-very thick, ColE, dash pattern = {on 3pt off 1pt},
-]
-\tikzstyle{resF} = [
-very thick, ColF, dash pattern = {on 3pt off 2pt},
-]
-\tikzstyle{resG} = [
-very thick, ColG, dash pattern = {on 3pt off 4pt},
-]
-\tikzstyle{resH} = [
-very thick, ColH, dash pattern = {on 6pt off 2pt},
-]
-\tikzstyle{resI} = [
-very thick, ColI, dash pattern = {on 4pt off 2pt on 1pt off 2pt on 1pt off 2pt},
-]
-\tikzstyle{resJ} = [
-very thick, ColJ, dash pattern = {on 6pt off 3pt on 3pt off 3pt},
-]
-
-\tikzstyle{resTTT} = [
-	mark=*, mark size=3, mark options={
-		% rotate=45,
-		solid,
-		opacity=1,
-		fill opacity=0.5
-	}
-]
-\tikzstyle{resSVD} = [
-	mark=triangle*, mark size=4, mark options={
-		rotate=0,
-		solid,
-		opacity=1,
-		fill opacity=0.5
-	}	
-]
-\pgfplotsset{
-	hmstyle/.style={
-		ytick={0, 500, ..., 1500},
-		yticklabels={0, 0.5, ..., 1.5},
-		xtick={0, 1000, 2000},
-		xticklabels={0, 1, 2},
-		xmin=0, xmax=2000,
-		ymin=0, ymax=1500,
-		% xlabel={Deslocamento ($\si{\kilo\meter}$)},
-		% ylabel={Profundidade ($\si{\kilo\meter}$)},
-	}
-}
+\input{figures/A.0.Config}
 
 \section{Mais resultados}
 
@@ -94,17 +23,19 @@ Serão testadas as seguintes configurações:
 	\item Camada\|Camada (C\|C) - Idêntico à configuração em camadas da \cref{sec:simulation_and_results}.
 	\item Camada\|Bolha (C\|B) - Fontes no leito em uma camada, e receptores em 3 camadas próximas à superfície de 9 dispositivos cada, emulando várias viagens de um ROV.
 	\item Camada\|Camada+Diagonal (C\|CD) - Fontes no leito em uma camada, e duas viagens de receptores: uma camada horizontal próxima à superfície, e uma viagem na diagonal até $500\si{\meter}$.
-	\item Camada\|Camada+Apêndice (C\|CA) - Fontes no leito em uma camada, e duas viagens de receptores: uma camada horizontal próxima à superfície, e uma vertical até $500\si{\meter}$.
+	\item Camada\|Camada+Apêndice (C\|CA) - Fontes no leito em uma camada, e duas viagens de receptores: uma camada horizontal próxima à superfície, e uma vertical até $500\si{\meter}$ no meio do ambiente.
 	\item Camada\|Garra (C\|G) - Fontes no leito em uma camada, receptores em uma cada próxima à superfície, e receptores em dois apêndices próximos às laterais da viagem horizontal.
 	
 	\item Camada+Coluna\|Camada+Coluna (CC\|CC) - Semelhante à configuração no entorno da \cref{sec:simulation_and_results}, mas com mais dispositivos.
 	\item Camada+Vertical\|Camada (CV\|C) - Fontes no leito em uma camada + alguns (poucos) verticalmente, e receptores na superfície em uma camada.
 	\item Camada\|Camada+Vertical (C\|CV) - Fontes no leito em uma camada, e receptores na superfície em uma camada + alguns (poucos) verticalmente.
 	\item Camada+Vertical\|Camada+Vertical (CV\|CV) - Fontes no leito em uma camada + alguns (poucos) verticalmente, e receptores na superfície em uma camada + alguns (poucos) verticalmente.
-	\item Camada\|Camada+Verticais (C\|CVs) - Fontes no leito em uma camada, e receptores na superfície em uma camada + duas colunas.
+	\item Camada\|Camada+Verticais (C\|CCs) - Fontes no leito em uma camada, e receptores na superfície em uma camada + duas colunas.
 \end{itemize}
 
-As configurações referentes a cada um desses casos encontram-se na \cref{fig:sec7:dispositivos}. Note que as configurações apresentam quantidades diferentes de dispositivos, em especial de fontes. Apesar de ser mais ``justo'' comparar configurações com quantidades iguais de dispositivos, a escolha aqui feita foi pensando na prática, em que não seria necessário reduzir a quantidade de medições (receptores) horizontais para medir na vertical, por exemplo.
+As configurações referentes a cada um desses casos encontram-se na \cref{fig:sec7:dispositivos}. Note que as configurações apresentam quantidades diferentes de dispositivos, em especial de fontes. Apesar de ser mais ``justo'' comparar configurações com quantidades iguais de dispositivos, a escolha aqui feita se inspirou na prática, em que não seria necessário reduzir a quantidade de medições (receptores) horizontais para medir na vertical, por exemplo.
+
+Bem como nas simulações anteriores, aqui também foi feita uma hiper-otimização dos parâmetros de cada método em cada configuração, visando minimizar o erro de SSF (objetivo esse sendo implícito na otimização iterativa).
 
 \input{figures/A.a.ssf_discretizado}
 
@@ -120,7 +51,7 @@ Nos gráficos, as configurações desse grupo serão representadas por cores mai
 
 \subsubsection*{Grupo 2}
 
-Consiste das 5 últimas configurações (CC\|CC, CV\|C, C\|CV, CV\|CV, C\|CVs), em que ambos os dispositivos podem ser alocados ao longo de toda a profundidade. Novamente, essa liberdade de alocação dos dispositivos nos levaria a crer, pela heurística estabelecida, que o desempenho das técnicas nesse grupo seria melhor.
+Consiste das 5 últimas configurações (CC\|CC, CV\|C, C\|CV, CV\|CV, C\|CCs), em que ambos os dispositivos podem ser alocados ao longo de toda a profundidade. Novamente, essa liberdade de alocação dos dispositivos nos levaria a crer, pela heurística estabelecida, que o desempenho das técnicas nesse grupo seria melhor.
 
 Nos gráficos, os resultados para as configurações desse grupo serão em cores mais quentes (amarelos/vermelhos).
 
@@ -148,21 +79,90 @@ Esse resultado se alinha com as conclusões obtidas anteriormente, reforçando a
 
 \subsubsection*{Constatação 3}
 
-\lipsum[2]
+A \cref{fig:sec7:tt_vs_ssf_it-final} mostra um \ingles{scatterplot} entre os erros RMSE de tempo de trânsito (eixo $\x$) e de velocidade (eixo $\y$), para a última iteração do processo de minimização. É possível notar uma relação linear (em escala log-log) entre ambas as métricas, para ambas as técnicas, em que um erro maior de tempo de trânsito implica em um erro maior de estimação de velocidade do som.
 
-% TODO: Montar um scatterplot de RMSE-t vs RMSE-ssf para a iteração final de todas as técnicas e métodos.
+Nessa figura também é notável que, de forma geral, o desempenho do método SVD é próximo ou superior ao desempenho da TTT, em especial para os cenários do grupo 1.
+
+\input{figures/A.c.tt_vs_ssf}
 
 \subsection{Análise por grupo}
 
-Enquanto na análise anterior a comparação foi realizada de maneira global, buscando encontrar tendências entre os grupos, aqui será feita uma análise para cada um dos grupos separadamente.
-
-Além de separarmos por grupos, serão feitas também as seguintes simplificações nos gráficos:
+Enquanto na análise anterior a comparação foi realizada de maneira global, buscando tendências entre os grupos, aqui será feita uma análise para cada um dos grupos e técnicas. Além de separarmos por grupos, serão feitas também as seguintes alterações nos gráficos:
 
 \paragraph{1)} Serão analisados apenas os resultados para a SVD. Nas análises anteriores, ficou claro que o desempenho da SVD é superior ou igual ao da TTT ao longo das diferentes configurações. Portanto, de forma a reduzir a quantidade de dados a serem observados e discutidos, apenas a técnica com desempenho superior (SVD) será apresentada.
 
 \paragraph{2)} Serão apresentados apenas os erros RMSE de SSF. Pela análise anterior, constatou-se que há uma relação linear entre performance de redução do erro residual de tempo de trânsito, e performance de estimação do SSF. Além disso, como o objetivo intrínseco da minimização é a estimação do SSF, não há razão para reapresentar os dados de $\rmse_{t}$.
 
-% Separar Figura 11 em Figura ..a (grupo 1) e ..b (grupo 2).
+A \cref{fig:sec7:ssf_rms_errors_svd} reapresenta os resultados para a SVD, nos 10 cenários apresentados, ao longo das iterações. De forma idêntica ao que foi discutido anteriormente, aqui fica ainda mais nítido que a performance das configurações do grupo 2 é superior que as do grupo 1.
 
+\input{figures/A.d.ssf_rms_errors}
 
+\subsubsection*{Constatação 4}
 
+Nessa figura fica claro que os métodos do grupo 2 também são mais bem comportados, tendo um comportamento monotônico decrescente no erro de SSF. Por exemplo, os resultados para os cenários C\|CD e C\|CA são erráticos, com o erro aumentando e diminuindo em picos; e do cenário C\|B cresce e depois desce suavemente, alcançando um desempenho próximo ao do cenário C\|C. Os dois que tem o melhor comportamento são os cenários C\|C, que tem um perfil constante, e o C\|G, com um perfil monotônico decrescente.
+
+Esses comportamentos provavelmente se deves a uma redução mais uniforme e bem comportada dos valores singulares para os cenários do grupo 2, e um comportamento mais consistente ao longo das iterações desses valores singulares. Ou seja, não há uma variação abrupta entre iterações da distribuição dos valores singulares, e cada iteração considera a mesma quantidade de perfis para a inversão.
+
+\subsubsection*{Constatação 5}
+
+É nítido que a melhor configuração de cada grupo é aquela com a maior quantidade de dispositivos (C\|G com 243 raios para o grupo 1, e CC\|CC com 324 raios para o grupo 2). Isso é reiterado na \cref{fig:sec7:nrays_vs_ssf_it-final}, em que agora realizamos um \ingles{scatterplot} entre a quantidade de medições de tempo de trânsito e o erro de SSF de cada configuração, para o método SVD. Excluindo o caso C\|B que se comporta como um \ingles{outlier} severo (várias medições, mas pouca melhoria de performance), nota-se uma relação inversa entre número de medições e performance.
+
+É interessante também comparar que diferentes configurações que possuem o mesmo número de medições (C\|CV $\mtimes$ CV\|C, C\|CD $\mtimes$ C\|CA, C\|B $\mtimes$ C\|G $\mtimes$ C\|CCs) podem apresentar desempenhos nitidamente diferentes, e configurações com desempenhos semelhantes (C\|CV $\mtimes$ CV\|CV $\mtimes$ C\|CCs, C\|C $\mtimes$ C\|B) necessitam de quantidades de medições também muito variáveis. Isso indica que só aumentar a quantidade de medições não necessariamente é o suficiente, sendo necessário escolher uma configuração adequada para alcançar determinada performance.
+
+De qualquer modo, não nos aprofundaremos mais em uma análise quantitativa desses dados, tanto pela baixa quantidade de configurações testadas num geral, bem como pela otimização de hiperparâmetros do parâmetro regularizador da SVD. Como esse parâmetro depende fortemente do número de dispositivos, isso dificulta uma comparação qualitativa desses dados.
+
+\input{figures/A.e.nrays_ssf_error}
+
+%\subsubsection*{Constatação 6}
+%
+%Retomando as configurações utilizadas, é possível desenhar uma progressão entre as configurações C\|CV (ou CV\|C), CV\|CV, e CC\|CC. Todas apresentam as mesmas quantidades de dispositivos nas partes horizontais próximas à superfície e ao subsolo, diferindo exclusivamente na vertical: C\|CV apresenta 2 receptores na vertical, CV\| apresenta 2 receptores e 2 fontes na vertical, e CC\|CC apresenta 9 receptores e 9 fontes na vertical. 
+
+\subsection{Erros de perfis}
+
+Por completude, apresentaremos também um \ingles{scatterplot} do SSP ao longo da profundidade. Enquanto o apresentado na \cref{fig:sec6:estimated_ssfs_surround} mostra um \ingles{scatterplot} do erro do SSP, aqui são mostrados os perfis. Apresentaremos somente para a SVD, pois essa foi a técnica mais extensamente discutida nessa seção. Além dos dados de velocidade estimados, cada figura também apresenta o perfil médio verdadeiro, que deseja-se estimar.
+
+Os resultados da \cref{fig:sec6:estimated_ssfs_surround} revelam alguns ângulos que não podiam ser vistos tratando apenas dos erros RMS das métricas.
+
+\paragraph{C\|A $\mtimes$ C\|B)} Por exemplo, olhando as \cref{fig:appA:estimated_ssfs_grupo1:subfig1,fig:appA:estimated_ssfs_grupo1:subfig2} e também a \cref{fig:sec7:ssf_rms_errors_svd}, enquanto a métrica de erro mostrava que ambos alcançavam uma performance quase idêntica, aqui notamos que seus comportamentos são drasticamente diferentes: o caso C\|C resultava em reconstruir o perfil como uma simples velocidade média, enquanto que na configuração C\|B há uma grande variação com a profundidade, que superficialmente se assemelha ao esperado.
+
+\paragraph{C\|CD $\mtimes$ C\|CA)} Outra comparação interessante é entre as \cref{fig:appA:estimated_ssfs_grupo1:subfig3,fig:appA:estimated_ssfs_grupo1:subfig4}, que se aproximam do perfil esperado, mas não reconstroem-no com fidelidade suficiente. Da \cref{fig:sec7:ssf_rms_errors_svd}, nota-se que a performance com a C\|CA é levemente superior, e isso é visível aqui também.
+
+\paragraph{C\|G $\mtimes$ Grupo 2)} Todos os perfis para as configurações do grupo 2 se assemelham, juntamente com o perfil para a configuração C\|G. É nítido que a que melhor captura as nuances e variações de velocidade com a profundidade é a CC\|CC, seguida da C\|CCs. É interessante ver que, mesmo sem incorporar qualquer tipo de informação \ingles{a priori} sobre o perfil de velocidade desejado (como foi o caso nas técnicas apresentadas na \cref{sec:modelos_alternativos_est-ssf,sec:modelos_adaptados_ttt}).
+
+\input{figures/A.f.estimated_ssfs}
+
+\def\sympathA{meanpar-import--petro--260515-16h42m46s--layer}
+\def\sympathB{meanpar-import--petro--260515-16h42m47s--layer;blob}
+\def\sympathC{meanpar-import--petro--260515-16h42m51s--layer;layer-diag}
+\def\sympathD{meanpar-import--petro--260515-16h42m53s--layer;layer-column}
+\def\sympathE{meanpar-import--petro--260515-16h42m55s--layer;bracket}
+\def\sympathF{meanpar-import--petro--260515-16h42m59s--surround}
+\def\sympathG{meanpar-import--petro--260515-16h43m03s--layer-scolumn;layer}
+\def\sympathH{meanpar-import--petro--260515-16h43m05s--layer;layer-scolumn}
+\def\sympathI{meanpar-import--petro--260515-16h43m06s--semi-surround}
+\def\sympathJ{meanpar-import--petro--260515-16h43m08s--layer;cap}
+\subsection{Resultados para parâmetros médios}
+
+Nas simulações anteriores dessa seção, em cada método (TTT e SVD) e configuração, foi utilizado o parâmetro obtido pela hiper-otimização, buscando minimizar o $\rmse_{\ssf}$ final. Agora apresentaremos resultados para os valores médios dos parâmetros (para cada técnica), com a média sendo realizada sobre as 10 configurações realizadas. Para a TTT, foi usado $\alpha = 1.5437$, e para a SVD foi usado $\beta = 0.3671$. O objetivo desse resultado é comparar a robustez das técnicas à utilização de um parâmetro que não tenha sido escolhido especificamente para aquela configuração, e ver como ela se comporta para um parâmetro escolhido de maneira ``genérica''.
+
+\input{figures/A.g.tt_ssf_rms_errors}
+
+\subsubsection*{Constatação 6}
+
+A \cref{fig:sec7:tt_ssf_rms_errors_sem-hiper-otimizacao} mostra os resultados de erro de tempo de trânsito e de erro de SSF para todas as configurações, as técnicas de TTT e SVD, para a situação sem otimização. Nota-se há um comportamento semelhante ao que foi visto anteriormente, em que o desempenho de ambos os métodos para as configurações do grupo 1 são inferiores. Contudo, há também uma deterioração da performance dos métodos no grupo 2 que, embora ainda tenham um desempenho aceitável, são inferiores aos seus respectivos com hiper-otimização.
+
+Também tem-se o mesmo resultado que anteriormente, em que a SVD obteve resultados melhores (no grupo 1) ou semelhantes (no grupo 2) à TTT.
+
+\input{figures/A.h.estimated_ssps}
+
+\subsubsection*{Constatação 7}
+
+A \cref{fig:appA:estimated_ssps_sem-hiper-otimizacao} mostra os \ingles{scatterplots} para todas as configurações, com a SVD (por possuir desempenho superior ou igual), para o novo caso sem hiper-otimização.
+
+\subsection{Conclusões}
+
+Dos resultados apresentados, e das constatações e relações estabelecidas entre as métricas e os dados de cada configuração, fica claro que o uso de dispositivos (fontes e/ou receptores) ao longo de toda a profundidade (no nosso caso, profundidade máxima de $1500\si{\meter}$, devido às limitações dos dados utilizados) possui uma relação positiva com o desempenho da estimação do SSF.
+
+Semelhantemente, a quantidade de medições também diretamente afeta o desempenho. Contudo, um aumento ``cego'' da quantidade de medições não necessariamente incuta em uma melhora dos resultados (vide C\|CV $\mtimes$ CV\|CV).
+
+Algo a ser considerado também é o ``custo'' de diferentes medições. Por exemplo, comparando C\|G com C\|CCs, embora o erro de SSF com C\|G seja maior, as suas medições são todas próximas à superfície, enquanto C\|CCs necessita de uma grande quantidade de medições até a profundidade máxima. A depender de quão financeiramente custosas são essas medições profundas, o sacrifício de um erro maior pode ser válido e aceitável.
