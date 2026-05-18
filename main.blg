@@ -1,0 +1,19 @@
+[0] Config.pm:328> INFO - This is Biber 2.21
+[0] Config.pm:331> INFO - Logfile is 'main.blg'
+[99] biber-MSWIN64:342> INFO - === 
+[152] Biber.pm:421> INFO - Reading 'main.bcf'
+[250] Biber.pm:1002> INFO - Found 32 citekeys in bib section 0
+[261] Biber.pm:4487> INFO - Processing section 0
+[272] Biber.pm:4678> INFO - Looking for bibtex file 'setup/RelatorioReferencias.bib' for section 0
+[352] bibtex.pm:1713> INFO - LaTeX decoding ...
+[571] bibtex.pm:1519> INFO - Found BibTeX data source 'setup/RelatorioReferencias.bib'
+[692] Biber.pm:4678> INFO - Looking for bibtex file 'setup/RelatorioExtReferencias.bib' for section 0
+[759] bibtex.pm:1713> INFO - LaTeX decoding ...
+[762] bibtex.pm:1519> INFO - Found BibTeX data source 'setup/RelatorioExtReferencias.bib'
+[791] UCollate.pm:68> INFO - Overriding locale 'pt-BR' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[791] UCollate.pm:68> INFO - Overriding locale 'pt-BR' defaults 'variable = shifted' with 'variable = non-ignorable'
+[791] Biber.pm:4307> INFO - Sorting list 'none/global//global/global/global' of type 'entry' with template 'none' and locale 'pt-BR'
+[791] Biber.pm:4313> INFO - No sort tailoring available for locale 'pt-BR'
+[809] bbl.pm:676> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[826] bbl.pm:779> INFO - Output to main.bbl
+l

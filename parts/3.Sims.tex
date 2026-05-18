@@ -10,7 +10,7 @@ Para comparar as duas técnicas apresentadas (TTT pelo modelo-padrão com regula
 \subsection{Ambiente} % h1103f - Condições para a simulação 1.
 
 
-Foram utilizados dados do World Ocean Atlas (WOA) \cite{garcia_world_2024} de temperatura, pressão, e salinidade, aliados à biblioteca \texttt{GSW} em Python \cite{mcdougall_getting_2011}, para construir SSPs para cada coluna d'água de medições/estimativas dos parâmetros. A partir desses dados, foi selecionado um recorte próximo ao sul do Brasil (próximo a $-36.5\dg$S, $-50.5\dg$W), de onde foram extraídos $N_{\x} = 9$ perfis, e assumiu-se que o SSF fosse uma concatenação 2D desses perfis. Esses perfis são referentes aos valores anuais do WOA (não necessariamente uma média anual), e foram limitados a $z = 1500\si{\meter}$ com um \ingles{downsampling} de 2 vezes; ou seja, o SSF é estratificado em $N_{\z} = 29$ camadas.
+Foram utilizados dados do World Ocean Atlas (WOA) \cite{garcia_world_2024} de temperatura, pressão, e salinidade, aliados à biblioteca \texttt{GSW} em Python \cite{mcdougall_getting_2011}, para construir SSPs para cada coluna d'água de medições/estimativas dos parâmetros. A partir desses dados, foi selecionado um recorte próximo ao sul do Brasil (próximo a $-36.5\dg$S, $-50.5\dg$W), de onde foram extraídos $N_{\x} = 9$ perfis, e assumiu-se que o SSF fosse uma concatenação 2D desses perfis. Esses perfis são referentes aos valores anuais do WOA (não necessariamente uma média anual), e foram limitados a $z = 1500\si{\meter}$ com um \ingles{downsampling} de 2 vezes; ou seja, o SSF é estratificado em $N_{\z} = 31$ camadas.
 
 \input{figures/3.a.ssf_discretizado}
 
@@ -23,7 +23,7 @@ Serão utilizadas duas distribuições de dispositivos, com propósitos distinto
 
 A primeira distribuição segue o que é mais comumente visto na literatura (conforme os artigos apresentados na revisão bibliográfica \cite{revisao_bibliografica}), em que os dispositivos (fontes e receptores) estão alocados em todo o entorno do ambiente sendo modelado. Embora geralmente seja tomado que todos os dispositivos são simultaneamente fonte e receptor, assumiremos que cada um cumpre um papel distinto.
 
-Aqui, as fontes estarão no solo (4 fontes, $z = 2000\si{\meter}$, $x$ variando) e à direita (5 fontes, $x = 2000\si{\meter}$, $z$ variando); e os receptores estarão na superfície (4 receptores, $z = 0\si{\meter}$, $x$ variando) e à esquerda (5 receptores, $x = 0\si{\meter}$, $z$ variando).
+Aqui, as fontes estarão no solo (4 fontes, $z = 1500\si{\meter}$, $x$ variando) e à direita (5 fontes, $x = 1500\si{\meter}$, $z$ variando); e os receptores estarão na superfície (4 receptores, $z = 0\si{\meter}$, $x$ variando) e à esquerda (5 receptores, $x = 0\si{\meter}$, $z$ variando).
 
 Essa condição emula uma situação em que há o máximo de informação espacial disponível, com ondas viajando em todas as direções.
 

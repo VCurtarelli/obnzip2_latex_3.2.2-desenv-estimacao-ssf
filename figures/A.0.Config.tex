@@ -70,3 +70,28 @@ mark=triangle*, mark size=4, mark options={
 		% ylabel={Profundidade ($\si{\kilo\meter}$)},
 	}
 }
+
+\pgfplotsset{
+	profile*/.style={
+		y dir=reverse,
+		ytick={0, 500, 1000, 1500, 2000},
+		yticklabels={0, 0.5, 1, 1.5, 2},
+		xmin = 1440,
+		xmax = 1560,
+		xtick = {1450, 1500, 1550},
+		xticklabels={1.45, 1.5, 1.55},
+	}
+}
+
+\pgfplotsset{
+	profile/.style={
+		y dir=reverse,
+%		ytick={0, 500, 1000, 1500, 2000},
+%		yticklabels={0, 0.5, 1, 1.5, 2},
+		ytick={\empty},
+		xmin = 1440,
+		xmax = 1560,
+		xtick = {1450, 1500, 1550},
+		xticklabels={1.45, 1.5, 1.55},
+	}
+}

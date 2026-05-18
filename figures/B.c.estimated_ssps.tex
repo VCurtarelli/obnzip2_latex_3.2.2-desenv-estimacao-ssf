@@ -1,0 +1,222 @@
+\pgfplotstableread[col sep=comma]{figures/data/\sympathA/0_profiles_observed.csv}\datatable
+
+% Create a new column "avg"
+\pgfplotstablecreatecol[
+create col/expr={
+	(
+	\thisrowno{1} +
+	\thisrowno{2} +
+	\thisrowno{3} +
+	\thisrowno{4} +
+	\thisrowno{5} +
+	\thisrowno{6} +
+	\thisrowno{7} +
+	\thisrowno{8} +
+	\thisrowno{9}
+	) / 9
+}
+]{avg}\datatable
+
+\begin{figure*}[!t]
+	\centering
+	\hspace*{-0.2\linewidth}%
+	\begin{subfigure}[c]{0.4\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{Profundidade ($\si{\kilo\meter}$)}[y dir=reverse,ytick={0, 500, 1000, 1500, 2000}, yticklabels={0, 0.5, 1, 1.5, 2}, height=0.9\linewidth, width=0.3\linewidth,
+				xmin = 1440, xmax=1560, xtick={1450, 1500, 1550}, xticklabels={1.45, 1.5, 1.55}
+				%				xmin=-24, xmax=24, xtick={-20, 0, 20}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathA}
+					\addplot[only marks, resSVD=resA, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+				}
+			\end{lineplot}
+			\avgssp[0.9\linewidth][0.3\linewidth]
+		\end{tikzpicture}
+		\caption{C\|C}
+		\label{fig:appB:estimated_ssps_grupo1_sem-hiper-otimizacao:subfig1}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.15\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[y dir=reverse,ytick={\empty}, height=2.4\linewidth, width=0.8\linewidth,
+				xmin = 1440, xmax=1560, xtick={1450, 1500, 1550}, xticklabels={1.45, 1.5, 1.55}
+				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathB}
+					\addplot[only marks, resSVD=resB, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{C\|B}
+		\label{fig:appB:estimated_ssps_grupo1_sem-hiper-otimizacao:subfig2}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.15\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[y dir=reverse,ytick={\empty}, height=2.4\linewidth, width=0.8\linewidth,
+				xmin = 1440, xmax=1560, xtick={1450, 1500, 1550}, xticklabels={1.45, 1.5, 1.55}
+				%				xmin=-24, xmax=24, xtick={-20, 0, 20}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathC}
+					\addplot[only marks, resSVD=resC, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{C\|CD}
+		\label{fig:appB:estimated_ssps_grupo1_sem-hiper-otimizacao:subfig3}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.15\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[y dir=reverse,ytick={\empty}, height=2.4\linewidth, width=0.8\linewidth,
+				xmin = 1440, xmax=1560, xtick={1450, 1500, 1550}, xticklabels={1.45, 1.5, 1.55}
+				%				xmin=-24, xmax=24, xtick={-20, 0, 20}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathD}
+					\addplot[only marks, resSVD=resD, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{C\|CA}
+		\label{fig:appB:estimated_ssps_grupo1_sem-hiper-otimizacao:subfig4}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.15\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[y dir=reverse,ytick={\empty}, height=2.4\linewidth, width=0.8\linewidth,
+				xmin = 1440, xmax=1560, xtick={1450, 1500, 1550}, xticklabels={1.45, 1.5, 1.55}
+				%				xmin=-12, xmax=12, xtick={-10, 0, 10}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathE}
+					\addplot[only marks, resSVD=resE, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{C\|G}
+		\label{fig:appB:estimated_ssps_grupo1_sem-hiper-otimizacao:subfig5}
+	\end{subfigure}
+	
+	%
+	\vspace*{2em}%
+	\hspace*{-0.2\linewidth}%
+	\begin{subfigure}[c]{0.4\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{Profundidade ($\si{\kilo\meter}$)}[y dir=reverse,ytick={0, 500, 1000, 1500, 2000}, yticklabels={0, 0.5, 1, 1.5, 2}, width=0.3\linewidth, height=0.9\linewidth,
+				xmin = 1440, xmax=1560, xtick={1450, 1500, 1550}, xticklabels={1.45, 1.5, 1.55}
+				%				xmin=-10, xmax=10, xtick={-8, 0, 8}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathF}
+					\addplot[only marks, resSVD=resF, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+				}
+			\end{lineplot}
+			\avgssp[0.9\linewidth][0.3\linewidth]
+		\end{tikzpicture}
+		\caption{CC\|CC}
+		\label{fig:appB:estimated_ssps_grupo2_sem-hiper-otimizacao:subfig1}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.15\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[y dir=reverse,ytick={\empty}, height=2.4\linewidth, width=0.8\linewidth,
+				xmin = 1440, xmax=1560, xtick={1450, 1500, 1550}, xticklabels={1.45, 1.5, 1.55}
+				%				xmin=-10, xmax=10, xtick={-8, 0, 8}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathG}
+					\addplot[only marks, resSVD=resG, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{CV\|C}
+		\label{fig:appB:estimated_ssps_grupo2_sem-hiper-otimizacao:subfig2}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.15\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[y dir=reverse,ytick={\empty}, height=2.4\linewidth, width=0.8\linewidth,
+				xmin = 1440, xmax=1560, xtick={1450, 1500, 1550}, xticklabels={1.45, 1.5, 1.55}
+				%				xmin=-10, xmax=10, xtick={-8, 0, 8}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathH}
+					\addplot[only marks, resSVD=resH, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{C\|CV}
+		\label{fig:appB:estimated_ssps_grupo2_sem-hiper-otimizacao:subfig3}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.15\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[y dir=reverse,ytick={\empty}, height=2.4\linewidth, width=0.8\linewidth,
+				xmin = 1440, xmax=1560, xtick={1450, 1500, 1550}, xticklabels={1.45, 1.5, 1.55}
+				%				xmin=-10, xmax=10, xtick={-8, 0, 8}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathI}
+					\addplot[only marks, resSVD=resI, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{CV\|CV}
+		\label{fig:appB:estimated_ssps_grupo2_sem-hiper-otimizacao:subfig4}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.15\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[y dir=reverse,ytick={\empty}, height=2.4\linewidth, width=0.8\linewidth,
+				xmin = 1440, xmax=1560, xtick={1450, 1500, 1550}, xticklabels={1.45, 1.5, 1.55}
+				%				xmin=-10, xmax=10, xtick={-8, 0, 8}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathJ}
+					\addplot[only marks, resSVD=resJ, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+				}
+				\addplot[ultra thick, black] table[y index=0,x=avg] {\datatable};
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{C\|CCs}
+		\label{fig:appB:estimated_ssps_grupo2_sem-hiper-otimizacao:subfig5}
+	\end{subfigure}
+	
+	\vspace*{.5em}
+	%	\colorbar{lineplots2}
+	\caption{Erros de estimação de cada SSP, para o método SVD, para todas as configurações apresentadas, para a iteração final, \textbf{sem otimização de hiper-parâmetros}.}
+	\label{fig:appB:estimated_ssps_sem-hiper-otimizacao}
+	%
+\end{figure*}

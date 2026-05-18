@@ -13,3 +13,6 @@ v1.0.260514
     Continuado Apêndice A, com discussões, figuras, etc.
 v1.0.260516
 	Continuando Apêndice A.
+v1.0.260518
+	Finalizado Apêndice A.
+	Começando Apêndice B, com resultados até 5000m.
