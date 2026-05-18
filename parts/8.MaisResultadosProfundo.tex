@@ -1,0 +1,60 @@
+\input{figures/8.0.Config}
+\input{figures/8.a.ssf_discretizado}
+
+\section{Simulações com perfis até 5000m}
+
+As simulações previamente apresentadas mostravam os resultados da estimação do SSF para um ambiente até $1500\si{\meter}$ de profundidade com 31 células. De forma a avaliar os desempenhos em outro ambiente de interesse, agora será utilizado um recorte dos dados do WOA com $4900\si{\meter}$ de profundidade com 50 células, utilizando dados anuais. Foi necessário alterar o local tal que houvesse dados no WOA até tal profundidade, agora centrado em $36.375\dg$S, $38.375\dg$W.
+
+As novas condições de distribuição dos dispositivos são tal como mostrado na \cref{fig:sec8:dispositivos}. Foi mantido que, nas configurações do caso 1, os receptores somente poderiam viajar até $500\si{\meter}$, dada que essa seria uma restrição externa dos dispositivos.
+
+\subsection{Resultados-base}
+
+Os resultados-base de erro de tempo de viagem e erro do SSF, ao longo das iterações, estão na \cref{fig:sec8:tt_ssf_rms_errors}.
+
+\input{figures/8.b.tt_ssf_rms_errors}
+
+\const
+
+Diferentemente do caso anterior (em particular, da \cref{fig:sec7:tt_ssf_rms_errors}), aqui temos que a TTT foi a técnica com os melhores desempenhos, tendo performances superiores para os casos do grupo 2, e empatando para as configurações do grupo 1. Isso é reiterado na \cref{fig:sec8:tt_vs_ssf_it-final}.
+
+\input{figures/8.c.tt_vs_ssf}
+\input{figures/8.d.tt_vs_ssf_sem-hiper-otimizacao}
+
+Uma possível explicação para isso é o aumento do número de células (279 antes, para 450 agora), em que os principais vetores de $\bvV$ (equivalentes aos maiores valores singulares) não são mais o suficiente para alcançar um desempenho aceitável. É possível também que a hiper-otimização não tenha sido fina o suficiente, e isso é concordado com os resultados da \cref{fig:sec8:tt_vs_ssf_it-final_sem-hiper-otimizacao} mostra a evolução dos erros de tempo de trânsito e de SSF para o caso sem hiper-otimização (ou seja, utilizando o valor médio; aqui, $\alpha = 0.7907$ para a TTT, e $\beta = 0.2444$ para a SVD). Em algumas configurações (CC\|CC, CV\|C, C\|C) a SVD alcança desempenhos melhores que a TTT, enquanto outras (C\|CCs, C\|CV, e todas do grupo 1) a TTT tem um desempenho melhor; e a vantagem da TTT nas situações que ela é melhor é também superior.
+
+Para realizar uma análise mais precisa e exata, seria necessário simulações com uma hiper-otimização mais fina. Contudo, isso levaria ao \ingles{overfitting} dos hiper-parâmetros ao ambiente simulado, e poderia tornar os resultados inválidos para situações de inversão com dados reais.
+
+\const
+
+Similarmente ao caso raso anterior, há uma separação nítida, para ambos métodos, entre as configurações do grupo 1 e do grupo 2, em questão da estimação do SSF. Ao contrário do caso anterior, essa separação aqui já não ocorre tão claramente para a métrica de erro de tempo de trânsito. Para ambas as técnicas e todas as configurações, os tempos de trânsito também são bem menores. Isso se relaciona com o aumento do número de células, aumentando a quantidade de vagarosidades estimáveis e, com isso, a ``liberdade'' da minimização em conseguir reduzir o erro residual $\rmse_{t}$.
+
+As discussões a seguir apresentarão resultados e discussão apenas para a TTT, por esta ter o melhor desempenho em todas as situações com hiper-otimização, e na maioria sem.
+
+\subsection{Perfis estimados}
+
+A \cref{fig:sec8:estimated_ssps} mostra um \ingles{scatterplot} dos perfis estimados, ao longo da profundidade, para cada uma das configurações, para o método TTT.
+
+\const
+
+Da mesma forma que para o caso raso (\cref{sec:mais_simulacoes_raso}), nitidamente as duas melhores configurações foram CC\|CC, e C\|CCs. Mesmo entre as configurações do grupo 2, que utilizam dispositivos na vertical em profundidades maiores, as outras 3 (CV\|C, C\|CV, e CV\|CV) não apanharam as nuances do perfil. Em particular, elas conseguiram modelá-lo na parte profunda (abaixo de $2000\si{\meter}$), mas não foram bem sucedidas próximo a superfície.
+
+Dentre as configurações do grupo 1, temos um comportamento inverso: elas tiveram certo sucesso em capturar o comportamento esperado próximo à superfície, porém não nas profundidades maiores (além de $3000\si{\meter}$).
+
+Esses dois resultados indicam tanto a necessidade de dispositivos ao longo da coluna (como no grupo 2), mas uma maior quantidade deles. Comparando estes resultados com os obtidos no caso raso (em particular, da \cref{subsec:sec7:perfis_estimados}), temos que é necessária uma maior densidade de dispositivos ao longo da coluna, para alcançar um melhor desempenho de estimação. Isso provavelmente também está associado ao perfil raso ser mais bem comportado, sendo ``composto'' por uma única curva quase linear, enquanto aqui o comportamento é muito mais complexo e variado.
+
+\input{figures/8.e.estimated_ssps}
+
+\newpage
+
+\begin{minipage}{0.5\linewidth}
+	\begin{tikzpicture}
+		\begin{heatmap}{\ncols}[colorbar to name={velocityHeatmap2},hmstyle]
+			\def\sympath{\sympathA}
+			\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=0.8, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/\sympath/0_field_observed.csv};
+			
+			%		\addplot[only marks, mark=x, mark options={draw=red,double,line width=1.5pt,mark size=4pt}] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_receivers.csv};
+			%		\addplot[only marks, mark=o, mark options={draw=blue,double,line width=1.5pt,mark size=3pt}] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_sources.csv};
+		\end{heatmap}
+	\end{tikzpicture}
+	\colorbar{velocityHeatmap2}
+\end{minipage}

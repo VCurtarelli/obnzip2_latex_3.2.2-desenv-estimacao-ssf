@@ -1,0 +1,117 @@
+\NewDocumentCommand{\getlastitem}{m}{%
+	\pgfplotstableread[col sep=comma]{#1}\loadedtable
+	\pgfplotstablegetrowsof{\loadedtable}
+	\pgfmathtruncatemacro{\lastrow}{\pgfplotsretval - 1}
+	\pgfplotstablegetcolsof{\loadedtable}
+	\pgfmathtruncatemacro{\lastcol}{\pgfplotsretval - 1}
+	\pgfplotstablegetelem{\lastrow}{[index]\lastcol}\of{\loadedtable}
+	\edef\lastitem{\pgfplotsretval}
+}
+
+\begin{figure}[t]
+	\centering\setlength{\parindent}{0pt}
+	\begin{subfigure}[t]{0.6\linewidth}
+		\centering
+		\begin{tikzpicture}
+			\begin{lineplot}{Número de medições}{$\rmse_{\ssf}$ ($\si{\meter/\second}$)}[ymode=log, xmode=log,
+				legend to name=scatterplot2,
+				legend style={
+					fill=white,
+					%			fill opacity=0.5.6,
+					draw opacity=1,
+					text opacity=1,
+					%			at={(1.05, 0.5)},
+					%			anchor=west,
+					legend columns=5,
+					/tikz/every even column/.append style={column sep=1em}
+				},]
+				{
+					\def\sympath{\sympathA}
+					\input{figures/data/\sympath/params.tex}
+					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
+					\addplot[only marks, resSVD=resA, ultra thick] coordinates {(\pyNs*\pyNr,\lastitem)};  
+				}
+				{
+					\def\sympath{\sympathB}
+					\input{figures/data/\sympath/params.tex}
+					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
+					\addplot[only marks, resSVD=resB, ultra thick] coordinates {(\pyNs*\pyNr,\lastitem)};  
+				}
+				
+				{
+					\def\sympath{\sympathC}
+					\input{figures/data/\sympath/params.tex}
+					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
+					\addplot[only marks, resSVD=resC, ultra thick] coordinates {(\pyNs*\pyNr,\lastitem)};  
+				}
+				
+				{
+					\def\sympath{\sympathD}
+					\input{figures/data/\sympath/params.tex}
+					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
+					\addplot[only marks, resSVD=resD, ultra thick] coordinates {(\pyNs*\pyNr,\lastitem)};  
+				}
+				
+				{
+					\def\sympath{\sympathE}
+					\input{figures/data/\sympath/params.tex}
+					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
+					\addplot[only marks, resSVD=resE, ultra thick] coordinates {(\pyNs*\pyNr,\lastitem)};  
+				}
+				
+				{
+					\def\sympath{\sympathF}
+					\input{figures/data/\sympath/params.tex}
+					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
+					\addplot[only marks, resSVD=resF, ultra thick] coordinates {(\pyNs*\pyNr,\lastitem)};  
+				}
+				
+				{
+					\def\sympath{\sympathG}
+					\input{figures/data/\sympath/params.tex}
+					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
+					\addplot[only marks, resSVD=resG, ultra thick] coordinates {(\pyNs*\pyNr,\lastitem)};  
+				}
+				
+				{
+					\def\sympath{\sympathH}
+					\input{figures/data/\sympath/params.tex}
+					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
+					\addplot[only marks, resSVD=resH, ultra thick] coordinates {(\pyNs*\pyNr,\lastitem)};  
+				}
+				
+				{
+					\def\sympath{\sympathI}
+					\input{figures/data/\sympath/params.tex}
+					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
+					\addplot[only marks, resSVD=resI, ultra thick] coordinates {(\pyNs*\pyNr,\lastitem)};  
+				}
+				
+				{
+					\def\sympath{\sympathJ}
+					\input{figures/data/\sympath/params.tex}
+					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
+					\addplot[only marks, resSVD=resJ, ultra thick] coordinates {(\pyNs*\pyNr,\lastitem)};  
+				}
+				\addlegendentry{C\|C};
+				\addlegendentry{C\|B};
+				\addlegendentry{C\|CD};
+				\addlegendentry{C\|CA};
+				\addlegendentry{C\|G};
+				%
+				\addlegendentry{CC\|CC};
+				\addlegendentry{CV\|C};
+				\addlegendentry{C\|CV};
+				\addlegendentry{CV\|CV};
+				\addlegendentry{C\|CCs};
+			\end{lineplot}
+		\end{tikzpicture}
+		%        \caption{Erro RMS de tempo de trânsito.}
+		%        \label{fig:sec7:tt_ssf_rms_errors:subfig1}
+	\end{subfigure}
+	
+	\vspace*{.5em}
+	\colorbar{scatterplot2}
+	\caption{Número de raios vs $\rmse_{\ssf}$, com o método SVD, nos cenários de dispositivos no perímetro e em camadas, ao longo de 10 iterações. Para facilitar visualização, o estilo da linha dos gráficos anteriores foi aplicado à borda dos marcadores aqui.}
+	\label{fig:sec7:nrays_vs_ssf_it-final}
+\end{figure}

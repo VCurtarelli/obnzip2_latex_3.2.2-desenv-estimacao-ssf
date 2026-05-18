@@ -1,0 +1,68 @@
+\pgfplotsset{
+	hmstyle/.style={
+		ytick={0, 1000, ..., 5000},
+		yticklabels={0, 1, ..., 5},
+		xtick={0, 1000, 2000},
+		xticklabels={0, 1, 2},
+		xmin=0, xmax=2000,
+		ymin=0, ymax=5000,
+		% xlabel={Deslocamento ($\si{\kilo\meter}$)},
+		% ylabel={Profundidade ($\si{\kilo\meter}$)},
+	}
+}
+
+\pgfplotsset{
+	profile*/.style={
+		y dir=reverse,
+		ytick={0, 1000, ..., 5000},
+		yticklabels={0, 1, ..., 5},
+		xmin = 1440,
+		xmax = 1560,
+		xtick = {1450, 1500, 1550},
+		xticklabels={1.45, 1.5, 1.55},
+	}
+}
+
+\pgfplotsset{
+	profile/.style={
+		y dir=reverse,
+		%		ytick={0, 500, 1000, 1500, 2000},
+		%		yticklabels={0, 0.5, 1, 1.5, 2},
+		ytick={\empty},
+		xmin = 1440,
+		xmax = 1560,
+		xtick = {1450, 1500, 1550},
+		xticklabels={1.45, 1.5, 1.55},
+	}
+}
+
+\def\sympathA{optimal-import-deep--petro/optimal-import-deep--petro--260518-10h30m42s--layer}
+\def\sympathB{optimal-import-deep--petro/optimal-import-deep--petro--260518-10h30m45s--layer;blob}
+\def\sympathC{optimal-import-deep--petro/optimal-import-deep--petro--260518-10h30m52s--layer;layer-diag}
+\def\sympathD{optimal-import-deep--petro/optimal-import-deep--petro--260518-10h30m56s--layer;layer-column}
+\def\sympathE{optimal-import-deep--petro/optimal-import-deep--petro--260518-10h31m03s--layer;bracket}
+\def\sympathF{optimal-import-deep--petro/optimal-import-deep--petro--260518-10h31m12s--surround}
+\def\sympathG{optimal-import-deep--petro/optimal-import-deep--petro--260518-10h31m24s--layer-scolumn;layer}
+\def\sympathH{optimal-import-deep--petro/optimal-import-deep--petro--260518-10h31m31s--layer;layer-scolumn}
+\def\sympathI{optimal-import-deep--petro/optimal-import-deep--petro--260518-10h31m36s--semi-surround}
+\def\sympathJ{optimal-import-deep--petro/optimal-import-deep--petro--260518-10h31m45s--layer;cap}
+
+\input{figures/data/\sympathA/params.tex}
+
+\pgfplotstableread[col sep=comma]{figures/data/\sympathA/0_profiles_observed.csv}\datatable
+% Create a new column "avg"
+\pgfplotstablecreatecol[
+create col/expr={
+	(
+	\thisrowno{1} +
+	\thisrowno{2} +
+	\thisrowno{3} +
+	\thisrowno{4} +
+	\thisrowno{5} +
+	\thisrowno{6} +
+	\thisrowno{7} +
+	\thisrowno{8} +
+	\thisrowno{9}
+	) / 9
+}
+]{avg}\datatable

@@ -16,3 +16,4 @@ v1.0.260516
 v1.0.260518
 	Finalizado Apêndice A.
 	Começando Apêndice B, com resultados até 5000m.
+	Continuando resultados do Apêndice B.
