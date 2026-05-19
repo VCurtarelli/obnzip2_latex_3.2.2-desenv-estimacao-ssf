@@ -43,18 +43,3 @@ Dentre as configurações do grupo 1, temos um comportamento inverso: elas tiver
 Esses dois resultados indicam tanto a necessidade de dispositivos ao longo da coluna (como no grupo 2), mas uma maior quantidade deles. Comparando estes resultados com os obtidos no caso raso (em particular, da \cref{subsec:sec7:perfis_estimados}), temos que é necessária uma maior densidade de dispositivos ao longo da coluna, para alcançar um melhor desempenho de estimação. Isso provavelmente também está associado ao perfil raso ser mais bem comportado, sendo ``composto'' por uma única curva quase linear, enquanto aqui o comportamento é muito mais complexo e variado.
 
 \input{figures/8.e.estimated_ssps}
-
-\newpage
-
-\begin{minipage}{0.5\linewidth}
-	\begin{tikzpicture}
-		\begin{heatmap}{\ncols}[colorbar to name={velocityHeatmap2},hmstyle]
-			\def\sympath{\sympathA}
-			\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=0.8, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/\sympath/0_field_observed.csv};
-			
-			%		\addplot[only marks, mark=x, mark options={draw=red,double,line width=1.5pt,mark size=4pt}] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_receivers.csv};
-			%		\addplot[only marks, mark=o, mark options={draw=blue,double,line width=1.5pt,mark size=3pt}] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_sources.csv};
-		\end{heatmap}
-	\end{tikzpicture}
-	\colorbar{velocityHeatmap2}
-\end{minipage}
