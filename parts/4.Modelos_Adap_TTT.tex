@@ -8,7 +8,7 @@ Pela simplicidade matemática e por os resultados serem muito semelhantes, aqui 
 \subsection{Comportamento profundo}
 Conforme mostrado nos trabalhos de \citet{munk_ocean_1995,possenti_present_2024}, o comportamento global do SSF converge conforme a profundidade aumenta, com variações pequenas próximas ao SOFAR (profundidade de $1000\si{\meter}$), e imperceptíveis para profundidades abaixo de $2000\si{\meter}$.
 
-Essa informação pode ser utilizada na modelagem, determinando um comportamento esperado a partir de determinada profundidade, o que pode ser incluído no problema como uma segunda regularização.
+É possível modificar a formulação da TTT (ou da SVD) alcançada na \cref{sec:modelo-padrão-TTT} para incluir (de alguma forma) a informação de um perfil-referência.
 
 \subsubsection*{Perfil de Munk}
 
@@ -19,7 +19,9 @@ O \gls{Perfil de Munk} \cite{munk_sound_1974} é um perfil teórico que descreve
 \end{equation}
 em que $V_0 = 1500\si{\meter/\second}$, $\epsilon_0 = 0.00737$, $z_0 = 1300\si{\meter}$, e $B_0=1300\si{\meter}$ são os parâmetros que controlam o perfil de Munk. Os valores apresentados são os mais comumente utilizados na literatura, e podem variar em casos específicos.
 
-É possível modificar a formulação da TTT alcançada na \cref{sec:modelo-padrão-TTT} para incluir (de alguma forma) a informação de um perfil-referência, como o perfil de Munk apresentado, ou algum outro perfil obtido previamente. Serão apresentados dois perfis que utilizem essa informação \ingles{a priori}.
+\subsubsection*{Modelos TPS}
+
+Além do perfil teórico de Munk, é possível obter um perfil de referência da velocidade utilizando algum dos métodos conhecidos que relacionem temperatura, pressão, e salinidade, com a velocidade. Trabalhos como os \cite{wilson_speed_1959,wilson_equation_1960,delgrosso_new_1974,chen_speed_1977,mackenzie_nineterm_1981,wong_speed_1995,mcdougall_getting_2011} relacionam essas propriedades da água com a velocidade do som, por diversas abordagens para modelagem.
 
 \subsection{Método em camadas separadas}
 \label{subsec:sec4:metodo_em_camadas}

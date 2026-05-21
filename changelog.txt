@@ -17,3 +17,8 @@ v1.0.260518
 	Finalizado Apêndice A.
 	Começando Apêndice B, com resultados até 5000m.
 	Continuando resultados do Apêndice B.
+v1.0.260520
+	Pequena reestruturação de arquivos.
+	Mudados Apêndices A e B para Seções 7 e 8.
+	Adicionada Seção 9 - Conclusões.
+	Pequenas alterações em figuras.

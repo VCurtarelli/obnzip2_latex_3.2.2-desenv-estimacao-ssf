@@ -2,6 +2,7 @@
 \input{figures/8.a.ssf_discretizado}
 
 \section{Simulações com perfis até 5000m}
+\label{sec:mais_simulacoes_profundo}
 
 As simulações previamente apresentadas mostravam os resultados da estimação do SSF para um ambiente até $1500\si{\meter}$ de profundidade com 31 células. De forma a avaliar os desempenhos em outro ambiente de interesse, agora será utilizado um recorte dos dados do WOA com $4900\si{\meter}$ de profundidade com 50 células, utilizando dados anuais. Foi necessário alterar o local tal que houvesse dados no WOA até tal profundidade, agora centrado em $36.375\dg$S, $38.375\dg$W.
 
@@ -22,11 +23,11 @@ Diferentemente do caso anterior (em particular, da \cref{fig:sec7:tt_ssf_rms_err
 
 Uma possível explicação para isso é o aumento do número de células (279 antes, para 450 agora), em que os principais vetores de $\bvV$ (equivalentes aos maiores valores singulares) não são mais o suficiente para alcançar um desempenho aceitável. É possível também que a hiper-otimização não tenha sido fina o suficiente, e isso é concordado com os resultados da \cref{fig:sec8:tt_vs_ssf_it-final_sem-hiper-otimizacao} mostra a evolução dos erros de tempo de trânsito e de SSF para o caso sem hiper-otimização (ou seja, utilizando o valor médio; aqui, $\alpha = 0.7907$ para a TTT, e $\beta = 0.2444$ para a SVD). Em algumas configurações (CC\|CC, CV\|C, C\|C) a SVD alcança desempenhos melhores que a TTT, enquanto outras (C\|CCs, C\|CV, e todas do grupo 1) a TTT tem um desempenho melhor; e a vantagem da TTT nas situações que ela é melhor é também superior.
 
-Para realizar uma análise mais precisa e exata, seria necessário simulações com uma hiper-otimização mais fina. Contudo, isso levaria ao \ingles{overfitting} dos hiper-parâmetros ao ambiente simulado, e poderia tornar os resultados inválidos para situações de inversão com dados reais.
+Para uma análise mais, seria necessário simulações com uma hiper-otimização mais fina. Contudo, isso levaria ao \ingles{overfitting} dos hiper-parâmetros ao ambiente simulado, e poderia tornar os resultados inválidos para situações de inversão com dados reais.
 
 \const
 
-Similarmente ao caso raso anterior, há uma separação nítida, para ambos métodos, entre as configurações do grupo 1 e do grupo 2, em questão da estimação do SSF. Ao contrário do caso anterior, essa separação aqui já não ocorre tão claramente para a métrica de erro de tempo de trânsito. Para ambas as técnicas e todas as configurações, os tempos de trânsito também são bem menores. Isso se relaciona com o aumento do número de células, aumentando a quantidade de vagarosidades estimáveis e, com isso, a ``liberdade'' da minimização em conseguir reduzir o erro residual $\rmse_{t}$.
+Similarmente ao caso raso anterior, há uma separação nítida, para ambos métodos na métrica de $\rmse_{\ssf}$, entre as configurações do grupo 1 e do grupo 2; contudo, essa separação aqui não é tão clara para a métrica de erro de tempo de trânsito. Para ambas as técnicas e todas as configurações, os tempos de trânsito também são menores em relação ao caso raso. Isso se relaciona com o aumento do número de células, aumentando a quantidade de vagarosidades estimáveis e, com isso, a ``liberdade'' da minimização em conseguir reduzir o erro residual $\rmse_{t}$.
 
 As discussões a seguir apresentarão resultados e discussão apenas para a TTT, por esta ter o melhor desempenho em todas as situações com hiper-otimização, e na maioria sem.
 
@@ -43,3 +44,9 @@ Dentre as configurações do grupo 1, temos um comportamento inverso: elas tiver
 Esses dois resultados indicam tanto a necessidade de dispositivos ao longo da coluna (como no grupo 2), mas uma maior quantidade deles. Comparando estes resultados com os obtidos no caso raso (em particular, da \cref{subsec:sec7:perfis_estimados}), temos que é necessária uma maior densidade de dispositivos ao longo da coluna, para alcançar um melhor desempenho de estimação. Isso provavelmente também está associado ao perfil raso ser mais bem comportado, sendo ``composto'' por uma única curva quase linear, enquanto aqui o comportamento é muito mais complexo e variado.
 
 \input{figures/8.e.estimated_ssps}
+
+\subsection{Resultados sem otimização de hiper-parâmetros}
+
+Por completude, também apresentaremos os resultados das métricas de erro para o caso profundo, mas sem hiper-otimização. Estes são mostrados na \cref{fig:sec8:tt_ssf_rms_errors_sem-hiper-otimizacao}. Por eles concordarem com os resultados obtidos e discutidos anteriormente, não nos aprofundaremos neles.
+
+\input{8.f.tt_ssf_rms_errors_sem_hiperotimizacao}

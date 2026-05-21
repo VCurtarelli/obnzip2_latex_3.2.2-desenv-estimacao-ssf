@@ -1,0 +1,11 @@
+\section{Conclusões}
+
+Nesse trabalho, buscamos diferentes métodos para estimação do SSF na coluna d'água, através de uma pletora de métodos.
+
+Na \cref{sec:modelo-padrão-TTT}, nós estabelecemos o modelo padrão para a TTT, e na \cref{sec:svd} desenvolvemos uma adaptação matemática dele que busca uma solução diferente na etapa de inversão (baseada na SVD). Ambas foram comparadas na \cref{sec:simulation_and_results}, onde foi estabelecido que a performance de ambas é equivalente no melhor caso, com a SVD sendo mais estável em situações com pouca informação espacial (embora o seu desempenho também seja ruim nessa condição).
+
+Na \cref{sec:modelos_adaptados_ttt}, nós apresentamos duas abordagens que modificam a TTT, para que incluíssem informação \ingles{a priori} quanto ao ambiente; aqui, na forma de um perfil de referência. Posteriormente, na \cref{sec:modelos_alternativos_est-ssf} foram apresentados e discutidos outros dois métodos para ``limitar'' a dimensionalidade da inversão: um baseado no perfil de Munk, e outro em funções ortogonais obtidas a partir de perfis de referência.
+
+Esses novos métodos desenvolvidos foram comparados em situações semelhantes à anterior. Nessas simulações, verificou-se que os métodos que utilizam um perfil de referência tendem a se aproximar muito deste, tal que seus desempenhos são semelhantes a só utilizar a referência como verdade, tornando fútil a etapa de inversão. Também foi mostrado que o método baseado em Munk, embora interessante na teoria, não funciona bem na prática.
+
+Por fim, nas \cref{sec:mais_simulacoes_raso,sec:mais_simulacoes_profundo} foram realizadas novas simulações para os métodos sem perfil de referência (TTT e SVD), para uma quantidade maior de configurações de dispositivos, e também para SSF que se estende até uma profundidade 3x maior que anterior. Foi verificado que, de forma geral, para a situação mais rasa (até $1500\si{\meter}$) a SVD tem um desempenho levemente superior, enquanto para a situação profunda (até $4900\si{\meter}$) a TTT performou decididamente melhor. Não somente isso, mas verificou-se que para condições rasas, poucos dispositivos na coluna são suficiente para uma inversão razoável, enquanto que para o caso mais profundo necessita-se de mais equipamentos.
