@@ -1,178 +1,27 @@
 \begin{figure}[!t]
 	\centering
-	\begin{minipage}[b]{0.3\linewidth}
-		%		\vspace*{-3em}
-		\centering
-		\begin{subfigure}{0.9\linewidth}
-			\centering
-			\begin{tikzpicture}
-				\begin{heatmap}{\ncols}[colorbar=false,hmstyle]
-					\def\sympath{\sympathA}
-					\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=0.3, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/\sympath/0_field_observed.csv};
-					
-					\addplot[only marks, mark=x, mark options={draw=red,double,line width=1.5pt,mark size=4pt}] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_receivers.csv};
-					\addplot[only marks, mark=o, mark options={draw=blue,double,line width=1.5pt,mark size=3pt}] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_sources.csv};
-				\end{heatmap}
-			\end{tikzpicture}
-			\caption{C\|C.}
-			\label{fig:sec8:dispositivos:subfig1}
-		\end{subfigure}
+	\def\sympath{\sympathA}
+	\begin{minipage}[b]{0.48\linewidth}
+		\begin{tikzpicture}
+			\begin{heatmap}{\ncols}[colorbar to name={velocityHeatmap},hmstyle][fill opacity=0.8]
+				\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=0.8, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/\sympath/0_field_observed.csv};
+			\end{heatmap}
+		\end{tikzpicture}
+		\colorbar{velocityHeatmap}
+		\caption{SSF discreto.}
+		\label{fig:sec8:discretized_ssf_true}
 	\end{minipage}
-	\begin{minipage}[b]{0.3\linewidth}
+	\begin{minipage}[b]{0.48\linewidth}
 		\centering
-		\begin{subfigure}{0.9\linewidth}
-			\centering
-			\begin{tikzpicture}
-				\begin{heatmap}{\ncols}[colorbar=false,hmstyle]
-					\def\sympath{\sympathB}
-					\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=0.3, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/\sympath/0_field_observed.csv};
-					
-					\addplot[only marks, mark=x, mark options={draw=red,double,line width=1.5pt,mark size=4pt}] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_receivers.csv};
-					\addplot[only marks, mark=o, mark options={draw=blue,double,line width=1.5pt,mark size=3pt}] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_sources.csv};
-				\end{heatmap}
-			\end{tikzpicture}
-			\caption{C\|B.}
-			\label{fig:sec8:dispositivos:subfig2}
-		\end{subfigure}
+		\begin{tikzpicture}
+			\begin{lineplot}{Perfis do SSF ($\si{\meter/\second}$)}{Profundidade ($\si{\kilo\meter}$)}[y dir=reverse,
+				ytick={0, 1000, ..., 5000}, yticklabels={0, 1, ..., 5}]
+				\foreach \x in {1, 2, ..., 9} {	
+					\addplot[draw, black, very thin] table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/0_profiles_observed.csv};
+				}
+			\end{lineplot}
+		\end{tikzpicture}
+		\caption{Perfis do SSF, para cada coluna d'água.}
+		\label{fig:sec8:discretized_ssf_profiles}
 	\end{minipage}
-	\begin{minipage}[b]{0.3\linewidth}
-		\centering
-		\begin{subfigure}{0.9\linewidth}
-			\centering
-			\begin{tikzpicture}
-				\begin{heatmap}{\ncols}[colorbar=false,hmstyle]
-					\def\sympath{\sympathC}
-					\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=0.3, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/\sympath/0_field_observed.csv};
-					
-					\addplot[only marks, mark=x, mark options={draw=red,double,line width=1.5pt,mark size=4pt}] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_receivers.csv};
-					\addplot[only marks, mark=o, mark options={draw=blue,double,line width=1.5pt,mark size=3pt}] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_sources.csv};
-				\end{heatmap}
-			\end{tikzpicture}
-			\caption{C\|CD.}
-			\label{fig:sec8:dispositivos:subfig3}
-		\end{subfigure}
-	\end{minipage} \\
-	\begin{minipage}[b]{0.3\linewidth}
-		%		\vspace*{-3em}
-		\centering
-		\begin{subfigure}{0.9\linewidth}
-			\centering
-			\begin{tikzpicture}
-				\begin{heatmap}{\ncols}[colorbar=false,hmstyle]
-					\def\sympath{\sympathD}
-					\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=0.3, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/\sympath/0_field_observed.csv};
-					
-					\addplot[only marks, mark=x, mark options={draw=red,double,line width=1.5pt,mark size=4pt}] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_receivers.csv};
-					\addplot[only marks, mark=o, mark options={draw=blue,double,line width=1.5pt,mark size=3pt}] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_sources.csv};
-				\end{heatmap}
-			\end{tikzpicture}
-			\caption{C\|CA.}
-			\label{fig:sec8:dispositivos:subfig4}
-		\end{subfigure}
-	\end{minipage}
-	\begin{minipage}[b]{0.3\linewidth}
-		\centering
-		\begin{subfigure}{0.9\linewidth}
-			\centering
-			\begin{tikzpicture}
-				\begin{heatmap}{\ncols}[colorbar=false,hmstyle]
-					\def\sympath{\sympathE}
-					\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=0.3, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/\sympath/0_field_observed.csv};
-					
-					\addplot[only marks, mark=x, mark options={draw=red,double,line width=1.5pt,mark size=4pt}] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_receivers.csv};
-					\addplot[only marks, mark=o, mark options={draw=blue,double,line width=1.5pt,mark size=3pt}] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_sources.csv};
-				\end{heatmap}
-			\end{tikzpicture}
-			\caption{C\|G.}
-			\label{fig:sec8:dispositivos:subfig5}
-		\end{subfigure}
-	\end{minipage}
-	\begin{minipage}[b]{0.3\linewidth}
-		\centering
-		\begin{subfigure}{0.9\linewidth}
-			\centering
-			\begin{tikzpicture}
-				\begin{heatmap}{\ncols}[colorbar=false,hmstyle]
-					\def\sympath{\sympathF}
-					\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=0.3, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/\sympath/0_field_observed.csv};
-					
-					\addplot[only marks, mark=x, mark options={draw=red,double,line width=1.5pt,mark size=4pt}] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_receivers.csv};
-					\addplot[only marks, mark=o, mark options={draw=blue,double,line width=1.5pt,mark size=3pt}] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_sources.csv};
-				\end{heatmap}
-			\end{tikzpicture}
-			\caption{CC\|CC.}
-			\label{fig:sec8:dispositivos:subfig6}
-		\end{subfigure}
-	\end{minipage} \\
-	\begin{minipage}[b]{0.3\linewidth}
-		%		\vspace*{-3em}
-		\centering
-		\begin{subfigure}{0.9\linewidth}
-			\centering
-			\begin{tikzpicture}
-				\begin{heatmap}{\ncols}[colorbar=false,hmstyle]
-					\def\sympath{\sympathG}
-					\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=0.3, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/\sympath/0_field_observed.csv};
-					
-					\addplot[only marks, mark=x, mark options={draw=red,double,line width=1.5pt,mark size=4pt}] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_receivers.csv};
-					\addplot[only marks, mark=o, mark options={draw=blue,double,line width=1.5pt,mark size=3pt}] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_sources.csv};
-				\end{heatmap}
-			\end{tikzpicture}
-			\caption{CV\|C.}
-			\label{fig:sec8:dispositivos:subfig7}
-		\end{subfigure}
-	\end{minipage}
-	\begin{minipage}[b]{0.3\linewidth}
-		\centering
-		\begin{subfigure}{0.9\linewidth}
-			\centering
-			\begin{tikzpicture}
-				\begin{heatmap}{\ncols}[colorbar=false,hmstyle]
-					\def\sympath{\sympathH}
-					\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=0.3, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/\sympath/0_field_observed.csv};
-					
-					\addplot[only marks, mark=x, mark options={draw=red,double,line width=1.5pt,mark size=4pt}] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_receivers.csv};
-					\addplot[only marks, mark=o, mark options={draw=blue,double,line width=1.5pt,mark size=3pt}] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_sources.csv};
-				\end{heatmap}
-			\end{tikzpicture}
-			\caption{C\|CV.}
-			\label{fig:sec8:dispositivos:subfig8}
-		\end{subfigure}
-	\end{minipage}
-	\begin{minipage}[b]{0.3\linewidth}
-		\centering
-		\begin{subfigure}{0.9\linewidth}
-			\centering
-			\begin{tikzpicture}
-				\begin{heatmap}{\ncols}[colorbar=false,hmstyle]
-					\def\sympath{\sympathI}
-					\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=0.3, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/\sympath/0_field_observed.csv};
-					
-					\addplot[only marks, mark=x, mark options={draw=red,double,line width=1.5pt,mark size=4pt}] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_receivers.csv};
-					\addplot[only marks, mark=o, mark options={draw=blue,double,line width=1.5pt,mark size=3pt}] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_sources.csv};
-				\end{heatmap}
-			\end{tikzpicture}
-			\caption{CV\|CV.}
-			\label{fig:sec8:dispositivos:subfig9}
-		\end{subfigure}
-	\end{minipage} \\
-	\begin{minipage}[b]{0.3\linewidth}
-		\centering
-		\begin{subfigure}{0.9\linewidth}
-			\centering
-			\begin{tikzpicture}
-				\begin{heatmap}{\ncols}[colorbar=false,hmstyle]
-					\def\sympath{\sympathJ}
-					\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=0.3, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/\sympath/0_field_observed.csv};
-					
-					\addplot[only marks, mark=x, mark options={draw=red,double,line width=1.5pt,mark size=4pt}] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_receivers.csv};
-					\addplot[only marks, mark=o, mark options={draw=blue,double,line width=1.5pt,mark size=3pt}] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_sources.csv};
-				\end{heatmap}
-			\end{tikzpicture}
-			\caption{C\|CCs.}
-			\label{fig:sec8:dispositivos:subfig10}
-		\end{subfigure}
-	\end{minipage}
-	\caption{Configurações dos dispositivos (fontes e receptores) para cada um dos casos.}
-	\label{fig:sec8:dispositivos}
 \end{figure}

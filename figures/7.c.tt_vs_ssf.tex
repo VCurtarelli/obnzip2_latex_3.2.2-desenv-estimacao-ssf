@@ -14,7 +14,11 @@
                 		%			anchor=west,
                 		legend columns=5,
                 		/tikz/every even column/.append style={column sep=1em}
-                	},]
+                	},
+                	xtick={0.1, 1, 10},
+                	xmin=0.09, ymax=4,
+                	ytick={1, 10, 100},
+                	ymin=0.8, ymax=22,]
                     {
                     	\def\sympath{\sympathA}
 	                    \addplot[only marks, resSVD=resA, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};  
@@ -73,27 +77,68 @@
                     	\addplot[only marks, resSVD=resJ, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};  
                     	\addplot[only marks, resTTT=resJ, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_classic.csv}; 
                     }
-                    \addlegendentry{SVD - C\|C};
-                    \addlegendentry{TTT - C\|C};
-                    \addlegendentry{SVD - C\|B};
-                    \addlegendentry{TTT - C\|B};
-                    \addlegendentry{SVD - C\|CD};
-                    \addlegendentry{TTT - C\|CD};
-                    \addlegendentry{SVD - C\|CA};
-                    \addlegendentry{TTT - C\|CA};
-                    \addlegendentry{SVD - C\|G};
-                    \addlegendentry{TTT - C\|G};
-                    %
-                    \addlegendentry{SVD - CC\|CC};
-                    \addlegendentry{TTT - CC\|CC};
-                    \addlegendentry{SVD - CV\|C};
-                    \addlegendentry{TTT - CV\|C};
-                    \addlegendentry{SVD - C\|CV};
-                    \addlegendentry{TTT - C\|CV};
-                    \addlegendentry{SVD - CV\|CV};
-                    \addlegendentry{TTT - CV\|CV};
-                    \addlegendentry{SVD - C\|CCs};
-                    \addlegendentry{TTT - C\|CCs};
+                    
+                    {
+	                    \def\sympath{\sympathK}
+	                    \addplot[only marks, resSVD=resK, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};  
+	                    \addplot[only marks, resTTT=resK, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_classic.csv}; 
+                    }
+                    
+                    {
+	                    \def\sympath{\sympathL}
+	                    \addplot[only marks, resSVD=resL, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};   
+	                    \addplot[only marks, resTTT=resL, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_classic.csv};  
+                    }
+                    
+                    {
+	                    \def\sympath{\sympathM}
+	                    \addplot[only marks, resSVD=resM, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};   
+	                    \addplot[only marks, resTTT=resM, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_classic.csv};  
+                    }
+                    
+                    {
+	                    \def\sympath{\sympathN}
+	                    \addplot[only marks, resSVD=resN, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};   
+	                    \addplot[only marks, resTTT=resN, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_classic.csv};  
+                    }
+                    
+                    {
+	                    \def\sympath{\sympathO}
+	                    \addplot[only marks, resSVD=resO, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};   
+	                    \addplot[only marks, resTTT=resO, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_classic.csv};  
+                    }
+                    \addlegendentry{SVD - (a)};
+                    \addlegendentry{TTT - (a)};
+                    \addlegendentry{SVD - (b)};
+                    \addlegendentry{TTT - (b)};
+                    \addlegendentry{SVD - (c)};
+                    \addlegendentry{TTT - (c)};
+                    \addlegendentry{SVD - (d)};
+                    \addlegendentry{TTT - (d)};
+                    \addlegendentry{SVD - (e)};
+                    \addlegendentry{TTT - (e)};
+                    
+                    \addlegendentry{SVD - (f)};
+                    \addlegendentry{TTT - (f)};
+                    \addlegendentry{SVD - (g)};
+                    \addlegendentry{TTT - (g)};
+                    \addlegendentry{SVD - (h)};
+                    \addlegendentry{TTT - (h)};
+                    \addlegendentry{SVD - (i)};
+                    \addlegendentry{TTT - (i)};
+                    
+                    \addlegendentry{SVD - (j)};
+                    \addlegendentry{TTT - (j)};
+                    \addlegendentry{SVD - (k)};
+                    \addlegendentry{TTT - (k)};
+                    \addlegendentry{SVD - (l)};
+                    \addlegendentry{TTT - (l)};
+                    \addlegendentry{SVD - (m)};
+                    \addlegendentry{TTT - (m)};
+                    \addlegendentry{SVD - (n)};
+                    \addlegendentry{TTT - (n)};
+                    \addlegendentry{SVD - (o)};
+                    \addlegendentry{TTT - (o)};
                 \end{lineplot}
             \end{tikzpicture}
 %        \caption{Erro RMS de tempo de trânsito.}

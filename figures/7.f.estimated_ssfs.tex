@@ -1,12 +1,12 @@
 \begin{figure*}[!t]
 	\centering
-	\hspace*{-0.2\linewidth}%
-	\begin{subfigure}[c]{0.4\linewidth}
+	\hspace*{-0.4\linewidth}%
+	\begin{subfigure}[c]{0.54\linewidth}
 		\raggedleft
 		\begin{tikzpicture}
 			\begin{lineplot}{}{Profundidade ($\si{\kilo\meter}$)}[
 				profile*,
-				height=0.9\linewidth, width=0.3\linewidth
+				height=0.6\linewidth, width=0.3\linewidth
 %				xmin=-24, xmax=24, xtick={-20, 0, 20}
 				]%[colorbar to name = {dump1},hmstyle]
 				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
@@ -15,16 +15,16 @@
 					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
 				}
 			\end{lineplot}
-			\avgssp[0.9\linewidth][0.3\linewidth]
+			\avgssp[0.6\linewidth][0.3\linewidth]
 		\end{tikzpicture}
-		\caption{C\|C}
-		\label{fig:sec7:estimated_ssfs_grupo1:subfig1}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_svd:subfig1}
 	\end{subfigure}
 	\hspace*{-0.5em}
-	\begin{subfigure}[c]{0.15\linewidth}
+	\begin{subfigure}[c]{0.18\linewidth}
 		\raggedleft
 		\begin{tikzpicture}
-			\begin{lineplot}{}{}[height=2.4\linewidth, width=0.8\linewidth,
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
 				profile
 %				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
@@ -36,14 +36,14 @@
 			\end{lineplot}
 			\avgssp
 		\end{tikzpicture}
-		\caption{C\|B}
-		\label{fig:sec7:estimated_ssfs_grupo1:subfig2}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_svd:subfig2}
 	\end{subfigure}
 	\hspace*{-0.5em}
-	\begin{subfigure}[c]{0.15\linewidth}
+	\begin{subfigure}[c]{0.18\linewidth}
 		\raggedleft
 		\begin{tikzpicture}
-			\begin{lineplot}{}{}[height=2.4\linewidth, width=0.8\linewidth,
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
 				profile
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
@@ -55,14 +55,14 @@
 			\end{lineplot}
 			\avgssp
 		\end{tikzpicture}
-		\caption{C\|CD}
-		\label{fig:sec7:estimated_ssfs_grupo1:subfig3}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_svd:subfig3}
 	\end{subfigure}
 	\hspace*{-0.5em}
-	\begin{subfigure}[c]{0.15\linewidth}
+	\begin{subfigure}[c]{0.18\linewidth}
 		\raggedleft
 		\begin{tikzpicture}
-			\begin{lineplot}{}{}[height=2.4\linewidth, width=0.8\linewidth,
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
 				profile
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
@@ -74,14 +74,14 @@
 			\end{lineplot}
 			\avgssp
 		\end{tikzpicture}
-		\caption{C\|CA}
-		\label{fig:sec7:estimated_ssfs_grupo1:subfig4}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_svd:subfig4}
 	\end{subfigure}
 	\hspace*{-0.5em}
-	\begin{subfigure}[c]{0.15\linewidth}
+	\begin{subfigure}[c]{0.18\linewidth}
 		\raggedleft
 		\begin{tikzpicture}
-			\begin{lineplot}{}{}[height=2.4\linewidth, width=0.8\linewidth,
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
 				profile
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
@@ -93,19 +93,18 @@
 			\end{lineplot}
 			\avgssp
 		\end{tikzpicture}
-		\caption{C\|G}
-		\label{fig:sec7:estimated_ssfs_grupo1:subfig5}
-	\end{subfigure}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_svd:subfig5}
+	\end{subfigure}\hspace*{-0.1\linewidth}
 	
-	%
-	\vspace*{2em}%
-	\hspace*{-0.2\linewidth}%
-	\begin{subfigure}[c]{0.4\linewidth}
+	\vspace*{3pt}	
+	\hspace*{-0.4\linewidth}%
+	\begin{subfigure}[c]{0.54\linewidth}
 		\raggedleft
 		\begin{tikzpicture}
 			\begin{lineplot}{}{Profundidade ($\si{\kilo\meter}$)}[
 				profile*,
-				height=0.9\linewidth, width=0.3\linewidth
+				height=0.6\linewidth, width=0.3\linewidth
 				%				xmin=-24, xmax=24, xtick={-20, 0, 20}
 				]%[colorbar to name = {dump1},hmstyle]
 				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
@@ -114,16 +113,16 @@
 					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
 				}
 			\end{lineplot}
-			\avgssp[0.9\linewidth][0.3\linewidth]
+			\avgssp[0.6\linewidth][0.3\linewidth]
 		\end{tikzpicture}
-		\caption{CC\|CC}
-		\label{fig:sec7:estimated_ssfs_grupo2:subfig1}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_svd:subfig6}
 	\end{subfigure}
 	\hspace*{-0.5em}
-	\begin{subfigure}[c]{0.15\linewidth}
+	\begin{subfigure}[c]{0.18\linewidth}
 		\raggedleft
 		\begin{tikzpicture}
-			\begin{lineplot}{}{}[height=2.4\linewidth, width=0.8\linewidth,
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
 				profile
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
@@ -135,14 +134,14 @@
 			\end{lineplot}
 			\avgssp
 		\end{tikzpicture}
-		\caption{CV\|C}
-		\label{fig:sec7:estimated_ssfs_grupo2:subfig2}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_svd:subfig7}
 	\end{subfigure}
 	\hspace*{-0.5em}
-	\begin{subfigure}[c]{0.15\linewidth}
+	\begin{subfigure}[c]{0.18\linewidth}
 		\raggedleft
 		\begin{tikzpicture}
-			\begin{lineplot}{}{}[height=2.4\linewidth, width=0.8\linewidth,
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
 				profile
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
@@ -154,14 +153,14 @@
 			\end{lineplot}
 			\avgssp
 		\end{tikzpicture}
-		\caption{C\|CV}
-		\label{fig:sec7:estimated_ssfs_grupo2:subfig3}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_svd:subfig8}
 	\end{subfigure}
 	\hspace*{-0.5em}
-	\begin{subfigure}[c]{0.15\linewidth}
+	\begin{subfigure}[c]{0.18\linewidth}
 		\raggedleft
 		\begin{tikzpicture}
-			\begin{lineplot}{}{}[height=2.4\linewidth, width=0.8\linewidth,
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
 				profile
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
@@ -174,14 +173,14 @@
 			\end{lineplot}
 			\avgssp
 		\end{tikzpicture}
-		\caption{CV\|CV}
-		\label{fig:sec7:estimated_ssfs_grupo2:subfig4}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_svd:subfig9}
 	\end{subfigure}
 	\hspace*{-0.5em}
-	\begin{subfigure}[c]{0.15\linewidth}
+	\begin{subfigure}[c]{0.18\linewidth}
 		\raggedleft
 		\begin{tikzpicture}
-			\begin{lineplot}{}{}[height=2.4\linewidth, width=0.8\linewidth,
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
 				profile
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
@@ -190,17 +189,417 @@
 					\addplot[only marks, resSVD=resJ, ultra thick]
 					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
 				}
-				\addplot[ultra thick, black] table[y index=0,x=avg] {\datatable};
+				
 			\end{lineplot}
 			\avgssp
 		\end{tikzpicture}
-		\caption{C\|CCs}
-		\label{fig:sec7:estimated_ssfs_grupo2:subfig5}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_svd:subfig10}
+	\end{subfigure}\hspace*{-0.1\linewidth}
+	
+	\vspace*{3pt}
+	\hspace*{-0.4\linewidth}%
+	\begin{subfigure}[c]{0.54\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{Profundidade ($\si{\kilo\meter}$)}[
+				profile*,
+				height=0.6\linewidth, width=0.3\linewidth
+				%				xmin=-24, xmax=24, xtick={-20, 0, 20}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathK}
+					\addplot[only marks, resSVD=resK, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+				}
+			\end{lineplot}
+			\avgssp[0.6\linewidth][0.3\linewidth]
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_svd:subfig11}
 	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.18\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
+				profile
+				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathL}
+					\addplot[only marks, resSVD=resL, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_svd:subfig12}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.18\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
+				profile
+				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathM}
+					\addplot[only marks, resSVD=resM, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_svd:subfig13}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.18\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
+				profile
+				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
+				]%[colorbar to name = {dump1},hmstyle]
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathN}
+					\addplot[only marks, resSVD=resN, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_svd:subfig14}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.18\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
+				profile
+				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathO}
+					\addplot[only marks, resSVD=resO, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_svd:subfig15}
+	\end{subfigure}\hspace*{-0.1\linewidth}
 	
 	\vspace*{.5em}
-	%	\colorbar{lineplots2}
 	\caption{Erros de estimação de cada SSP, para o método SVD, para todas as configurações apresentadas, para a iteração final.}
-	\label{fig:sec7:estimated_ssps}
-	%
+	\label{fig:sec7:estimated_ssps_svd}
+\end{figure*}
+
+\begin{figure*}[!t]
+	\centering
+	\hspace*{-0.4\linewidth}%
+	\begin{subfigure}[c]{0.54\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{Profundidade ($\si{\kilo\meter}$)}[
+				profile*,
+				height=0.6\linewidth, width=0.3\linewidth
+				%				xmin=-24, xmax=24, xtick={-20, 0, 20}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathA}
+					\addplot[only marks, resTTT=resA, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+				}
+			\end{lineplot}
+			\avgssp[0.6\linewidth][0.3\linewidth]
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_ttt:subfig1}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.18\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
+				profile
+				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathB}
+					\addplot[only marks, resTTT=resB, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_ttt:subfig2}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.18\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
+				profile
+				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathC}
+					\addplot[only marks, resTTT=resC, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_ttt:subfig3}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.18\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
+				profile
+				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathD}
+					\addplot[only marks, resTTT=resD, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_ttt:subfig4}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.18\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
+				profile
+				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathE}
+					\addplot[only marks, resTTT=resE, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_ttt:subfig5}
+	\end{subfigure}\hspace*{-0.1\linewidth}
+	
+	\vspace*{3pt}	
+	\hspace*{-0.4\linewidth}%
+	\begin{subfigure}[c]{0.54\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{Profundidade ($\si{\kilo\meter}$)}[
+				profile*,
+				height=0.6\linewidth, width=0.3\linewidth
+				%				xmin=-24, xmax=24, xtick={-20, 0, 20}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathF}
+					\addplot[only marks, resTTT=resF, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+				}
+			\end{lineplot}
+			\avgssp[0.6\linewidth][0.3\linewidth]
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_ttt:subfig6}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.18\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
+				profile
+				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathG}
+					\addplot[only marks, resTTT=resG, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_ttt:subfig7}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.18\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
+				profile
+				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathH}
+					\addplot[only marks, resTTT=resH, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_ttt:subfig8}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.18\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
+				profile
+				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
+				]%[colorbar to name = {dump1},hmstyle]
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathI}
+					\addplot[only marks, resTTT=resI, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_ttt:subfig9}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.18\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
+				profile
+				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathJ}
+					\addplot[only marks, resTTT=resJ, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+				}
+				
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_ttt:subfig10}
+	\end{subfigure}\hspace*{-0.1\linewidth}
+	
+	\vspace*{3pt}
+	\hspace*{-0.4\linewidth}%
+	\begin{subfigure}[c]{0.54\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{Profundidade ($\si{\kilo\meter}$)}[
+				profile*,
+				height=0.6\linewidth, width=0.3\linewidth
+				%				xmin=-24, xmax=24, xtick={-20, 0, 20}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathK}
+					\addplot[only marks, resTTT=resK, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+				}
+			\end{lineplot}
+			\avgssp[0.6\linewidth][0.3\linewidth]
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_ttt:subfig11}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.18\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
+				profile
+				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathL}
+					\addplot[only marks, resTTT=resL, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_ttt:subfig12}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.18\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
+				profile
+				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathM}
+					\addplot[only marks, resTTT=resM, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_ttt:subfig13}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.18\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
+				profile
+				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
+				]%[colorbar to name = {dump1},hmstyle]
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathN}
+					\addplot[only marks, resTTT=resN, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_ttt:subfig14}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.18\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
+				profile
+				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
+				]%[colorbar to name = {dump1},hmstyle]
+				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+					\def\sympath{\sympathO}
+					\addplot[only marks, resTTT=resO, ultra thick]
+					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec7:estimated_ssps_ttt:subfig15}
+	\end{subfigure}\hspace*{-0.1\linewidth}
+	
+	\vspace*{.5em}
+	\caption{Erros de estimação de cada SSP, para o método SVD, para todas as configurações apresentadas, para a iteração final.}
+	\label{fig:sec7:estimated_ssps_ttt}
 \end{figure*}

@@ -3,19 +3,8 @@
 	\begin{minipage}[b]{0.48\linewidth}
 		\begin{tikzpicture}
 			\begin{heatmap}{\ncols}[colorbar to name={velocityHeatmap},hmstyle][fill opacity=0.8]
-%				\def\sympath{test_bas-vs-svd_surround 26-04-17 09h55m48s}
 				\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=0.8, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/\sympath/0_field_observed.csv};
-				%
-%				{
-%					\def\sympath{h298e}
-%					\addplot[only marks, mark=o, gray, line width=3pt, mark size=0.5em+0.4pt] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_receivers.csv};
-%					\addplot[only marks, mark=o, yellow!90!black, very thick, mark size=0.5em+0.4pt] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_receivers.csv};
-%				}
-%				%
-%				{
-%					\def\sympath{h386f}
-%					\addplot[only marks, mark=x, white, line width=2.8pt, mark size=0.5em+0.8pt] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_receivers.csv};
-%					\addplot[only marks, mark=x, red!50!black, very thick, mark size=0.5em] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_receivers.csv};
+
 %				}
 			\end{heatmap}
 		\end{tikzpicture}
@@ -27,7 +16,7 @@
 		\centering
 		\begin{tikzpicture}
 			\begin{lineplot}{Perfis do SSF ($\si{\meter/\second}$)}{Profundidade ($\si{\kilo\meter}$)}[y dir=reverse,
-				ytick={0, 500, 1000, 1500, 2000}, yticklabels={0, 0.5, 1, 1.5, 2}]%[colorbar to name = {dump1},hmstyle]
+				ytick={0, 500, 1000, 1500, 2000}, yticklabels={0, 0.5, 1, 1.5, 2}]
 				\foreach \x in {1, 2, ..., 9} {	
 					\addplot[draw, black, very thin] table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/0_profiles_observed.csv};
 				}

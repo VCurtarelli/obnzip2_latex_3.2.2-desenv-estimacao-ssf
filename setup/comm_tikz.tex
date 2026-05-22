@@ -26,7 +26,12 @@
 \pgfplotsset{last/.style={
 		x filter/.code={
 			\ifnum\coordindex=9\else\def\pgfmathresult{}\fi
-		}
+		},
+		big mark%, line width=4pt
+	}
+}
+\pgfplotsset{big mark/.style={
+		every mark/.append style={scale=1.5, line width=1.5pt, fill opacity=0.7}%, line width=4pt
 	}
 }
 \tikzstyle{snake it}=[decorate,decoration={snake, #1,}]

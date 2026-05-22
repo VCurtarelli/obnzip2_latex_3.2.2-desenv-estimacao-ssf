@@ -22,3 +22,10 @@ v1.0.260520
 	Mudados Apêndices A e B para Seções 7 e 8.
 	Adicionada Seção 9 - Conclusões.
 	Pequenas alterações em figuras.
+v1.1.260521
+	Adicionando novos resultados nas simulações das Seções 7 e 8.
+	Reestruturação na maneira de apresentar os resultados das Seções 7 e 8.
+v1.1.260522
+	Adicionando novos resultados nas simulações das Seções 7 e 8.
+	Adicionando novas discussões nas Seções 7 e 8.
+	Pequenas alterações de estilo dos gráficos.
