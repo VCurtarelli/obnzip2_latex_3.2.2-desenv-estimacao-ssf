@@ -17,148 +17,133 @@
 				height=0.85\linewidth,]
 				{
 					\def\sympath{\sympathA}
-					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resA, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};  
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resA, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};
+					\addplot[only marks, resSVD=resA, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};  
+					
+					\addplot[only marks, resTTT=resA, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};
 				}
 				{
 					\def\sympath{\sympathB}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resB, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};    
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resB, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};
+					
+					\addplot[only marks, resSVD=resB, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};    
+					
+					\addplot[only marks, resTTT=resB, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};
 				}
 				
 				{
 					\def\sympath{\sympathC}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resC, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};    
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resC, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};
+					
+					\addplot[only marks, resSVD=resC, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};    
+					
+					\addplot[only marks, resTTT=resC, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};
 				}
 				
 				{
 					\def\sympath{\sympathD}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resD, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};   
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resD, big mark] coordinates {(\pyNs*\pyNr,\lastitem)}; 
+					
+					\addplot[only marks, resSVD=resD, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};   
+					
+					\addplot[only marks, resTTT=resD, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv}; 
 				}
 				
 				{
 					\def\sympath{\sympathE}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resE, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};    
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resE, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};
+					
+					\addplot[only marks, resSVD=resE, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};    
+					
+					\addplot[only marks, resTTT=resE, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};
 				}
 				
 				{
 					\def\sympath{\sympathF}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resF, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};    
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resF, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};
+					
+					\addplot[only marks, resSVD=resF, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};    
+					
+					\addplot[only marks, resTTT=resF, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};
 				}
 				
 				{
 					\def\sympath{\sympathG}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resG, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};    
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resG, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};
+					
+					\addplot[only marks, resSVD=resG, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};    
+					
+					\addplot[only marks, resTTT=resG, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};
 				}
 				
 				{
 					\def\sympath{\sympathH}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resH, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};    
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resH, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};
+					
+					\addplot[only marks, resSVD=resH, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};    
+					
+					\addplot[only marks, resTTT=resH, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};
 				}
 				
 				{
 					\def\sympath{\sympathI}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resI, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};    
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resI, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};
+					
+					\addplot[only marks, resSVD=resI, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};    
+					
+					\addplot[only marks, resTTT=resI, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};
 				}
 				
 				{
 					\def\sympath{\sympathJ}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resJ, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};    
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resJ, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};
+					
+					\addplot[only marks, resSVD=resJ, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};    
+					
+					\addplot[only marks, resTTT=resJ, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};
 				}
 				
 				{
 					\def\sympath{\sympathK}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resK, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};    
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resK, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};
+					
+					\addplot[only marks, resSVD=resK, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};    
+					
+					\addplot[only marks, resTTT=resK, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};
 				}
 				
 				{
 					\def\sympath{\sympathL}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resL, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};    
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resL, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};
+					
+					\addplot[only marks, resSVD=resL, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};    
+					
+					\addplot[only marks, resTTT=resL, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};
 				}
 				
 				{
 					\def\sympath{\sympathM}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resM, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};    
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resM, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};
+					
+					\addplot[only marks, resSVD=resM, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};    
+					
+					\addplot[only marks, resTTT=resM, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};
 				}
 				
 				{
 					\def\sympath{\sympathN}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resN, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};    
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resN, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};
+					
+					\addplot[only marks, resSVD=resN, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};    
+					
+					\addplot[only marks, resTTT=resN, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};
 				}
 				
 				{
 					\def\sympath{\sympathO}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resO, big mark] coordinates {(\pyNs*\pyNr,\lastitem)};   
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resO, big mark] coordinates {(\pyNs*\pyNr,\lastitem)}; 
+					\addplot[only marks, resSVD=resO, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};
+					\addplot[only marks, resTTT=resO, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_msmnts_vs_ssf_classic.csv};
 				}
-%				\addlegendentry{C\|C};
-%				\addlegendentry{C\|B};
-%				\addlegendentry{C\|CD};
-%				\addlegendentry{C\|CA};
-%				\addlegendentry{C\|G};
-%				%
-%				\addlegendentry{CC\|CC};
-%				\addlegendentry{CV\|C};
-%				\addlegendentry{C\|CV};
-%				\addlegendentry{CV\|CV};
-%				\addlegendentry{C\|CCs};
 			\end{lineplot}
 		\end{tikzpicture}
 		\caption{\#medições $\mtimes$ $\rmse_{\ssf}$.}
@@ -172,135 +157,134 @@
 				{
 					\def\sympath{\sympathA}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resA, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};  
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resA, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};
+					
+					\addplot[only marks, resSVD=resA, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};  
+					
+					\addplot[only marks, resTTT=resA, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};
 				}
 				{
 					\def\sympath{\sympathB}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resB, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};    
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resB, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};
+					\addplot[only marks, resSVD=resB, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};    
+					
+					\addplot[only marks, resTTT=resB, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};
 				}
 				
 				{
 					\def\sympath{\sympathC}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resC, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};    
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resC, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};
+					
+					\addplot[only marks, resSVD=resC, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};    
+					
+					\addplot[only marks, resTTT=resC, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};
 				}
 				
 				{
 					\def\sympath{\sympathD}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resD, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};   
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resD, big mark] coordinates {(\pyNr+\pyNs,\lastitem)}; 
+					
+					\addplot[only marks, resSVD=resD, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};   
+					
+					\addplot[only marks, resTTT=resD, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv}; 
 				}
 				
 				{
 					\def\sympath{\sympathE}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resE, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};    
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resE, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};
+					
+					\addplot[only marks, resSVD=resE, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};    
+					
+					\addplot[only marks, resTTT=resE, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};
 				}
 				
 				{
 					\def\sympath{\sympathF}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resF, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};    
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resF, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};
+					
+					\addplot[only marks, resSVD=resF, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};    
+					
+					\addplot[only marks, resTTT=resF, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};
 				}
 				
 				{
 					\def\sympath{\sympathG}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resG, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};    
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resG, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};
+					
+					\addplot[only marks, resSVD=resG, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};    
+					
+					\addplot[only marks, resTTT=resG, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};
 				}
 				
 				{
 					\def\sympath{\sympathH}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resH, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};    
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resH, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};
+					
+					\addplot[only marks, resSVD=resH, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};    
+					
+					\addplot[only marks, resTTT=resH, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};
 				}
 				
 				{
 					\def\sympath{\sympathI}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resI, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};    
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resI, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};
+					
+					\addplot[only marks, resSVD=resI, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};    
+					
+					\addplot[only marks, resTTT=resI, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};
 				}
 				
 				{
 					\def\sympath{\sympathJ}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resJ, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};    
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resJ, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};
+					
+					\addplot[only marks, resSVD=resJ, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};    
+					
+					\addplot[only marks, resTTT=resJ, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};
 				}
 				
 				{
 					\def\sympath{\sympathK}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resK, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};    
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resK, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};
+					
+					\addplot[only marks, resSVD=resK, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};    
+					
+					\addplot[only marks, resTTT=resK, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};
 				}
 				
 				{
 					\def\sympath{\sympathL}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resL, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};    
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resL, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};
+					
+					\addplot[only marks, resSVD=resL, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};    
+					
+					\addplot[only marks, resTTT=resL, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};
 				}
 				
 				{
 					\def\sympath{\sympathM}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resM, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};    
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resM, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};
+					
+					\addplot[only marks, resSVD=resM, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};    
+					
+					\addplot[only marks, resTTT=resM, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};
 				}
 				
 				{
 					\def\sympath{\sympathN}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resN, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};    
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resN, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};
+					
+					\addplot[only marks, resSVD=resN, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};    
+					
+					\addplot[only marks, resTTT=resN, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};
 				}
 				
 				{
 					\def\sympath{\sympathO}
 					\input{figures/data/\sympath/params.tex}
-					\getlastitem{figures/data/\sympath/metric_ssf_svd.csv}
-					\addplot[only marks, resSVD=resO, big mark] coordinates {(\pyNr+\pyNs,\lastitem)};   
-					\getlastitem{figures/data/\sympath/metric_ssf_classic.csv}
-					\addplot[only marks, resTTT=resO, big mark] coordinates {(\pyNr+\pyNs,\lastitem)}; 
+					
+					\addplot[only marks, resSVD=resO, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv};   
+					
+					\addplot[only marks, resTTT=resO, big mark] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_devices_vs_ssf_classic.csv}; 
 				}
 			\end{lineplot}
 		\end{tikzpicture}

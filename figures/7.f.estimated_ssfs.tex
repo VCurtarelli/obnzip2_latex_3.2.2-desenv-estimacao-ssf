@@ -9,10 +9,10 @@
 				height=0.6\linewidth, width=0.3\linewidth
 %				xmin=-24, xmax=24, xtick={-20, 0, 20}
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathA}
 					\addplot[only marks, resSVD=resA, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_svd.csv};
 				}
 			\end{lineplot}
 			\avgssp[0.6\linewidth][0.3\linewidth]
@@ -28,10 +28,10 @@
 				profile
 %				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathB}
 					\addplot[only marks, resSVD=resB, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_svd.csv};
 				}
 			\end{lineplot}
 			\avgssp
@@ -47,10 +47,10 @@
 				profile
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathC}
 					\addplot[only marks, resSVD=resC, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_svd.csv};
 				}
 			\end{lineplot}
 			\avgssp
@@ -66,10 +66,10 @@
 				profile
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathD}
 					\addplot[only marks, resSVD=resD, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_svd.csv};
 				}
 			\end{lineplot}
 			\avgssp
@@ -85,10 +85,10 @@
 				profile
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathE}
 					\addplot[only marks, resSVD=resE, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_svd.csv};
 				}
 			\end{lineplot}
 			\avgssp
@@ -107,10 +107,10 @@
 				height=0.6\linewidth, width=0.3\linewidth
 				%				xmin=-24, xmax=24, xtick={-20, 0, 20}
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathF}
 					\addplot[only marks, resSVD=resF, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_svd.csv};
 				}
 			\end{lineplot}
 			\avgssp[0.6\linewidth][0.3\linewidth]
@@ -126,10 +126,10 @@
 				profile
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathG}
 					\addplot[only marks, resSVD=resG, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_svd.csv};
 				}
 			\end{lineplot}
 			\avgssp
@@ -145,10 +145,10 @@
 				profile
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathH}
 					\addplot[only marks, resSVD=resH, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_svd.csv};
 				}
 			\end{lineplot}
 			\avgssp
@@ -165,10 +165,10 @@
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathI}
 					\addplot[only marks, resSVD=resI, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_svd.csv};
 				}
 			\end{lineplot}
 			\avgssp
@@ -184,10 +184,10 @@
 				profile
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathJ}
 					\addplot[only marks, resSVD=resJ, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_svd.csv};
 				}
 				
 			\end{lineplot}
@@ -207,10 +207,10 @@
 				height=0.6\linewidth, width=0.3\linewidth
 				%				xmin=-24, xmax=24, xtick={-20, 0, 20}
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathK}
 					\addplot[only marks, resSVD=resK, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_svd.csv};
 				}
 			\end{lineplot}
 			\avgssp[0.6\linewidth][0.3\linewidth]
@@ -226,10 +226,10 @@
 				profile
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathL}
 					\addplot[only marks, resSVD=resL, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_svd.csv};
 				}
 			\end{lineplot}
 			\avgssp
@@ -245,10 +245,10 @@
 				profile
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathM}
 					\addplot[only marks, resSVD=resM, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_svd.csv};
 				}
 			\end{lineplot}
 			\avgssp
@@ -265,10 +265,10 @@
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathN}
 					\addplot[only marks, resSVD=resN, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_svd.csv};
 				}
 			\end{lineplot}
 			\avgssp
@@ -284,10 +284,10 @@
 				profile
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathO}
 					\addplot[only marks, resSVD=resO, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_svd.csv};
 				}
 			\end{lineplot}
 			\avgssp
@@ -297,7 +297,7 @@
 	\end{subfigure}\hspace*{-0.1\linewidth}
 	
 	\vspace*{.5em}
-	\caption{Erros de estimação de cada SSP, para o método SVD, para todas as configurações apresentadas, para a iteração final.}
+	\caption{Perfil médio estimado, para o método SVD, para todas as configurações apresentadas, para a iteração final.}
 	\label{fig:sec7:estimated_ssps_svd}
 \end{figure*}
 
@@ -312,10 +312,10 @@
 				height=0.6\linewidth, width=0.3\linewidth
 				%				xmin=-24, xmax=24, xtick={-20, 0, 20}
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathA}
 					\addplot[only marks, resTTT=resA, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_classic.csv};
 				}
 			\end{lineplot}
 			\avgssp[0.6\linewidth][0.3\linewidth]
@@ -331,10 +331,10 @@
 				profile
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathB}
 					\addplot[only marks, resTTT=resB, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_classic.csv};
 				}
 			\end{lineplot}
 			\avgssp
@@ -350,10 +350,10 @@
 				profile
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathC}
 					\addplot[only marks, resTTT=resC, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_classic.csv};
 				}
 			\end{lineplot}
 			\avgssp
@@ -369,10 +369,10 @@
 				profile
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathD}
 					\addplot[only marks, resTTT=resD, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_classic.csv};
 				}
 			\end{lineplot}
 			\avgssp
@@ -388,10 +388,10 @@
 				profile
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathE}
 					\addplot[only marks, resTTT=resE, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_classic.csv};
 				}
 			\end{lineplot}
 			\avgssp
@@ -410,10 +410,10 @@
 				height=0.6\linewidth, width=0.3\linewidth
 				%				xmin=-24, xmax=24, xtick={-20, 0, 20}
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathF}
 					\addplot[only marks, resTTT=resF, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_classic.csv};
 				}
 			\end{lineplot}
 			\avgssp[0.6\linewidth][0.3\linewidth]
@@ -429,10 +429,10 @@
 				profile
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathG}
 					\addplot[only marks, resTTT=resG, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_classic.csv};
 				}
 			\end{lineplot}
 			\avgssp
@@ -448,10 +448,10 @@
 				profile
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathH}
 					\addplot[only marks, resTTT=resH, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_classic.csv};
 				}
 			\end{lineplot}
 			\avgssp
@@ -468,10 +468,10 @@
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathI}
 					\addplot[only marks, resTTT=resI, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_classic.csv};
 				}
 			\end{lineplot}
 			\avgssp
@@ -487,10 +487,10 @@
 				profile
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathJ}
 					\addplot[only marks, resTTT=resJ, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_classic.csv};
 				}
 				
 			\end{lineplot}
@@ -510,10 +510,10 @@
 				height=0.6\linewidth, width=0.3\linewidth
 				%				xmin=-24, xmax=24, xtick={-20, 0, 20}
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathK}
 					\addplot[only marks, resTTT=resK, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_classic.csv};
 				}
 			\end{lineplot}
 			\avgssp[0.6\linewidth][0.3\linewidth]
@@ -529,10 +529,10 @@
 				profile
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathL}
 					\addplot[only marks, resTTT=resL, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_classic.csv};
 				}
 			\end{lineplot}
 			\avgssp
@@ -548,10 +548,10 @@
 				profile
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathM}
 					\addplot[only marks, resTTT=resM, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_classic.csv};
 				}
 			\end{lineplot}
 			\avgssp
@@ -568,10 +568,10 @@
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathN}
 					\addplot[only marks, resTTT=resN, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_classic.csv};
 				}
 			\end{lineplot}
 			\avgssp
@@ -587,10 +587,10 @@
 				profile
 				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
 				]%[colorbar to name = {dump1},hmstyle]
-				\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+				{ %
 					\def\sympath{\sympathO}
 					\addplot[only marks, resTTT=resO, ultra thick]
-					table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic.csv};
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_classic.csv};
 				}
 			\end{lineplot}
 			\avgssp
@@ -600,6 +600,6 @@
 	\end{subfigure}\hspace*{-0.1\linewidth}
 	
 	\vspace*{.5em}
-	\caption{Erros de estimação de cada SSP, para o método SVD, para todas as configurações apresentadas, para a iteração final.}
+	\caption{Perfil médio estimado, para o método TTT, para todas as configurações apresentadas, para a iteração final.}
 	\label{fig:sec7:estimated_ssps_ttt}
 \end{figure*}

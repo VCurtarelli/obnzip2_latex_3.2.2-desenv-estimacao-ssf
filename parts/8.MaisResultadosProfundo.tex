@@ -15,15 +15,17 @@ As novas condições de distribuição dos dispositivos são tal como mostrado n
 \input{figures/8.b.distribuicoes_dispositivos}
 \subsection{Resultados-base}
 
-{\color{red} \textbf{IMAGENS DE RESULTADOS TEMPORÁRIAS, PRECISA GERAR RESULTADOS PARA PODER FAZER A DISCUSSÃO.}}
-
 Os resultados-base de erro de tempo de viagem e erro do SSF, ao longo das iterações, estão na \cref{fig:sec8:tt_ssf_rms_errors}.
 
-\const Nesses resultados, é possível ver que [...]
+\const Inicialmente, é nítido que o comportamento médio dentro de cada grupo é semelhante entre os dois métodos (SVD, e TTT). Contudo, a SVD tem uma variância muito maior, enquanto a TTT tem uma constância e uma performance muito semelhante dentro de cada grupo. Em particular no grupo 2, onde esperava-se que ambas tivessem um desempenho superior (pelos resultados anteriores), a SVD não alcançou níveis satisfatórios, especialmente nas configurações (g) e (i). Isso possivelmente está relacionado à própria decomposição em valores singulares, que associa-se à análise de componentes principais (PCA), e as componentes extraídas não modelam satisfatoriamente o ambiente.
 
-\const Além disso, temos que [...]
+\const Muitos dos resultados discutidos anteriormente (no caso raso) também se refletem aqui, como as melhoras ao utilizar informação ao longo da profundidade (grupos 2 e 3 vs grupo 1) e ao utilizar mais informação na profundidade (grupo 2 vs grupo 3). Em razão disso, não entraremos nessas discussões novamente.
 
 \input{figures/8.c.tt_ssf_rms_errors}
+
+\const Um resultado diferente do obtido no caso raso é que todas as configurações do grupo 2, para ambas técnicas (exceto (k) para SVD) tiveram desempenhos muito semelhantes entre si, e entre as técnicas, com um erro médio em torno de $5\si{\meter/\second}$. Os perfis estimados, ao longo da profundidade, constam nas \cref{fig:sec8:estimated_ssps_svd} (para SVD) e \cref{fig:sec8:estimated_ssps_ttt} (para TTT).
+
+\input{figures/8.d.estimated_ssps_deep}
 
 
 

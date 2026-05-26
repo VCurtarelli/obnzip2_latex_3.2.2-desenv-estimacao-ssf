@@ -29,3 +29,6 @@ v1.1.260522
 	Adicionando novos resultados nas simulações das Seções 7 e 8.
 	Adicionando novas discussões nas Seções 7 e 8.
 	Pequenas alterações de estilo dos gráficos.
+v1.1.260526
+	Cleanup de arquivos.
+	Precisa refazer Seção 8.
