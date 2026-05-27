@@ -54,7 +54,7 @@ sortcites=true]{biblatex}
 \NewDocumentCommand{\IfEmpty}{m m G{}}{\ifthenelse{\equal{#1}{}}{#2}{#3}}
 \NewDocumentCommand{\IfEqual}{m m m G{}}{\ifthenelse{\equal{#1}{#2}}{#3}{#4}}
 \NewDocumentCommand{\IfNotEmpty}{m m G{}}{\ifthenelse{\equal{#1}{}}{#3}{#2}}
-\NewDocumentCommand{\itemcabecalho}{m m}{\IfNotEmpty{#2}{\item[\textit{#1}:] #2}}
+\NewDocumentCommand{\itemcabecalho}{m m}{\IfNotEmpty{#2}{\item[\textsl{#1}:] #2}}
 \NewDocumentCommand{\@updatecommand}{m m G{}}{\edef#1{\IfNotEmpty{#1}{#1, }#2}\IfNotEmpty{#3}{\csname#3\endcsname{#2}}}
 
 %%%%%

@@ -32,3 +32,7 @@ v1.1.260522
 v1.1.260526
 	Cleanup de arquivos.
 	Precisa refazer Seção 8.
+v1.1.260527
+	Novas configurações (p,q) para a Seção 8.
+	Pequenas alterações nas configurações de imagens.
+	Mais resultados na Seção 8.

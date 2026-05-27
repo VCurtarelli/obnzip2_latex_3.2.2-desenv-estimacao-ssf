@@ -1,20 +1,23 @@
-\definecolor{ColA}{HTML}{D8AD00}  % 00A080
-\definecolor{ColB}{HTML}{FF6600}  % 00A0A0
-\definecolor{ColC}{HTML}{FF0000}  % 0090D0
-\definecolor{ColD}{HTML}{89502A}  % 5080E0
-\definecolor{ColE}{HTML}{D3623D}  % A070E0
+\definecolor{ColA}{HTML}{D8AD00}  % Gold
+\definecolor{ColB}{HTML}{FF0000}  % Red
+\definecolor{ColC}{HTML}{FF6600}  % Bright orange
+\definecolor{ColD}{HTML}{905030}  % Chelsea brown
+\definecolor{ColE}{HTML}{F06040}  % Orange
 
-\definecolor{ColF}{HTML}{43A800}  % FF8080
-\definecolor{ColG}{HTML}{00FF00}  % FFA040
-\definecolor{ColH}{HTML}{3EC170}  % FFB000
-\definecolor{ColI}{HTML}{92B700}  % E0D000
+\definecolor{ColF}{HTML}{43A800}  % Leaf green
+\definecolor{ColG}{HTML}{00FF00}  % Green
+\definecolor{ColH}{HTML}{3EC170}  % Emerald
+\definecolor{ColI}{HTML}{92B700}  % Grassy green
 
-\definecolor{ColJ}{HTML}{9042FF}  % 
-\definecolor{ColK}{HTML}{4E92BF}  % B0E000
-\definecolor{ColL}{HTML}{00CBFF}  % B0E000
-\definecolor{ColM}{HTML}{0000FF}  % B0E000
-\definecolor{ColN}{HTML}{0065FF}  % B0E000
-\definecolor{ColO}{HTML}{005070}  % B0E000
+\definecolor{ColJ}{HTML}{9040FF}  % Purple
+\definecolor{ColK}{HTML}{5090C0}  % Gray-ish blue
+\definecolor{ColL}{HTML}{00D0FF}  % Sky blue
+\definecolor{ColM}{HTML}{0000FF}  % Blue
+\definecolor{ColN}{HTML}{0060FF}  % Bright blue
+\definecolor{ColO}{HTML}{005070}  % Navy blue
+
+\definecolor{ColP}{HTML}{800030}  % Bordeaux
+\definecolor{ColQ}{HTML}{C05050}  % Brick
 
 \tikzstyle{resA} = [
 very thick, ColA, dash pattern = {on 1pt off 0pt}, % solid
@@ -50,7 +53,7 @@ very thick, ColJ, dash pattern = {on 6pt off 2pt on 2pt off 2pt}, % long-dash-do
 very thick, ColK, dash pattern = {on 6pt off 1pt on 2pt off 1pt}, % dense-dash-dotted
 ]
 \tikzstyle{resL} = [
-very thick, ColK, dash pattern = {on 2pt off 1pt on 1pt off 1pt on 1pt off 1pt}, % dash-dotted-dotted
+very thick, ColL, dash pattern = {on 2pt off 1pt on 1pt off 1pt on 1pt off 1pt}, % dash-dotted-dotted
 ]
 \tikzstyle{resM} = [
 very thick, ColM, dash pattern = {on 6pt off 3pt on 3pt off 3pt}, % long dash-dotted-dotted
@@ -60,6 +63,12 @@ very thick, ColN, dash pattern = {on 2pt off 1pt on 2pt off 1pt on 1pt off 1pt},
 ]
 \tikzstyle{resO} = [
 very thick, ColO, dash pattern = {on 6pt off 2pt on 6pt off 2pt on 2pt off 2pt}, % long-dash-dash-dotted
+]
+\tikzstyle{resP} = [
+very thick, ColP, dash pattern = {on 1pt off 1pt on 1pt off 1pt on 2pt off 1pt}, % dot-dot-dashed
+]
+\tikzstyle{resQ} = [
+very thick, ColQ, dash pattern = {on 1pt off 1pt on 1pt off 1pt on 4pt off 1pt}, % dot-dot-long-dashed
 ]
 
 \tikzstyle{resTTT} = [
@@ -97,12 +106,13 @@ mark=triangle*, mark size=4, mark options={
 \pgfplotsset{
 	profile*/.style={
 		y dir=reverse,
-		ytick={0, 500, 1000, 1500, 2000},
+		ytick={0, 500, 1000, 1500},
 		yticklabels={0, 0.5, 1, 1.5, 2},
 		xmin = 1440,
 		xmax = 1560,
 		xtick = {1450, 1500, 1550},
 		xticklabels={1.45, 1.5, 1.55},
+		ymin=-75, ymax=1575
 	}
 }
 
@@ -116,6 +126,7 @@ mark=triangle*, mark size=4, mark options={
 		xmax = 1560,
 		xtick = {1450, 1500, 1550},
 		xticklabels={1.45, 1.5, 1.55},
+		ymin=-75, ymax=1575
 	}
 }
 

@@ -1,0 +1,207 @@
+\begin{figure*}[!ht]
+	\centering
+	\hspace*{-0.4\linewidth}%
+	\begin{subfigure}[c]{0.54\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{Profundidade ($\si{\kilo\meter}$)}[
+				profile*,
+				height=0.6\linewidth, width=0.3\linewidth
+				%				xmin=-24, xmax=24, xtick={-20, 0, 20}
+				]%[colorbar to name = {dump1},hmstyle]
+				{ %\foreach \x in {1, 2, ..., 9} {  % number of columns (excluding y)
+					\def\sympath{\sympathB}
+					\addplot[only marks, resSVD=resB, ultra thick]
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_svd.csv};
+				}
+			\end{lineplot}
+			\avgssp[0.6\linewidth][0.3\linewidth]
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec8:estimated_ssps_svd_g4:subfig1}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.18\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
+				profile
+				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
+				]%[colorbar to name = {dump1},hmstyle]
+				{ %\foreach \x in {1, 2, ..., 9} {  % number of columns (excluding y)
+					\def\sympath{\sympathF}
+					\addplot[only marks, resSVD=resF, ultra thick]
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_svd.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec8:estimated_ssps_svd_g4:subfig2}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.18\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
+				profile
+				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
+				]%[colorbar to name = {dump1},hmstyle]
+				{ %\foreach \x in {1, 2, ..., 9} {  % number of columns (excluding y)
+					\def\sympath{\sympathM}
+					\addplot[only marks, resSVD=resM, ultra thick]
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_svd.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec8:estimated_ssps_svd_g4:subfig3}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.18\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
+				profile
+				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
+				]%[colorbar to name = {dump1},hmstyle]
+				{ %\foreach \x in {1, 2, ..., 9} {  % number of columns (excluding y)
+					\def\sympath{\sympathP}
+					\addplot[only marks, resSVD=resP, ultra thick]
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_svd.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec8:estimated_ssps_svd_g4:subfig4}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.18\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
+				profile
+				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
+				]%[colorbar to name = {dump1},hmstyle]
+				{ %\foreach \x in {1, 2, ..., 9} {  % number of columns (excluding y)
+					\def\sympath{\sympathQ}
+					\addplot[only marks, resSVD=resQ, ultra thick]
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_svd.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec8:estimated_ssps_svd_g4:subfig5}
+	\end{subfigure}\hspace*{-0.1\linewidth}
+	
+	\vspace*{.5em}
+	\caption{Perfil médio estimado, para o método SVD, para as configurações selecionadas + grupo 4, para a iteração final.}
+	\label{fig:sec8:estimated_ssps_svd_g4}
+\end{figure*}
+
+\begin{figure*}[!ht]
+	\centering
+	\hspace*{-0.4\linewidth}%
+	\begin{subfigure}[c]{0.54\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{Profundidade ($\si{\kilo\meter}$)}[
+				profile*,
+				height=0.6\linewidth, width=0.3\linewidth
+				%				xmin=-24, xmax=24, xtick={-20, 0, 20}
+				]%[colorbar to name = {dump1},hmstyle]
+				{ %\foreach \x in {1, 2, ..., 9} {  % number of columns (excluding y)
+					\def\sympath{\sympathB}
+					\addplot[only marks, resTTT=resB, ultra thick]
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_classic.csv};
+				}
+			\end{lineplot}
+			\avgssp[0.6\linewidth][0.3\linewidth]
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec8:estimated_ssps_ttt_g4:subfig1}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.18\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
+				profile
+				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
+				]%[colorbar to name = {dump1},hmstyle]
+				{ %\foreach \x in {1, 2, ..., 9} {  % number of columns (excluding y)
+					\def\sympath{\sympathF}
+					\addplot[only marks, resTTT=resF, ultra thick]
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_classic.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec8:estimated_ssps_ttt_g4:subfig2}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.18\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
+				profile
+				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
+				]%[colorbar to name = {dump1},hmstyle]
+				{ %\foreach \x in {1, 2, ..., 9} {  % number of columns (excluding y)
+					\def\sympath{\sympathM}
+					\addplot[only marks, resTTT=resM, ultra thick]
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_classic.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec8:estimated_ssps_ttt_g4:subfig3}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.18\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
+				profile
+				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
+				]%[colorbar to name = {dump1},hmstyle]
+				{ %\foreach \x in {1, 2, ..., 9} {  % number of columns (excluding y)
+					\def\sympath{\sympathP}
+					\addplot[only marks, resTTT=resP, ultra thick]
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_classic.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec8:estimated_ssps_ttt_g4:subfig4}
+	\end{subfigure}
+	\hspace*{-0.5em}
+	\begin{subfigure}[c]{0.18\linewidth}
+		\raggedleft
+		\begin{tikzpicture}
+			\begin{lineplot}{}{}[height=1.8\linewidth, width=0.8\linewidth,
+				profile
+				%				xmin=-48, xmax=48, xtick={-40, 0, 40}
+				]%[colorbar to name = {dump1},hmstyle]
+				{ %\foreach \x in {1, 2, ..., 9} {  % number of columns (excluding y)
+					\def\sympath{\sympathQ}
+					\addplot[only marks, resTTT=resQ, ultra thick]
+					table[y=y,x=val, col sep=comma] {figures/data/\sympath/fin_mean_profile_classic.csv};
+				}
+			\end{lineplot}
+			\avgssp
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:sec8:estimated_ssps_ttt_g4:subfig5}
+	\end{subfigure}\hspace*{-0.1\linewidth}
+	
+	\vspace*{.5em}
+	\caption{Perfil médio estimado, para o método TTT, para as configurações selecionadas + grupo 4, para a iteração final.}
+	\label{fig:sec8:estimated_ssps_ttt_g4}
+\end{figure*}

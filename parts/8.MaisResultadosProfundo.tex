@@ -23,11 +23,40 @@ Os resultados-base de erro de tempo de viagem e erro do SSF, ao longo das itera�
 
 \input{figures/8.c.tt_ssf_rms_errors}
 
-\const Um resultado diferente do obtido no caso raso é que todas as configurações do grupo 2, para ambas técnicas (exceto (k) para SVD) tiveram desempenhos muito semelhantes entre si, e entre as técnicas, com um erro médio em torno de $5\si{\meter/\second}$. Os perfis estimados, ao longo da profundidade, constam nas \cref{fig:sec8:estimated_ssps_svd} (para SVD) e \cref{fig:sec8:estimated_ssps_ttt} (para TTT).
+\const Um resultado diferente do obtido no caso raso é que todas as configurações do grupo 3 (azuis), para ambas técnicas (exceto (l) para SVD), tiveram desempenhos muito semelhantes entre si, e entre as técnicas, com um erro médio em torno de $5\si{\meter/\second}$. Os perfis estimados, ao longo da profundidade, constam nas \cref{fig:sec8:estimated_ssps_svd} (para SVD) e \cref{fig:sec8:estimated_ssps_ttt} (para TTT). O mesmo ocorre dentro do grupo 2, especialmente para a TTT e as configurações (f) e (h) da SVD.
 
 \input{figures/8.d.estimated_ssps_deep}
 
+\const Das \cref{fig:sec8:estimated_ssps_svd,fig:sec8:estimated_ssps_ttt} também notamos que os grupos 1 e 3 tem comportamentos característicos dentro de cada grupo. No grupo 1 (em particular para a TTT, configs. (b,c,d,e)), temos que há um acerto na velocidade superficial, com o erro aumentando com a profundidade; isso se deve à maior densidade de medições próximo à superfície. Já no grupo 3, há uma captura geral do comportamento num geral, em especial na profundidade, e um erro maior próximo à superfície; isso se deve à maior variação da velocidade próximo à superfície, com a variação na profundidade sendo menos brusca.
 
+\const Outro resultado interessante é que (em particular para TTT) o posicionamento dos dispositivos na coluna não afeta tanto o desempenho. Ou seja, comparando as configurações (k) com (m), e (l) com (n), nota-se que dentro de cada par o desempenho foi muito próximo. Portanto, o mais importante é haver dispositivos dentro da coluna, e não tanto haver alguma coerência ou ``ordem'' no posicionamento deles.
+
+\subsection{Configurações mistas}
+
+Os resultados obtidos anteriormente indicam que, para o caso com profundidades grandes (até $5000\si{\meter}$), informação esparsa na coluna permite uma boa estimação na profundidade com pouca acurácia na superfície, e uma alta densidade de informação na superfície permite uma boa estiamção próximo a ela em troca e baixa performance na profundidade.
+
+Disso, postula-se que uma configuração mista, por exemplo combinando as fontes dos casos (k,m) com os receptores dos casos (b,c,e), poderia alcançar uma performance próxima às obtidas no grupo 2, mas com uma menor densidade de dispositivos ao longo da profundidade.
+
+Dado que as performances das configurações (k,m) foram semelhantes (para ambas técnicas), e também para as configurações (b,c,e) (também para ambas técnicas), testaremos duas últimas configurações, apresentadas na \cref{fig:sec8:dispositivos_g4}. Essas configurações constituem o grupo 4, e funcionam como um ``misto'' entre os grupos 1 e 3; em particular, a configuração (p) é a junção das configs. (b) e (k), e a configuração (q) é a função de (b) com (m). Por razões de ``equilíbrio'' (uma comparação mais justas com as anteriormente apresentadas), nessas duas configurações foram reduzidos os números de linhas de receptores na superfície, e de fontes ao longo da coluna.
+
+\def\sympathP{optimal-import--petro-deep/260527-13h01m29s--layer+vertical;blob}
+\def\sympathQ{optimal-import--petro-deep/260527-13h01m35s--layer+sparse;blob}
+
+\input{figures/8.e.distribuicoes_dispositivos_grupo4}
+
+Os resultados de RMSE de tempo de trânsito e de SSF, para ambas as técnicas, e as configurações (b,f,m,p,q)\footnote{Teoricamente seria devido também reapresentar a configuração (k), contudo dos resultados anteriores esta teve um desempenho semelhante à configuração (m), e portanto foi omitida.} ((b,m) que ``compõem'' (p,q), e (f) que é a com melhor desempenho de forma geral) estão na \cref{fig:sec8:tt_ssf_rms_errors_g4}. Ressaltamos que as simulações do grupo 4 estão em tons de bordô.
+
+\const Da mesma forma que foi obtido nas simulações anteriores do caso profundo, a SVD também não teve um desempenho bom nas novas configurações. Em particular, a mistura dos tipos de informação (horizontal/vertical) não melhorou de maneira significativa o desempenho para essa técnica. Por outro lado, a TTT para esses dois casos é estritamente superior às configurações que compõem-nas (b,m), aproximando-se do desempenho ``ideal'' da configuração (f).
+
+\input{figures/8.f.tt_ssf_rms_errors_grupo4}
+
+\const As \cref{fig:sec8:estimated_ssps_svd_g4,fig:sec8:estimated_ssps_ttt_g4} apresentam as médias dos perfis estimados, para as configurações do grupo 4 + as selecionadas (b,f,m), para as duas técnicas. Aqui reitera-se que a SVD não foi capaz de reconstruir o perfil desejado com as novas configurações, ou tendo erros próximos à superfície, ou tendo uma variabilidade grande ao longo da coluna. A TTT já teve um desempenho amplamente superior, aproximando-se satisfatoriamente da configuração (f) (em verde nas \cref{fig:sec8:estimated_ssps_svd_g4,fig:sec8:estimated_ssps_ttt_g4}).
+
+\input{figures/8.g.estimated_ssps_deep_grupo4}
+
+\const Os resultados apresentados confirmam a teoria postulada anteriormente, que a mescla entre várias passagens superficiais com alguns dispositivos espalhados na coluna seria capaz de compensar as falhas que cada uma dessas configurações apresenta separadamente.
+
+\const Além disso, tem-se um resultado semelhante ao visto anteriormente, em que o (des)ordenamento do posicionamento dos dispositivos pouco afeta o desempenho; ou seja, as fontes extras estarem em uma única faixa vertical, ou espalhadas aleatoriamente ao longo da coluna d'água, tem pouco efeito sobre o desempenho da estimação do SSF.
 
 % TODO: SEM HIPER-PARÂMETROS
 %\def\sympathA{meanpar-import-deep--petro/meanpar-import--petro-deep--260522-14h40m20s--layer}
