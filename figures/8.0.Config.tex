@@ -2,15 +2,36 @@
 	hmstyle/.style={
 		ytick={0, 1000, ..., 5000},
 		yticklabels={0, 1, ..., 5},
-%		xtick={0, 1000, 2000},
-%		xticklabels={0, 1, 2},
 		xtick={\empty},
 		xmin=0, xmax=2000,
 		ymin=0, ymax=5000,
-		% xlabel={Deslocamento ($\si{\kilo\meter}$)},
-		% ylabel={Profundidade ($\si{\kilo\meter}$)},
+		height=0.75\linewidth,
+		width=0.75\linewidth,
+		scale only axis
 	}
 }
+
+\def\sympathA{optimal-import--petro-deep/260527-14h15m17s-a--layer}
+\def\sympathB{optimal-import--petro-deep/260527-14h15m17s-b--layer;blob}
+\def\sympathC{optimal-import--petro-deep/260527-14h15m17s-c--layer;layer+diag}
+\def\sympathD{optimal-import--petro-deep/260527-14h15m17s-d--layer;layer+appendix}
+\def\sympathE{optimal-import--petro-deep/260527-14h15m17s-e--layer;bracket}
+\def\sympathF{optimal-import--petro-deep/260527-14h15m17s-f--layer+column;layer+column}
+\def\sympathG{optimal-import--petro-deep/260527-14h15m17s-g--layer;cap}
+\def\sympathH{optimal-import--petro-deep/260527-14h15m17s-h--layer+column;layer}
+\def\sympathI{optimal-import--petro-deep/260527-14h15m17s-i--layer;layer+column}
+\def\sympathJ{optimal-import--petro-deep/260527-14h15m17s-j--layer+vertical;layer+vertical}
+\def\sympathK{optimal-import--petro-deep/260527-14h15m17s-k--layer+vertical;layer}
+\def\sympathL{optimal-import--petro-deep/260527-14h15m17s-l--layer;layer+vertical}
+\def\sympathM{optimal-import--petro-deep/260527-14h15m17s-m--layer+sparse;layer}
+\def\sympathN{optimal-import--petro-deep/260527-14h15m17s-n--layer;layer+sparse}
+\def\sympathO{optimal-import--petro-deep/260527-14h15m17s-o--cup;layer}
+
+\input{figures/data/\sympathA/params.tex}
+
+\makeatletter
+\def\avgssp@ymin{-250}
+\def\avgssp@ymax{5150}
 
 \pgfplotsset{
 	profile*/.style={
@@ -21,7 +42,7 @@
 		xmax = 1560,
 		xtick = {1450, 1500, 1550},
 		xticklabels={1.45, 1.5, 1.55},
-		ymin=-500, ymax=5500
+		ymin=\avgssp@ymin, ymax=\avgssp@ymax
 	}
 }
 
@@ -35,42 +56,7 @@
 		xmax = 1560,
 		xtick = {1450, 1500, 1550},
 		xticklabels={1.45, 1.5, 1.55},
-		ymin=-250, ymax=5150
+		ymin=\avgssp@ymin, ymax=\avgssp@ymax
 	}
 }
-
-\def\sympathA{optimal-import--petro-deep/260525-20h23m18s--layer}
-\def\sympathB{optimal-import--petro-deep/260525-20h23m23s--layer;blob}
-\def\sympathC{optimal-import--petro-deep/260525-20h23m35s--layer;layer+diag}
-\def\sympathD{optimal-import--petro-deep/260525-20h23m44s--layer;layer+appendix}
-\def\sympathE{optimal-import--petro-deep/260525-20h23m50s--layer;bracket}
-\def\sympathF{optimal-import--petro-deep/260525-20h24m00s--layer+column;layer+column}
-\def\sympathG{optimal-import--petro-deep/260525-20h24m11s--layer;cap}
-\def\sympathH{optimal-import--petro-deep/260525-20h24m20s--layer+column;layer}
-\def\sympathI{optimal-import--petro-deep/260525-20h24m28s--layer;layer+column}
-\def\sympathJ{optimal-import--petro-deep/260525-20h24m35s--layer+vertical;layer+vertical}
-\def\sympathK{optimal-import--petro-deep/260525-20h24m43s--layer+vertical;layer}
-\def\sympathL{optimal-import--petro-deep/260525-20h24m50s--layer;layer+vertical}
-\def\sympathM{optimal-import--petro-deep/260525-20h24m57s--layer+sparse;layer}
-\def\sympathN{optimal-import--petro-deep/260525-20h25m03s--layer;layer+sparse}
-\def\sympathO{optimal-import--petro-deep/260525-20h25m09s--cup;layer}
-
-\input{figures/data/\sympathA/params.tex}
-
-\pgfplotstableread[col sep=comma]{figures/data/\sympathA/0_profiles_observed.csv}\datatable
-% Create a new column "avg"
-\pgfplotstablecreatecol[
-create col/expr={
-	(
-	\thisrowno{1} +
-	\thisrowno{2} +
-	\thisrowno{3} +
-	\thisrowno{4} +
-	\thisrowno{5} +
-	\thisrowno{6} +
-	\thisrowno{7} +
-	\thisrowno{8} +
-	\thisrowno{9}
-	) / 9
-}
-]{avg}\datatable
+\makeatother

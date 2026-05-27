@@ -88,7 +88,7 @@ A \cref{fig:sec7:tt_ssf_rms_errors} apresenta os resultados globais das métrica
 
 \input{figures/7.e.nrays_ssf_error}
 
-\const Por completude, apresentaremos também um \ingles{scatterplot} do SSP médio ao longo da profundidade, estes sendo mostrados (para cada configuração) nas \cref{fig:sec7:estimated_ssps_svd,fig:sec7:estimated_ssps_ttt} para a SVD e a TTT, respectivamente. Enquanto as visualizações anteriores tratavam apenas das métricas de erro, aqui é mostrado o perfil médio estimado. Além dos dados de velocidade estimados, cada figura também apresenta o perfil médio verdadeiro, que deseja-se estimar.
+\const Por completude, apresentaremos também um \ingles{scatterplot} do SSP ao longo da profundidade, estes sendo mostrados (para cada configuração) nas \cref{fig:sec7:estimated_ssps_svd,fig:sec7:estimated_ssps_ttt} para a SVD e a TTT, respectivamente. Enquanto as visualizações anteriores tratavam apenas das métricas de erro, aqui é mostrado o perfil estimado. Além dos dados de velocidade estimados, cada figura também apresenta o perfil médio verdadeiro, que deseja-se estimar.
 
 \const Para ambas as técnicas, nota-se que os grupos 2 e 3 (verdes e azuis) realmente capturam de maneira satisfatória o perfil de velocidade original, com alguns erros (para cada configuração e técnica) ao longo da profundidade. Além disso, apesar de um desempenho superior, não há uma diferença significativa nos perfis estimados entre os grupos 2 e 3.
 
@@ -100,21 +100,21 @@ A \cref{fig:sec7:tt_ssf_rms_errors} apresenta os resultados globais das métrica
 
 Nas simulações anteriores dessa seção, em cada método (TTT e SVD) e configuração, foi utilizado o parâmetro obtido pela hiper-otimização, buscando minimizar o $\rmse_{\ssf}$ final. Agora apresentaremos resultados para os valores médios dos parâmetros (para cada técnica), com a média sendo realizada sobre as configurações de cada grupo, e aplicada àquele grupo. O objetivo desse resultado é comparar a robustez das técnicas à utilização de um parâmetro que não tenha sido escolhido especificamente para aquela configuração, e ver como ela se comporta para um parâmetro escolhido de maneira ``genérica''.
 %
-\def\sympathA{meanpar-import--petro/260525-20h22m02s--layer}
-\def\sympathB{meanpar-import--petro/260525-20h22m06s--layer;blob}
-\def\sympathC{meanpar-import--petro/260525-20h22m11s--layer;layer+diag}
-\def\sympathD{meanpar-import--petro/260525-20h22m18s--layer;layer+appendix}
-\def\sympathE{meanpar-import--petro/260525-20h22m22s--layer;bracket}
-\def\sympathF{meanpar-import--petro/260525-20h22m28s--layer+column;layer+column}
-\def\sympathG{meanpar-import--petro/260525-20h22m36s--layer;cap}
-\def\sympathH{meanpar-import--petro/260525-20h22m41s--layer+column;layer}
-\def\sympathI{meanpar-import--petro/260525-20h22m47s--layer;layer+column}
-\def\sympathJ{meanpar-import--petro/260525-20h22m51s--layer+vertical;layer+vertical}
-\def\sympathK{meanpar-import--petro/260525-20h22m57s--layer+vertical;layer}
-\def\sympathL{meanpar-import--petro/260525-20h23m01s--layer;layer+vertical}
-\def\sympathM{meanpar-import--petro/260525-20h23m04s--layer+sparse;layer}
-\def\sympathN{meanpar-import--petro/260525-20h23m07s--layer;layer+sparse}
-\def\sympathO{meanpar-import--petro/260525-20h23m13s--cup;layer}
+\def\sympathA{meanpar-import--petro/260527-14h15m17s-a--layer}
+\def\sympathB{meanpar-import--petro/260527-14h15m17s-b--layer;blob}
+\def\sympathC{meanpar-import--petro/260527-14h15m17s-c--layer;layer+diag}
+\def\sympathD{meanpar-import--petro/260527-14h15m17s-d--layer;layer+appendix}
+\def\sympathE{meanpar-import--petro/260527-14h15m17s-e--layer;bracket}
+\def\sympathF{meanpar-import--petro/260527-14h15m17s-f--layer+column;layer+column}
+\def\sympathG{meanpar-import--petro/260527-14h15m17s-g--layer;cap}
+\def\sympathH{meanpar-import--petro/260527-14h15m17s-h--layer+column;layer}
+\def\sympathI{meanpar-import--petro/260527-14h15m17s-i--layer;layer+column}
+\def\sympathJ{meanpar-import--petro/260527-14h15m17s-j--layer+vertical;layer+vertical}
+\def\sympathK{meanpar-import--petro/260527-14h15m17s-k--layer+vertical;layer}
+\def\sympathL{meanpar-import--petro/260527-14h15m17s-l--layer;layer+vertical}
+\def\sympathM{meanpar-import--petro/260527-14h15m17s-m--layer+sparse;layer}
+\def\sympathN{meanpar-import--petro/260527-14h15m17s-n--layer;layer+sparse}
+\def\sympathO{meanpar-import--petro/260527-14h15m17s-o--cup;layer}
 
 \const Os resultados de RMSE de SSF, para os dois métodos, e todas as configurações, para o caso sem hiper-otimização de parâmetros, estão na \cref{fig:sec7:tt_ssf_rms_errors_no-pho}. Apresentamos apenas o erro de SSF, já que o resultadao de tempo de trânsito não é tão relevante de ser discutido. Comparando com os resultados da \cref{fig:sec7:tt_ssf_rms_errors}, é notável uma piora dos desempenhos. Em particular na para a SVD, enquanto antes havia um comportamento monotônico decrescente nos erros, aqui isso já não é visto.
 

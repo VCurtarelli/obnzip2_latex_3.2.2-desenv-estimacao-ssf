@@ -94,14 +94,43 @@ mark=triangle*, mark size=4, mark options={
 		ytick={0, 500, ..., 1500},
 		yticklabels={0, 0.5, ..., 1.5},
 		xtick={\empty},
-%		xtick={0, 1000, 2000},
-%		xticklabels={0, 1, 2},
 		xmin=0, xmax=2000,
 		ymin=0, ymax=1500,
-		% xlabel={Deslocamento ($\si{\kilo\meter}$)},
-		% ylabel={Profundidade ($\si{\kilo\meter}$)},
+		height=0.75\linewidth,
+		width=0.75\linewidth,
+		scale only axis
 	}
 }
+
+\def\sympathA{optimal-import--petro/260527-14h15m17s-a--layer}
+\def\sympathB{optimal-import--petro/260527-14h15m17s-b--layer;blob}
+\def\sympathC{optimal-import--petro/260527-14h15m17s-c--layer;layer+diag}
+\def\sympathD{optimal-import--petro/260527-14h15m17s-d--layer;layer+appendix}
+\def\sympathE{optimal-import--petro/260527-14h15m17s-e--layer;bracket}
+\def\sympathF{optimal-import--petro/260527-14h15m17s-f--layer+column;layer+column}
+\def\sympathG{optimal-import--petro/260527-14h15m17s-g--layer;cap}
+\def\sympathH{optimal-import--petro/260527-14h15m17s-h--layer+column;layer}
+\def\sympathI{optimal-import--petro/260527-14h15m17s-i--layer;layer+column}
+\def\sympathJ{optimal-import--petro/260527-14h15m17s-j--layer+vertical;layer+vertical}
+\def\sympathK{optimal-import--petro/260527-14h15m17s-k--layer+vertical;layer}
+\def\sympathL{optimal-import--petro/260527-14h15m17s-l--layer;layer+vertical}
+\def\sympathM{optimal-import--petro/260527-14h15m17s-m--layer+sparse;layer}
+\def\sympathN{optimal-import--petro/260527-14h15m17s-n--layer;layer+sparse}
+\def\sympathO{optimal-import--petro/260527-14h15m17s-o--cup;layer}
+
+\input{figures/data/\sympathA/params.tex}
+
+\makeatletter
+\def\avgssp@ymin{-75}
+\def\avgssp@ymax{1575}
+\NewDocumentCommand{\avgssp}{O{1.8\linewidth} O{0.8\linewidth}}{\begin{axis}[
+		% Options for the second plot
+		hide axis, % Hides axes for the second plot
+		y dir=reverse,ytick={\empty}, height=#1, width=#2, scale only axis,
+		xmin = 1440, xmax=1560, xtick={\empty}, ymin=\avgssp@ymin, ymax=\avgssp@ymax
+		]
+		\addplot[ultra thick, black] table[y=y,x=val, col sep=comma] {figures/data/\sympathA/0_mean_profile_observed.csv};
+\end{axis}}
 
 \pgfplotsset{
 	profile*/.style={
@@ -112,65 +141,21 @@ mark=triangle*, mark size=4, mark options={
 		xmax = 1560,
 		xtick = {1450, 1500, 1550},
 		xticklabels={1.45, 1.5, 1.55},
-		ymin=-75, ymax=1575
+		ymin=\avgssp@ymin, ymax=\avgssp@ymax
 	}
 }
 
 \pgfplotsset{
 	profile/.style={
 		y dir=reverse,
-%		ytick={0, 500, 1000, 1500, 2000},
-%		yticklabels={0, 0.5, 1, 1.5, 2},
+		%		ytick={0, 500, 1000, 1500, 2000},
+		%		yticklabels={0, 0.5, 1, 1.5, 2},
 		ytick={\empty},
 		xmin = 1440,
 		xmax = 1560,
 		xtick = {1450, 1500, 1550},
 		xticklabels={1.45, 1.5, 1.55},
-		ymin=-75, ymax=1575
+		ymin=\avgssp@ymin, ymax=\avgssp@ymax
 	}
 }
-
-\def\sympathA{optimal-import--petro/260525-20h20m51s--layer}
-\def\sympathB{optimal-import--petro/260525-20h20m53s--layer;blob}
-\def\sympathC{optimal-import--petro/260525-20h21m00s--layer;layer+diag}
-\def\sympathD{optimal-import--petro/260525-20h21m05s--layer;layer+appendix}
-\def\sympathE{optimal-import--petro/260525-20h21m09s--layer;bracket}
-\def\sympathF{optimal-import--petro/260525-20h21m16s--layer+column;layer+column}
-\def\sympathG{optimal-import--petro/260525-20h21m23s--layer;cap}
-\def\sympathH{optimal-import--petro/260525-20h21m28s--layer+column;layer}
-\def\sympathI{optimal-import--petro/260525-20h21m34s--layer;layer+column}
-\def\sympathJ{optimal-import--petro/260525-20h21m38s--layer+vertical;layer+vertical}
-\def\sympathK{optimal-import--petro/260525-20h21m42s--layer+vertical;layer}
-\def\sympathL{optimal-import--petro/260525-20h21m47s--layer;layer+vertical}
-\def\sympathM{optimal-import--petro/260525-20h21m50s--layer+sparse;layer}
-\def\sympathN{optimal-import--petro/260525-20h21m53s--layer;layer+sparse}
-\def\sympathO{optimal-import--petro/260525-20h21m57s--cup;layer}
-
-\input{figures/data/\sympathA/params.tex}
-
-
-\pgfplotstableread[col sep=comma]{figures/data/\sympathA/0_profiles_observed.csv}\datatable
-% Create a new column "avg"
-\pgfplotstablecreatecol[
-create col/expr={
-	(
-	\thisrowno{1} +
-	\thisrowno{2} +
-	\thisrowno{3} +
-	\thisrowno{4} +
-	\thisrowno{5} +
-	\thisrowno{6} +
-	\thisrowno{7} +
-	\thisrowno{8} +
-	\thisrowno{9}
-	) / 9
-}
-]{avg}\datatable
-\NewDocumentCommand{\avgssp}{O{1.8\linewidth} O{0.8\linewidth}}{\begin{axis}[
-		% Options for the second plot
-		hide axis, % Hides axes for the second plot
-		y dir=reverse,ytick={\empty}, height=#1, width=#2, scale only axis,
-		xmin = 1440, xmax=1560, xtick={\empty}
-		]
-		\addplot[ultra thick, black] table[y index=0,x=avg] {\datatable};
-\end{axis}}
+\makeatother

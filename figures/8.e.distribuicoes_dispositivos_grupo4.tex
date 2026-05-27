@@ -1,9 +1,9 @@
 \begin{figure}[!ht]
 	\centering
-	\begin{minipage}[b]{0.3\linewidth}
+	\begin{minipage}[b]{0.22\linewidth}
 		%		\vspace*{-3em}
 		\centering
-		\begin{subfigure}{0.9\linewidth}
+		\begin{subfigure}{\linewidth}
 			\centering
 			\begin{tikzpicture}
 				\begin{heatmap}{\ncols}[colorbar=false,hmstyle]
@@ -14,13 +14,13 @@
 					\addplot[only marks, mark=o, mark options={draw=blue,double,line width=1.5pt,mark size=3pt}] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_sources.csv};
 				\end{heatmap}
 			\end{tikzpicture}
-			\caption{}
+			\caption*{(p)}
 			\label{fig:sec8:dispositivos_g4:subfig1}
 		\end{subfigure}
 	\end{minipage}
-	\begin{minipage}[b]{0.3\linewidth}
+	\begin{minipage}[b]{0.22\linewidth}
 		\centering
-		\begin{subfigure}{0.9\linewidth}
+		\begin{subfigure}{\linewidth}
 			\centering
 			\begin{tikzpicture}
 				\begin{heatmap}{\ncols}[colorbar=false,hmstyle]
@@ -31,7 +31,7 @@
 					\addplot[only marks, mark=o, mark options={draw=blue,double,line width=1.5pt,mark size=3pt}] table [x=x_pos, y=y_pos, col sep=comma] {figures/data/\sympath/pos_sources.csv};
 				\end{heatmap}
 			\end{tikzpicture}
-			\caption{}
+			\caption*{(q)}
 			\label{fig:sec8:dispositivos_g4:subfig2}
 		\end{subfigure}
 	\end{minipage}

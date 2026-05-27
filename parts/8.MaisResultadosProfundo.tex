@@ -37,10 +37,10 @@ Os resultados obtidos anteriormente indicam que, para o caso com profundidades g
 
 Disso, postula-se que uma configuração mista, por exemplo combinando as fontes dos casos (k,m) com os receptores dos casos (b,c,e), poderia alcançar uma performance próxima às obtidas no grupo 2, mas com uma menor densidade de dispositivos ao longo da profundidade.
 
-Dado que as performances das configurações (k,m) foram semelhantes (para ambas técnicas), e também para as configurações (b,c,e) (também para ambas técnicas), testaremos duas últimas configurações, apresentadas na \cref{fig:sec8:dispositivos_g4}. Essas configurações constituem o grupo 4, e funcionam como um ``misto'' entre os grupos 1 e 3; em particular, a configuração (p) é a junção das configs. (b) e (k), e a configuração (q) é a função de (b) com (m). Por razões de ``equilíbrio'' (uma comparação mais justas com as anteriormente apresentadas), nessas duas configurações foram reduzidos os números de linhas de receptores na superfície, e de fontes ao longo da coluna.
+Dado que as performances das configurações (k,m) foram semelhantes (para ambas técnicas), e também para as configurações (b,c,e) (também para ambas técnicas), testaremos duas últimas configurações, apresentadas na \cref{fig:sec8:dispositivos_g4}. Essas configurações constituem o grupo 4, e funcionam como um ``misto'' entre os grupos 1 e 3; em particular, a configuração (p) é a junção das configs. (b) e (k), e a configuração (q) é a junção de (b) com (m). Por razões de ``equilíbrio'' (uma comparação mais justas com as anteriormente apresentadas), nessas duas configurações foram reduzidos os números de linhas de receptores na superfície, e de fontes ao longo da coluna.
 
-\def\sympathP{optimal-import--petro-deep/260527-13h01m29s--layer+vertical;blob}
-\def\sympathQ{optimal-import--petro-deep/260527-13h01m35s--layer+sparse;blob}
+\def\sympathP{optimal-import--petro-deep/260527-14h15m17s-p--layer+vertical;blob}
+\def\sympathQ{optimal-import--petro-deep/260527-14h15m17s-q--layer+sparse;blob}
 
 \input{figures/8.e.distribuicoes_dispositivos_grupo4}
 
@@ -50,13 +50,13 @@ Os resultados de RMSE de tempo de trânsito e de SSF, para ambas as técnicas, e
 
 \input{figures/8.f.tt_ssf_rms_errors_grupo4}
 
-\const As \cref{fig:sec8:estimated_ssps_svd_g4,fig:sec8:estimated_ssps_ttt_g4} apresentam as médias dos perfis estimados, para as configurações do grupo 4 + as selecionadas (b,f,m), para as duas técnicas. Aqui reitera-se que a SVD não foi capaz de reconstruir o perfil desejado com as novas configurações, ou tendo erros próximos à superfície, ou tendo uma variabilidade grande ao longo da coluna. A TTT já teve um desempenho amplamente superior, aproximando-se satisfatoriamente da configuração (f) (em verde nas \cref{fig:sec8:estimated_ssps_svd_g4,fig:sec8:estimated_ssps_ttt_g4}).
+\const As \cref{fig:sec8:estimated_ssps_g4} apresentam as médias dos perfis estimados, para as configurações do grupo 4 + as selecionadas (b,f,m), para as duas técnicas. Aqui reitera-se que a SVD não foi capaz de reconstruir o perfil desejado com as novas configurações, ou tendo erros próximos à superfície, ou tendo uma variabilidade grande ao longo da coluna. A TTT já teve um desempenho amplamente superior, aproximando-se satisfatoriamente da configuração (f) (em verde nas \cref{fig:sec8:estimated_ssps_g4}).
 
 \input{figures/8.g.estimated_ssps_deep_grupo4}
 
 \const Os resultados apresentados confirmam a teoria postulada anteriormente, que a mescla entre várias passagens superficiais com alguns dispositivos espalhados na coluna seria capaz de compensar as falhas que cada uma dessas configurações apresenta separadamente.
 
-\const Além disso, tem-se um resultado semelhante ao visto anteriormente, em que o (des)ordenamento do posicionamento dos dispositivos pouco afeta o desempenho; ou seja, as fontes extras estarem em uma única faixa vertical, ou espalhadas aleatoriamente ao longo da coluna d'água, tem pouco efeito sobre o desempenho da estimação do SSF.
+\const Além disso, tem-se um resultado semelhante ao visto anteriormente, em que o (des)ordena-mento do posicionamento dos dispositivos pouco afeta o desempenho; ou seja, as fontes extras estarem em uma única faixa vertical, ou espalhadas aleatoriamente ao longo da coluna d'água, tem pouco efeito sobre o desempenho da estimação do SSF.
 
 % TODO: SEM HIPER-PARÂMETROS
 %\def\sympathA{meanpar-import-deep--petro/meanpar-import--petro-deep--260522-14h40m20s--layer}
