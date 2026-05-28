@@ -1,0 +1,94 @@
+\section{Revisão bibliográfica de inversão utilizando tempo de trânsito}
+\label{sec_rt}
+Seguindo as ideias da revisão bibliográfica anterior, foi realizada uma segunda pesquisa. Nela, o objetivo é buscar artigos que tratem do problema de inversão tomográfica utilizando primariamente informação de tempo de trânsito, mas não se atendo obrigatoriamente à técnica de TTT.
+
+Nesta revisão, focamos em uma seleção de periódicos (\quote{IEEE Trans. on Instrumentation and Measurement}, \quote{IEEE Trans. on Geoscience and Remote Sensing}, e \quote{IEEE Journal of Oceanic Engineering}) e termos (\quote{Acoustic Tomography}, \quote{Travel Time Tomography}, e \quote{Seismic Tomography}). Um total de 47 artigos foram extraídos dos primeiros 125 resultantes da busca no IEEExplore, dos quais 17 foram posteriormente selecionados por estarem relacionados à tomografia com tempo de trânsito (não especificamente \ingles{Travel-Time Tomography}), e 4 foram finalmente filtrados por possuírem reflexões mais profundas ou detalhadas que melhor se adequam à pesquisa atual.
+
+\subsection{Leitura superficial nos artigos selecionados}
+
+Aqui falaremos brevemente sobre cada artigo selecionado, destacando (citação em negrito) os mais promissores, com abordagens e desenvolvimentos teóricos que poderiam ser úteis.
+
+\begin{itemize}
+	\citem{agata_bayesian_2023} - Utiliza \ingles{Physically-Informed Neural Networks} (PINNs) treinadas para resolver a equação Eikonal e estimar o SSF.
+	\citem{bao_online_2020} - Adiciona um termo de regularização temporal na função de custo para utilizar informações de tempo de trânsito de múltiplas janelas.
+	\citem{carriere_featureoriented_2013} - Usa tomografia acústica para estimação de perfil de temperatura em corpo d'água.
+	\citem{djikpesse_reducing_2010} - Utiliza modelos TTT para estimar e corrigir perfis de velocidade ao longo de poços.
+	\citem{goyal_ultrasound_2025} - Utiliza modelos TTT para reconstruir imagens pulmonares.
+	\citem{gras_practical_2022} - Utiliza modelos TTT para reconstrução de estruturas de velocidade de onda P subsuperficiais. Refina adicionalmente este modelo usando FWI.
+	\citem{han_realtime_2014} - Foca no desenvolvimento de um sistema de imageamento 3D na água em tempo-real usando \ingles{beamforming}, mas parece não considerar \ingles{raybending}.
+	\citem{jo_seismic_2023,jo_seismic_2024} - Ambos os artigos utilizam NNs para TTT, usando diferentes abordagens de ML para o treinamento da NN.
+	\citem{li_multiscale_2024} - Utiliza múltiplas grades deslocadas para alcançar complementarmente resultados mais precisos na inversão de velocidade sísmica. Não utiliza TTT, embora utilize informações de tempo de trânsito.
+	\citem{mei_uncertainty_2025} - Implementa TTT através de NNs e desenvolve novas abordagens de quantificação de incerteza.
+	\citem{othmani_acoustic_2024} - Utiliza TTT e dados de tempo de trânsito para reconstrução de campos de temperatura interna.
+	\citem{shin_distributed_2022} - Minimiza a função de custo TTT sujeita à equação Eikonal, em vez de resolver ambas iterativamente.
+	\citem{wang_seismic_2024} - Muito semelhante a \cite{jo_seismic_2023}, usando uma abordagem de ML diferente para o treinamento.
+	\citem{wo_firstarrival_2024} - Utiliza uma estrutura TTT ligeiramente modificada (força a função de regularização a ser 0 em vez de adicioná-la à minimização) e adiciona informações da estrutura à função-custo.
+	\citem{yu_krylov_2021} - Emprega métodos de subespaço de Krylov para lidar com o problema mal posto de TTT, inversão acústica e reconstrução de campos de velocidade do som.
+	\citem{yu_review_2022} - Um artigo de revisão sobre o uso de informações de tempo de trânsito na reconstrução de campos de velocidade do som e temperatura, através de diferentes técnicas e abordagens.
+	\citem{zhang_optimization_2023} - Estuda a otimização do arranjo de transdutores (dispositivos), para reconstrução de SSF com TTT, considerando também o fluxo de fluido.
+	\citem{zhang_nonlinear_2022} - Utiliza TTT para estimação do SSF e propõe/destaca uma nova abordagem de \textsl{ray-tracing}.
+\end{itemize}
+
+\subsection{Análise aprofundada}
+\label{sec_rt:subsec_deeper-analysis}
+
+Dada a leitura superficial anterior dos artigos e a eleição de alguns que estão mais alinhados com as necessidades da pesquisa atual, estes selecionados serão agora apresentados e discutidos mais profundamente.
+
+\papersec{\citeay*{li_multiscale_2024}}
+
+O objetivo deste artigo de \cite{li_multiscale_2024} é o mesmo do projeto --- inversão de campo de velocidade através de tomografia sísmica --- embora focado na estimativa de estrutura de subsuperfície, em vez da modelagem do SSF. No lugar da tradicional minimização do erro de tempo de trânsito sujeita a uma restrição de regularização, a abordagem deles minimiza o erro da equação Eikonal, sujeita a uma restrição de tempo nulo de percurso nas fontes\footnote{O problema deles separa entre ondas fonte-receptor e ondas receptor-fonte, cada uma com tempo $0$ na sua origem.}. Esta técnica é chamada de \quote{\ingles{Fixed-scale regular-grid adjoint-state First-Arrival Slope Tomography seismic velocity inversion method}} (ou FFAST).
+
+Expandindo isso, eles propuseram um \quote{Multiscale FFAST} (ou MFAST), utilizando múltiplas grades com diferentes escalas e deslocamentos, estimando o SSF modelado em cada uma, e usando uma interpolação cubic spline para fundir as diferentes estimativas e alcançar uma solução global. Seus resultados comparam o FAT (TTT tradicional, como exposto anteriormente), FFAST e MFAST, mostrando que as abordagens FFAST e o MFAST proposto tiveram resultados melhores (embora marginalmente).
+
+\begin{itemize}
+	\item Múltiplas grades com diferentes espaçamentos (\textsl{Multiscale})
+	\item Uso do esquema de minimização FFAST em vez de TTT - função de custo diferente
+	\item Não necessita de um resolvedor Eikonal, dado o esquema de minimização
+\end{itemize}
+
+\papersec{\citeay*{shin_distributed_2022}}
+
+Neste artigo \cite{shin_distributed_2022}, eles usam uma estrutura baseada em TTT, minimizando o erro de tempo de trânsito sujeito à equação Eikonal (esta sujeita a tempo de trânsito zero na fonte), em vez da tradicional minimização alternada de cada um. Semelhante a \cite{li_multiscale_2024}, uma abordagem de \textsl{adjoint state} é empregada, fundindo a restrição da equação Eikonal na função custo. O método FSM é usado para resolver a etapa da equação Eikonal. Então, uma solução para o modelo de vagarosidade (\textsl{slowness}) é atualizada iterativamente, até que a convergência seja alcançada.
+
+Além disso, o trabalho deles propõe uma TTT distribuída, onde um subconjunto de toda a informação de tempo de trânsito (ou uma aproximação da informação) está disponível em cada nó (receptor), e cada receptor atualiza localmente seu modelo. Isso é relevante para sistemas não centralizados, o que não se aplica ao cenário atual, onde toda a informação é reunida em uma unidade central de processamento encarregada de estimar o SSF. No entanto, o esquema de minimização empregado neste artigo pode ser útil e aplicável na pesquisa atual.
+
+\begin{itemize}
+	\item Função de custo diferente quando comparada ao TTT
+	\item Usa um esquema computacional distribuído, em vez do tradicional centralizado
+	\item Usa o FSM, que poderia ser substituído por FMM
+\end{itemize}
+
+\papersec{\citeay*{yu_krylov_2021}}
+
+Neste artigo \cite{yu_krylov_2021}, em vez de estimar a vagarosidade (e, portanto, a velocidade) em cada célula, eles tratam o perfil de vagarosidade como uma função-vetor sobre um espaço determinado por uma base de funções de kernel, com suas respectivas entradas vetoriais sendo os parâmetros sobre esta base, sendo estes os valores estimados no processo de minimização. O problema inicial deles é a otimização TTT básica, usando uma regularização RMS em vez de uma de suavidade (Laplaciano espacial discreto).
+
+Eles comparam diferentes bases de kernel e diferentes subespaços de Krylov para resolver o processo de minimização para alguns modelos de temperatura.
+
+\begin{itemize}
+	\item Usa um espaço de minimização totalmente diferente, mas ainda baseado no TTT
+	\item Explora diferentes subespaços e bases de funções
+\end{itemize}
+
+\papersec{\citeay*{zhang_nonlinear_2022}}
+
+Neste artigo \cite{zhang_nonlinear_2022}, eles usam um algoritmo evolutivo para encontrar a solução ótima para o campo de vagarosidade, em vez de um problema de minimização iterativo baseado em gradiente. Eles também consideram um campo de velocidade de fluxo junto com o campo de velocidade estático, e trazem um novo método de ray-tracing baseado na otimização de três pontos das curvas. Este algoritmo de ray-tracing aproxima o raio como uma sequência de pontos e atualiza iterativamente essas posições perturbando sistematicamente a posição de cada ponto com base em seus vizinhos e no campo de rapidez/velocidade.
+
+Tendo os raios, uma nova geração de possíveis candidatos é gerada com base na média ponderada da geração anterior e outros parâmetros estáticos e dinâmicos. As vantagens desta abordagem residem na sua independência de um cálculo de gradiente, que pode ser computacionalmente dispendioso.
+
+\begin{itemize}
+	\item Usa um algoritmo evolutivo em vez de um baseado em gradiente para otimizar o SSF
+	\item Usa um algoritmo de ray-tracing proposto em vez de um resolvedor Eikonal
+\end{itemize}
+
+%\subsection{Considerações práticas}
+%
+%Entre os artigos apresentados, em particular os poucos selecionados e detalhados adiante, alguns esquemas diferentes de estimativa de perfil de vagarosidade foram propostos, todos usando a informação de tempo de trânsito (já disponível), mas modelando o problema de forma diferente em comparação com a TTT tradicional (e já implementada). Entre estes 4 artigos, o único que não dependia do posicionamento de dispositivos ao redor (em torno do ambiente, tanto horizontal quanto verticalmente) foi \cite{yu_krylov_2021}, com os outros três necessitando de medição perimetral. Entre os 18 artigos estudados, nenhum abordou diretamente o problema de ter duas camadas de dispositivos, estas perpendiculares à direção principal do gradiente de vagarosidade dentro do ambiente --- sendo esta a principal preocupação e problema atual nos métodos desenvolvidos e aplicados.
+%
+%Alguns métodos diferentes para resolver o problema de inversão de SSF usando apenas informações de tempo de trânsito --- não dependendo da tomografia de tempo de trânsito já explorada --- foram mostrados nestes artigos, sendo estes superficialmente explicados em suas respectivas subseções. Estes poderiam ser testados na aplicação prática, verificando se são soluções interessantes para o problema central, e ajudando com a situação mal posta onde a solução alcançada não rastreia adequadamente o perfil desejado.
+
+\subsection{\textsl{Mindmap} e conclusões}
+
+A \cref{fig:mindmap_sec3} apresenta um \textsl{mindmap} resumindo a revisão dos artigos apresentados em relação aos métodos utilizados, às aplicações, e aos tipos de dados de entrada que cada artigo utiliza. O número em cada nó menor é a quantidade de artigos que se encaixa naquela classificação. Essas classificações serão revisitadas e expandidas na \cref{sec:cp}.
+
+Dada a natureza dessa revisão bibliográfica, a esmagadora maioria dos artigos utiliza informação de tempo de trânsito. No método, uma boa parte utiliza métodos derivados da formulação de TTT, alguns utilizam os dados de tempo de trânsito como entrada para treinamento de redes neurais, e alguns outros propõem formulações diferentes. Quanto à aplicação, a maior parte restringe-se ao imageamento de estruturas geológicas, com alguns tratando da estimação de perfis de temperatura em ambientes.
+\input{figures/3.Mindmap.tex}

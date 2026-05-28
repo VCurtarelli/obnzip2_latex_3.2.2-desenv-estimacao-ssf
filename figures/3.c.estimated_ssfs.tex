@@ -1,0 +1,72 @@
+%\input{figures/data/\sympath/params_comp.tex}
+
+\begin{figure*}[!t]
+	\centering
+    \begin{subfigure}{0.45\linewidth}
+    	\centering
+    	\begin{tikzpicture}
+    		\begin{lineplot}{Erro do SSF ($\si{\meter/\second}$)}{Profundidade ($\si{\kilo\meter}$)}[y dir=reverse,
+    			ytick={0, 500, 1000, 1500, 2000}, yticklabels={0, 0.5, 1, 1.5, 2}, xmin=-22, xmax=22]%[colorbar to name = {dump1},hmstyle]10
+    			\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+    				\def\sympath{\sympathlayer}
+    				\addplot[draw=none, resA]
+    				table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd_comp.csv};
+    			}
+    		\end{lineplot}
+    	\end{tikzpicture}
+    	\caption{SVD - Camadas}
+    	\label{fig:sec4:estimated_ssfs:subfig3}
+    \end{subfigure}
+    \hspace*{2em}
+    \begin{subfigure}{0.45\linewidth}
+    	\centering
+    	\begin{tikzpicture}
+    		\begin{lineplot}{Erro do SSF ($\si{\meter/\second}$)}{Profundidade ($\si{\kilo\meter}$)}[y dir=reverse,
+    			ytick={0, 500, 1000, 1500, 2000}, yticklabels={0, 0.5, 1, 1.5, 2}, xmin=-65, xmax=65]%[colorbar to name = {dump1},hmstyle]
+    			\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+    				\def\sympath{\sympathlayer}
+    				\addplot[draw=none, resB]
+    				table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic_comp.csv};
+    			}
+    		\end{lineplot}
+    	\end{tikzpicture}
+    	\caption{TTT - Camadas}
+    	\label{fig:sec4:estimated_ssfs:subfig4}
+    \end{subfigure}
+    \\[0.5em]
+    \begin{subfigure}{0.45\linewidth}
+    	\centering
+    	\begin{tikzpicture}
+    		\begin{lineplot}{Erro do SSF ($\si{\meter/\second}$)}{Profundidade ($\si{\kilo\meter}$)}[y dir=reverse,
+    			ytick={0, 500, 1000, 1500, 2000}, yticklabels={0, 0.5, 1, 1.5, 2}, xmin=-4, xmax=4]%[colorbar to name = {dump1},hmstyle]
+    			\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+    				\def\sympath{\sympathsurround}
+    				\addplot[draw=none, resC]
+    				table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_svd_comp.csv};
+    			}
+    		\end{lineplot}
+    	\end{tikzpicture}
+    	\caption{SVD - Entorno}
+    	\label{fig:sec4:estimated_ssfs:subfig1}
+    \end{subfigure}
+    \hspace*{2em}
+    \begin{subfigure}{0.45\linewidth}
+    	\centering
+    	\begin{tikzpicture}
+    		\begin{lineplot}{Erro do SSF ($\si{\meter/\second}$)}{Profundidade ($\si{\kilo\meter}$)}[y dir=reverse,
+    			ytick={0, 500, 1000, 1500, 2000}, yticklabels={0, 0.5, 1, 1.5, 2}, xmin=-4, xmax=4]%[colorbar to name = {dump1},hmstyle]
+    			\foreach \x in {1, 2, ..., 9} { % number of columns (excluding y)
+    				\def\sympath{\sympathsurround}
+    				\addplot[draw=none, resD]
+    				table[y=y,x index=\x, col sep=comma] {figures/data/\sympath/fin_profiles_classic_comp.csv};
+    			}
+    		\end{lineplot}
+    	\end{tikzpicture}
+    	\caption{TTT - Entorno}
+    	\label{fig:sec4:estimated_ssfs:subfig2}
+    \end{subfigure}\\[0.5em]
+
+	\colorbar{lineplots}
+    \caption{Erros de estimação de cada SSP, para os métodos TTT e SVD, nos cenários de dispositivos no perímetro e em camadas, para a iteração final.}
+    \label{fig:sec4:estimated_ssfs}
+\end{figure*}

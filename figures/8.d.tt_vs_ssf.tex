@@ -1,0 +1,166 @@
+\begin{figure}[!ht]
+	\centering\setlength{\parindent}{0pt}
+	\begin{subfigure}[t]{0.6\linewidth}
+		\centering
+		\begin{tikzpicture}
+			\begin{lineplot}{$\rmse_{t}$ ($\si{\milli\second}$)}{$\rmse_{\ssf}$ ($\si{\meter/\second}$)}[ymode=log, xmode=log,]
+				{
+					\def\sympath{\sympathA}
+					\addplot[only marks, resSVD=resA, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};  
+					\addplot[only marks, resTTT=resA, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_classic.csv}; 
+				}
+				{
+					\def\sympath{\sympathB}
+					\addplot[only marks, resSVD=resB, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};  
+					\addplot[only marks, resTTT=resB, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathC}
+					\addplot[only marks, resSVD=resC, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};  
+					\addplot[only marks, resTTT=resC, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathD}
+					\addplot[only marks, resSVD=resD, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};  
+					\addplot[only marks, resTTT=resD, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathE}
+					\addplot[only marks, resSVD=resE, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};  
+					\addplot[only marks, resTTT=resE, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathF}
+					\addplot[only marks, resSVD=resF, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};  
+					\addplot[only marks, resTTT=resF, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathG}
+					\addplot[only marks, resSVD=resG, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};  
+					\addplot[only marks, resTTT=resG, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathH}
+					\addplot[only marks, resSVD=resH, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};  
+					\addplot[only marks, resTTT=resH, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathI}
+					\addplot[only marks, resSVD=resI, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};  
+					\addplot[only marks, resTTT=resI, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathJ}
+					\addplot[only marks, resSVD=resJ, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};  
+					\addplot[only marks, resTTT=resJ, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_classic.csv}; 
+				}
+			\end{lineplot}
+		\end{tikzpicture}
+		%        \caption{Erro RMS de tempo de trânsito.}
+		%        \label{fig:appA:tt_ssf_rms_errors:subfig1}
+	\end{subfigure}
+	
+%	\vspace*{.5em}
+	\caption{\ingles{Scatterplot} $\rmse_{t}$ vs $\rmse_{\ssf}$, para os métodos TTT e SVD, nos cenários de dispositivos no perímetro e em camadas, ao longo de 10 iterações.}
+	\label{fig:sec8:tt_vs_ssf_it-final}
+	\vspace*{1em}
+	
+	\begingroup
+	\def\sympathA{meanpar-import-deep--petro/meanpar-import-deep--petro--260518-14h38m48s--layer}
+	\def\sympathB{meanpar-import-deep--petro/meanpar-import-deep--petro--260518-14h38m52s--layer;blob}
+	\def\sympathC{meanpar-import-deep--petro/meanpar-import-deep--petro--260518-14h39m01s--layer;layer-diag}
+	\def\sympathD{meanpar-import-deep--petro/meanpar-import-deep--petro--260518-14h39m09s--layer;layer-column}
+	\def\sympathE{meanpar-import-deep--petro/meanpar-import-deep--petro--260518-14h39m15s--layer;bracket}
+	\def\sympathF{meanpar-import-deep--petro/meanpar-import-deep--petro--260518-14h39m22s--surround}
+	\def\sympathG{meanpar-import-deep--petro/meanpar-import-deep--petro--260518-14h39m32s--layer-scolumn;layer}
+	\def\sympathH{meanpar-import-deep--petro/meanpar-import-deep--petro--260518-14h39m36s--layer;layer-scolumn}
+	\def\sympathI{meanpar-import-deep--petro/meanpar-import-deep--petro--260518-14h39m42s--semi-surround}
+	\def\sympathJ{meanpar-import-deep--petro/meanpar-import-deep--petro--260518-14h39m49s--layer;cap}
+	
+	\begin{subfigure}[t]{0.6\linewidth}
+		\centering
+		\begin{tikzpicture}
+			\begin{lineplot}{$\rmse_{t}$ ($\si{\milli\second}$)}{$\rmse_{\ssf}$ ($\si{\meter/\second}$)}[ymode=log, xmode=log,]
+				{
+					\def\sympath{\sympathA}
+					\addplot[only marks, resSVD=resA, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};  
+					\addplot[only marks, resTTT=resA, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_classic.csv}; 
+				}
+				{
+					\def\sympath{\sympathB}
+					\addplot[only marks, resSVD=resB, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};  
+					\addplot[only marks, resTTT=resB, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathC}
+					\addplot[only marks, resSVD=resC, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};  
+					\addplot[only marks, resTTT=resC, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathD}
+					\addplot[only marks, resSVD=resD, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};  
+					\addplot[only marks, resTTT=resD, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathE}
+					\addplot[only marks, resSVD=resE, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};  
+					\addplot[only marks, resTTT=resE, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathF}
+					\addplot[only marks, resSVD=resF, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};  
+					\addplot[only marks, resTTT=resF, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathG}
+					\addplot[only marks, resSVD=resG, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};  
+					\addplot[only marks, resTTT=resG, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathH}
+					\addplot[only marks, resSVD=resH, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};  
+					\addplot[only marks, resTTT=resH, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathI}
+					\addplot[only marks, resSVD=resI, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};  
+					\addplot[only marks, resTTT=resI, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_classic.csv}; 
+				}
+				
+				{
+					\def\sympath{\sympathJ}
+					\addplot[only marks, resSVD=resJ, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_svd.csv};  
+					\addplot[only marks, resTTT=resJ, last] table[x=x,y=y, col sep=comma] {figures/data/\sympath/metric_time_vs_ssf_classic.csv}; 
+				}
+			\end{lineplot}
+		\end{tikzpicture}
+		%        \caption{Erro RMS de tempo de trânsito.}
+		%        \label{fig:appA:tt_ssf_rms_errors:subfig1}
+	\end{subfigure}
+	
+%	\vspace*{.5em}
+	%	\colorbar{scatterplot1}
+	\caption{\ingles{Scatterplot} $\rmse_{t}$ vs $\rmse_{\ssf}$, para os métodos TTT e SVD, nos cenários de dispositivos no perímetro e em camadas, ao longo de 10 iterações, \textbf{sem hiper-otimização}.}
+	\label{fig:sec8:tt_vs_ssf_it-final_sem-hiper-otimizacao}
+	
+	\endgroup
+	
+	\vspace*{.5em}
+	\colorbar{scatterplot1}
+\end{figure}
+	

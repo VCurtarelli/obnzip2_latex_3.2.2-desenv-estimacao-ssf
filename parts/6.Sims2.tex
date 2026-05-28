@@ -1,0 +1,72 @@
+\section{Resultados utilizando métodos adaptados de TTT e alternativos}
+
+Nessa seção, serão discutidos as simulações e resultados para as técnicas apresentadas na \cref{sec:modelos_adaptados_ttt,sec:modelos_alternativos_est-ssf}. O ambiente será o mesmo que utilizado na \cref{sec:simulation_and_results}, e apresentados nas \cref{fig:sec4:discretized_ssf_true,fig:sec4:discretized_ssf_profiles}. Também serão comparados os resultados para as duas condições de distribuição de dispositivos utilizados na \cref{sec:simulation_and_results}, com eles no entorno ou em camadas. As métricas, e o processo de estimação, também serão idênticos aos anteriormente apresentados.
+
+Todas as equações e formulações utilizadas foram normalizadas em um processo semelhante ao da \cref{subsec:sec4:formas_normalizadas}, com as devidas modificações sendo realizadas. Isso foi omitido por questão de espaço e organização.
+
+\subsection{Base de EOF e perfil de referência}
+
+Algumas das técnicas a serem comparadas dependem de uma base ortogonal de vetores, ou de um perfil de referência para a regularização.
+
+Os parâmetros necessários para a EOF (perfil médio ou de referência, e base de autovetores para a EOF) foram obtidos também através do banco de dados da WOA com a biblioteca \texttt{GSW}, a partir dos perfis mensais disponíveis no banco de dados para a região escolhida. Dos 108 perfis obtidos, a base de EOF é constituída de apenas 6, tal que a variabilidade utilizando esses 6 perfis é $\geq 99.95\%$.
+
+\subsection{Técnicas}
+
+As seguintes técnicas serão comparadas:
+
+\subsubsection*{Média}
+
+Nessa ``técnica'', assume-se que a velocidade em cada ponto é a velocidade do perfil de referência na respectiva profundidade.  Ela servirá como um \ingles{baseline} para comparação das outras.
+
+\subsubsection*{\ingles{Split}}
+
+A técnica separada em camadas (denominada ``\ingles{split}'') baseia-se na \cref{eq:sec4:solucao_separado_normalizado}. Em ambas as distribuições de dispositivos usou-se $\alpha = 4.92$, e a profundidade de \textit{cut-off} é $z_0 = 1000\si{\meter}$; ou seja, abaixo dessa profundidade o perfil é assumido igual ao de referência (tomado como a média dos perfis mensais também obtidos pelo WOA + \texttt{GSW}), e a estimação é realizada acima disso.
+
+\subsubsection*{\textsl{Trade-off}}
+
+A técnica de \ingles{trade-off} (homônima) será baseada na mostrada na \cref{eq:sec4:solucao_tradeoff_normalizado}. Serão usados $\alpha = 2.06$ com $\beta = 0.2$ para a distribuição no entorno, e $\alpha = 2.06$ com $\beta = 0.31$ para a distribuição em camadas. Em ambos, usa-se $z_0 = 0\si{\meter}$, fazendo com que o perfil ao longo de toda a profundidade seja regularizado pelo termo de erro sobre a referência (mesma que anteriormente), além da regularização por suavidade.
+
+\subsubsection*{Parametrização por Munk}
+
+A técnica baseada na parametrização pelo perfil de Munk (denominada ``parametrizada'' ou ``param.'' por espaço) utilizará os desenvolvimentos da \cref{subsec:sec4:metodo_parametrizado_por_munk}. Para ela, serão utilizados os parâmetros $[\alpha_v,\alpha_{\epsilon},\alpha_z,\alpha_B] = [0.001, 2.06, 0.01, 0.0001]$ para a distribuição no entorno, e $[\alpha_v,\alpha_{\epsilon},\alpha_z,\alpha_B] = [0.003, 1.33, 0.01, 0.0001]$ para a em camadas.
+
+\subsubsection*{EOF-p}
+
+Será usada a estimação por EOFs com regularização por coeficientes pequenos (chamada ``EOF-p''), mostrada na \cref{subsec:sec4:metodo_por_eof}, com coeficientes pela \cref{eq:sec5:metodo_eof:reg_peq-coef}. Com ela, será tomado $\alpha = 0.76$ para a distribuição no entorno, e $\alpha = 0.31$ para a em camadas.
+
+\subsubsection*{EOF-s}
+
+A última técnica é a estimação por EOFs com regularização por suavidade (chamada ``EOF-s''), também mostrada na \cref{subsec:sec4:metodo_por_eof}, com coeficientes pela \cref{eq:sec5:metodo_eof:reg_suavidade}. Serão usados $\alpha = 3.09$ para os dispositivos no entorno, e $\alpha = 7.01$ para os dispositivos em camadas.
+
+\subsection{Resultados e discussão}
+
+\input{figures/6.b.tt_ssf_rms_errors}
+
+\input{figures/6.c.estimated_ssfs}
+
+As \cref{fig:sec6:tt_rms_errors,fig:sec6:ssf_rms_errors} mostram os erros RMS de tempo de trânsito (\cref{fig:sec6:tt_rms_errors}) e de velocidade (\cref{fig:sec6:ssf_rms_errors}), com uma sub-figura para cada um dos cenários de distribuição dos dispositivos.
+
+As \cref{fig:sec6:estimated_ssfs_layer,fig:sec6:estimated_ssfs_surround} mostram os erros dos SSPs em relação ao perfil de velocidade $\bvc{\true}$, para os casos em camadas (\cref{fig:sec6:estimated_ssfs_layer}) e no entorno (\cref{fig:sec6:estimated_ssfs_surround}), com uma sub-figura para cada um dos métodos utilizados para a estimação do SSF. Para essas figuras, ressaltamos que os eixos $\x$ de cada uma podem ter limites consideravelmente diferentes, e isso deve ser levado em consideração na análise.
+
+\subsubsection*{Análise por distribuição de dispositivos}
+
+\paragraph{a)} Na distribuição em camadas, nota-se que todas as técnicas alcançaram resultados muito semelhantes de erro residual de tempo de trânsito (\cref{fig:sec6:tt_rms_errors:subfig1}). Contudo, os resultados de erro RMS do SSF (\cref{fig:sec6:ssf_rms_errors:subfig1}) mostram que os seus desempenhos em estimar o SSF foram extremamente variados. As melhores técnicas nitidamente foram a EOF-p, seguida da \ingles{trade-off} e da EOF-s, com a única que superou o uso do perfil médio tendo sido a EOF-p.
+
+Utilizando a \cref{fig:sec6:estimated_ssfs_layer} (mais especificamente, as \cref{fig:sec6:estimated_ssfs_layer:subfig3,fig:sec6:estimated_ssfs_layer:subfig5,fig:sec6:estimated_ssfs_layer:subfig6}), nota-se que o erro para as EOF-p e a \ingles{trade-off} seguem uma distribuição ao longo da profundidade muito semelhante a usar a média (\cref{fig:sec6:estimated_ssfs_layer:subfig1}). Isso indica que, nesses dois métodos, o perfil de cada coluna se aproxima muito do perfil médio/de referência, não capturando as nuances da variação da velocidade do som para cada coluna d'água.
+
+\paragraph{b)} Já na distribuição de dispositivos no entorno, vemos que todas as técnicas (exceto a parametrizada) alcançaram desempenhos semelhantes de $\rmse_{t}$, conforme a \cref{fig:sec6:tt_rms_errors:subfig2}, com a parametrizada por Munk obtendo erros consideravelmente maiores. Os resultados de erro de SSF, da \cref{fig:sec6:ssf_rms_errors:subfig2}, também mostram que as técnicas atingiram resultados melhores (exceto a parametrizada), com as três citadas anteriormente (\ingles{trade-off}, EOF-p, e EOF-s) + a técnica \ingles{split} ainda apresentando performances melhores, e agora ainda mais próximas. Além disso, todas (exceto parametrizada) alcançaram um desempenho quase idêntico ao uso direto do perfil médio sem otimização, em relação à estimação do SSF.
+
+Utilizando agora as \cref{fig:sec6:estimated_ssfs_surround:subfig3,fig:sec6:estimated_ssfs_surround:subfig5,fig:sec6:estimated_ssfs_surround:subfig6} da \cref{fig:sec6:estimated_ssfs_surround}, temos que a EOF-p ainda se assemelha consideravelmente à por perfil médio, com as outras três (\ingles{split}, \ingles{trade-off}, e EOF-s) se diferenciando minimamente.
+
+\subsubsection*{Análise por técnica}
+
+Como já debatido, os melhores resultados foram alcançados com as técnicas \ingles{trade-off}, EOF-p, e EOF-s. Os seus resultados não serão re-discutidos, pois já foram analisados.
+
+\paragraph{a)} Considerando todos os resultados das figuras apresentadas, é nítido que a utilização da parametrização por Munk não foi capaz de estimar o perfil na prática, nem mesmo de maneira básica. Embora interessante de forma teórica, isso indica que ela é frágil e depende que o SSF original tenha um comportamento próximo ao de Munk.
+
+\paragraph{b)} Há também a técnica \ingles{split} (onde estima-se o SSF somente acima de $1000\si{\meter}$). Embora ela tenha um desempenho inferior às outras selecionadas no cenário em camadas, seu desempenho é idêntico a elas para o caso no entorno (comparando a \cref{fig:sec6:estimated_ssfs_surround:subfig2} com as \cref{fig:sec6:estimated_ssfs_surround:subfig3,fig:sec6:estimated_ssfs_surround:subfig5,fig:sec6:estimated_ssfs_surround:subfig6}).
+
+\subsubsection*{Discussão}
+
+É interessante ressaltar que as 4 técnicas que tiveram desempenhos minimamente satisfatórios para o caso de dispositivos em camadas (\ingles{split}, \ingles{trade-off}, EOF-p, e EOF-s) necessitam de informações prévias sobre o ambiente para a sua operação. Isso leva a uma dependência dessas técnicas em informações previamente disponibilizadas (direta ou indiretamente) de velocidade do som. Além disso, os perfis reconstruídos com essas 4 técnicas, apesar de utilizarem informações \ingles{a priori}, ainda apresentam erros médios na faixa de ${0.8\sim1.5}\si{\meter/\second}$. Considerando que a média dos desvios-padrões de cada profundidade é $0.8964\si{\meter/\second}$, o resultado é semelhante (ou levemente pior) a simplesmente utilizar o perfil médio, sem necessitar de uma inversão. Isso é reforçando comparando as suas respectivas figuras nas \cref{fig:sec6:estimated_ssfs_layer,fig:sec6:estimated_ssfs_surround} com a utilizando a média, também nessas figuras.
+%\input{figures/6.c.ssf_rms_errors}

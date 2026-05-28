@@ -1,0 +1,168 @@
+\def\sympathA{optimal-import-petro-layer-260514-14h05m22s}
+\def\sympathB{optimal-import-petro-layer-blob-260514-14h05m28s}
+\def\sympathC{optimal-import-petro-layer-layer-diag-260514-14h05m36s}
+\def\sympathD{optimal-import-petro-layer-layer-column-260514-14h05m32s}
+\def\sympathE{optimal-import-petro-layer-bracket-260514-14h05m43s}
+\def\sympathF{optimal-import-petro-surround-260514-14h05m24s}
+\def\sympathG{optimal-import-petro-layer-scolumn-layer-260514-14h05m40s}
+\def\sympathH{optimal-import-petro-layer-layer-scolumn-260514-14h05m38s}
+\def\sympathI{optimal-import-petro-semi-surround-260514-14h05m42s}
+\def\sympathJ{optimal-import-petro-layer-cap-260514-14h05m45s}
+
+\definecolor{ColA}{HTML}{006D4D}  % 00A080
+\definecolor{ColB}{HTML}{006572}  % 00A0A0
+\definecolor{ColC}{HTML}{005E97}  % 0090D0
+\definecolor{ColD}{HTML}{245BB8}  % 5080E0
+\definecolor{ColE}{HTML}{764CB3}  % A070E0
+\definecolor{ColF}{HTML}{E56A6A}  % FF8080
+\definecolor{ColG}{HTML}{E88429}  % FFA040
+\definecolor{ColH}{HTML}{ECA400}  % FFB000
+\definecolor{ColI}{HTML}{D8C200}  % E0D000
+\definecolor{ColJ}{HTML}{97D500}  % B0E000
+
+\def\|{\text{\textbar}}
+
+\tikzstyle{resA} = [
+very thick, ColA, dash pattern = {on 1pt off 0pt},
+]
+\tikzstyle{resB} = [
+very thick, ColB, dash pattern = {on 1pt off 1pt},
+]
+\tikzstyle{resC} = [
+very thick, ColC, dash pattern = {on 4pt off 2pt},
+]
+\tikzstyle{resD} = [
+very thick, ColD, dash pattern = {on 4pt off 2pt on 1pt off 2pt},
+]
+\tikzstyle{resE} = [
+very thick, ColE, dash pattern = {on 3pt off 1pt},
+]
+\tikzstyle{resF} = [
+very thick, ColF, dash pattern = {on 3pt off 2pt},
+]
+\tikzstyle{resG} = [
+very thick, ColG, dash pattern = {on 3pt off 4pt},
+]
+\tikzstyle{resH} = [
+very thick, ColH, dash pattern = {on 6pt off 2pt},
+]
+\tikzstyle{resI} = [
+very thick, ColI, dash pattern = {on 4pt off 2pt on 1pt off 2pt on 1pt off 2pt},
+]
+\tikzstyle{resJ} = [
+very thick, ColJ, dash pattern = {on 6pt off 3pt on 3pt off 3pt},
+]
+
+\tikzstyle{resTTT} = [
+	mark=*, mark size=3, mark options={
+		% rotate=45,
+		solid,
+		opacity=1,
+		fill opacity=0.5
+	}
+]
+\tikzstyle{resSVD} = [
+	mark=triangle*, mark size=4, mark options={
+		rotate=0,
+		solid,
+		opacity=1,
+		fill opacity=0.5
+	}	
+]
+\pgfplotsset{
+	hmstyle/.style={
+		ytick={0, 500, ..., 1500},
+		yticklabels={0, 0.5, ..., 1.5},
+		xtick={0, 1000, 2000},
+		xticklabels={0, 1, 2},
+		xmin=0, xmax=2000,
+		ymin=0, ymax=1500,
+		% xlabel={Deslocamento ($\si{\kilo\meter}$)},
+		% ylabel={Profundidade ($\si{\kilo\meter}$)},
+	}
+}
+
+\section{Mais resultados}
+
+Como sugerido, os métodos utilizados na \cref{sec:simulation_and_results} (TTT e SVD) serão reaplicados aqui, em uma gama maior de condições de dispositivos.
+
+\subsection{Configurações}
+
+Serão testadas as seguintes configurações:
+
+\begin{itemize}
+	\item Camada\|Camada (C\|C) - Idêntico à configuração em camadas da \cref{sec:simulation_and_results}.
+	\item Camada\|Bolha (C\|B) - Fontes no leito em uma camada, e receptores em 3 camadas próximas à superfície de 9 dispositivos cada, emulando várias viagens de um ROV.
+	\item Camada\|Camada+Diagonal (C\|CD) - Fontes no leito em uma camada, e duas viagens de receptores: uma camada horizontal próxima à superfície, e uma viagem na diagonal até $500\si{\meter}$.
+	\item Camada\|Camada+Apêndice (C\|CA) - Fontes no leito em uma camada, e duas viagens de receptores: uma camada horizontal próxima à superfície, e uma vertical até $500\si{\meter}$.
+	\item Camada\|Garra (C\|G) - Fontes no leito em uma camada, receptores em uma cada próxima à superfície, e receptores em dois apêndices próximos às laterais da viagem horizontal.
+	
+	\item Camada+Coluna\|Camada+Coluna (CC\|CC) - Semelhante à configuração no entorno da \cref{sec:simulation_and_results}, mas com mais dispositivos.
+	\item Camada+Vertical\|Camada (CV\|C) - Fontes no leito em uma camada + alguns (poucos) verticalmente, e receptores na superfície em uma camada.
+	\item Camada\|Camada+Vertical (C\|CV) - Fontes no leito em uma camada, e receptores na superfície em uma camada + alguns (poucos) verticalmente.
+	\item Camada+Vertical\|Camada+Vertical (CV\|CV) - Fontes no leito em uma camada + alguns (poucos) verticalmente, e receptores na superfície em uma camada + alguns (poucos) verticalmente.
+	\item Camada\|Camada+Verticais (C\|CVs) - Fontes no leito em uma camada, e receptores na superfície em uma camada + duas colunas.
+\end{itemize}
+
+As configurações referentes a cada um desses casos encontram-se na \cref{fig:sec7:dispositivos}. Note que as configurações apresentam quantidades diferentes de dispositivos, em especial de fontes. Apesar de ser mais ``justo'' comparar configurações com quantidades iguais de dispositivos, a escolha aqui feita foi pensando na prática, em que não seria necessário reduzir a quantidade de medições (receptores) horizontais para medir na vertical, por exemplo.
+
+\input{figures/A.a.ssf_discretizado}
+
+\subsection{Visualização}
+
+Para facilitar visualização, os resultados serão apresentados para dois grupos diferentes:
+
+\subsubsection*{Grupo 1}
+
+Consiste das 5 primeiras configurações (C\|C, C\|B, C\|CD, C\|CA, C\|G), em que os receptores permanecem exclusivamente próximo à superfície (acima de $500\si{\meter}$), e as fontes estão exclusivamente no leito. Pelas conclusões desenhadas na \cref{sec:simulation_and_results}, espera-se que esse grupo desempenhe pior quando comparado ao outro, devido à falta de informação espacial atrelada às restrições impostas.
+
+Nos gráficos, as configurações desse grupo serão representadas por cores mais frias (verdes/azuis).
+
+\subsubsection*{Grupo 2}
+
+Consiste das 5 últimas configurações (CC\|CC, CV\|C, C\|CV, CV\|CV, C\|CVs), em que ambos os dispositivos podem ser alocados ao longo de toda a profundidade. Novamente, essa liberdade de alocação dos dispositivos nos levaria a crer, pela heurística estabelecida, que o desempenho das técnicas nesse grupo seria melhor.
+
+Nos gráficos, os resultados para as configurações desse grupo serão em cores mais quentes (amarelos/vermelhos).
+
+\subsubsection*{Outras diferenciações}
+
+Além das diferenciações por cores, cada técnica possui um marcador (SVD com triângulos, TTT com círculos), e cada configuração de dispositivos também conta com um estilo de tracejado diferente.
+
+\subsection{Análise geral}
+
+A \cref{fig:sec7:tt_ssf_rms_errors} apresenta os resultados globais das métricas de erro RMS de tempo de trânsito e de velocidade do som (seguindo as mesmas métricas que mostradas na \cref{subsec:sec3:metricas}), entre todas as configurações e técnicas.
+
+\input{figures/A.b.tt_ssf_rms_errors}
+
+\subsubsection*{Constatação 1}
+
+A técnica TTT, para as configurações no grupo 1 (menor informação espacial), não apresentou resultados minimamente satisfatórios de $\rmse_{\ssf}$. No melhor caso, não levaram a um bom resultado de SSF estimado (C\|C, e C\|CA), e no pior implicaram em erros médios de mais de $200\si{\meter/\second}$ (C\|B, C\|CD, e C\|G).
+
+Por outro lado, nessas mesmas configurações, a SVD alcançou desempenhos notável e estritamente superiores à TTT. Em específico, o pior desempenho dessa técnica foi nas configurações C\|C e C\|B, com o melhor desempenho para a configuração C\|CA.
+
+\subsubsection*{Constatação 2}
+
+Como já esperado --- baseado nos resultados da \cref{sec:simulation_and_results} --- os resultados de ambas as técnicas para os casos do grupo 2 foram decididamente melhores que para o caso 1, tanto em $\rmse_t$ quanto (e aqui ainda mais perceptível) para $\rmse_{\ssf}$.
+
+Esse resultado se alinha com as conclusões obtidas anteriormente, reforçando a ideia de que a utilização de fontes somente próximo à superfície leva a uma falta de informação espacial, e disso uma estimação inapropriada do SSF.
+
+\subsubsection*{Constatação 3}
+
+\lipsum[2]
+
+% TODO: Montar um scatterplot de RMSE-t vs RMSE-ssf para a iteração final de todas as técnicas e métodos.
+
+\subsection{Análise por grupo}
+
+Enquanto na análise anterior a comparação foi realizada de maneira global, buscando encontrar tendências entre os grupos, aqui será feita uma análise para cada um dos grupos separadamente.
+
+Além de separarmos por grupos, serão feitas também as seguintes simplificações nos gráficos:
+
+\paragraph{1)} Serão analisados apenas os resultados para a SVD. Nas análises anteriores, ficou claro que o desempenho da SVD é superior ou igual ao da TTT ao longo das diferentes configurações. Portanto, de forma a reduzir a quantidade de dados a serem observados e discutidos, apenas a técnica com desempenho superior (SVD) será apresentada.
+
+\paragraph{2)} Serão apresentados apenas os erros RMSE de SSF. Pela análise anterior, constatou-se que há uma relação linear entre performance de redução do erro residual de tempo de trânsito, e performance de estimação do SSF. Além disso, como o objetivo intrínseco da minimização é a estimação do SSF, não há razão para reapresentar os dados de $\rmse_{t}$.
+
+% Separar Figura 11 em Figura ..a (grupo 1) e ..b (grupo 2).
+
+
+

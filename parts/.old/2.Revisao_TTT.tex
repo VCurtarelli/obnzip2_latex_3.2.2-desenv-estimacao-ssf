@@ -1,0 +1,84 @@
+\section{Revisão bibliográfica de \textsl{Travel-Time Tomography}}
+\label{sec:travel-time_tomography}
+
+A primeira revisão bibliográfica realizada tratou da Tomografia de Tempo de Trânsito (TTT) (dado que essa técnica é a que melhor se encaixa nas limitações do projeto), buscando estabelecer suas aplicações, hipóteses de operação, técnicas adjacentes, e também construir um modelo-padrão básico que descreva a estrutura matemática básica de operação dela.
+
+Foram buscados 80 artigos nas plataformas da \textsl{IEEExplore} e \textsl{Google Scholar}, utilizando os termos ``\ingles{Travel-Time Tomography}'' e ``\ingles{TTT}'', dos quais 10 artigos foram selecionados por estarem relacionados à técnica. De forma geral, o modelo de TTT dos artigos apresentados é extremamente semelhante, variando nas aplicações, algumas considerações, e outras pequenas peculiariedades.
+
+\subsection{Breve revisão dos artigos}
+\label{sec_ttt:subsec_revisao}
+Como determinado anteriormente, a técnica de TTT é versátil devido à sua simplicidade, sendo aplicável em uma grande gama de aplicações, de sismologia acústica a tomografia computadorizada de tecidos, e avaliação eletromagnética de propriedades da água. Abaixo segue uma breve descrição dos artigos selecionados.
+
+\begin{itemize}[leftmargin=4pt+\widthof{\cite{aki_determination_1976,aki_determination_1977}}]
+	\citem{aki_determination_1976,aki_determination_1977} - Esses dois trabalhos são considerados os artigos pioneiros da TTT, descrevendo a classificação de camadas geológicas por meio da estimação do SSF, e a estimação da localização do epicentro de terremotos.
+	\citem{ali_opensource_2019} - Descreve a estimativa do SSF em tecidos utilizando tomografia computadorizada com ultrassom, por meio de  \textsl{Fast Marching Method} (FMM) para ray-tracing e um solver Eikonal.
+	\citem{hormati_robust_2010} - Trata de um problema semelhante a \cite{ali_opensource_2019}, descrevendo diferentes abordagens para resolver o problema inverso.
+	\citem{jeong_investigating_2024} - Compara TTT com tomografia por reflexão, usando ambas para treinamento de uma CNN.   
+	\citem{hellmann_borehole_2023} - Desecreve o uso de TTT para estimação do SSF em furos de sondagem em geleiras, com um passo de correção da posição dos dispositivos ao longo do furo.
+	\citem{dines_computerized_1979} - Descreve o uso de  TTT, para estimar o campo de atenuação junto ao SSF. Considera sinais eletromagnéticos, mas a teoria e a matemática são as mesmas. Também propõe uma solução iterativa em pares de dispositivos.
+	\citem{phillips_traveltime_1991} - Relata  diferentes métodos e modificações na TTT, comparando seus resultados em métricas como rugosidade, erro, espalhamento; com cada método trocando desempenho global por melhoria em alguma métrica.
+	\citem{tang_travel_2024} - Propõe o uso da técnica \textsl{Fast Sweeping Method} (FSM) ao invés de FMM para solução da equação Eikonal no problema direto, e foca primariamente na comparação dos dois solvers. Modelagem de reflexões com o FSM também é discutida no artigo.
+	\citem{zhang_inversion_2016} - Propõe outra adaptação da TTT para inclusão de reflexões. O modelo minimiza uma combinação de vagarosidades média e aparente, além do tempo de regularização. Parte do princípio que, em certas aplicações, ondas refletidas podem chegar em momentos próximos que as diretas, permitindo seu uso.
+\end{itemize}
+
+\subsubsection{Temas em comum}
+%
+\def\X{\ensuremath{\mathsf{X}}}
+%
+A \cref{table:fttt_revisao_temas} compila uma lista dos temas em comum apresentados nos diferentes artigos, e um pequeno comentário sobre os aspectos ou considerações que mais destacam cada. Note que em todos os artigos apresentados, assume-se a discretização do espaço. Nem todos consideram efeitos de curvatura das ondas (\ingles{ray-bending}), dependendo da aplicação; alguns realizam minimização iterativa através do gradiente conjugado, enquanto outros buscam uma formulação fechada para o problema inverso. A maioria utiliza alguma forma de regularização na minimização, e alguns também propõem o uso de \ingles{blur}, dispersando os raios estimados.
+
+\begin{table}[!t]\small\centering
+	\caption{Tabela comparativa dos artigos analisados. CG - Gradiente Conjugado (para minimização); $P_{\alpha}$ - Regularização; $\bvB{i}$ - Suavização do SSF.}
+	\label{table:fttt_revisao_temas}
+	\begin{tabular}{l c c c c c l}
+		Paper 								& Discreto 	& \textsl{Ray bending} 	& CG 	& $P_{\alpha}$ 	& $\bvB{i}$ & Extra 	\\
+		\cite{aki_determination_1976} 		& \X 		& -- 			& --	& \X			& --		& --		\\
+		\cite{aki_determination_1977} 		& \X 		& -- 			& --	& \X			& --		& Análise de perturbação		\\
+		\cite{ali_opensource_2019}			& \X		& \X			& \X	& \X			& \X		& Linearização estatística \\
+		\cite{hormati_robust_2010}			& \X 		& \X			& \X	& \X			& --		& --		\\
+		\cite{jeong_investigating_2024}	& \X		& \X			& --	& \X			& --		& --		\\
+		\cite{hellmann_borehole_2023}		& \X		& \X			& --	& \X			& --		& Estimação de posição	\\
+		\cite{dines_computerized_1979}		& \X		& --			& --	& --			& --		& Considera atenuação\\
+		\cite{phillips_traveltime_1991}	& \X		& --			& --	& \X			& \X		& Compara várias técnicas	\\
+		\cite{tang_travel_2024}			& \X		& \X			& \X	& --			& --		& Usa FSM \\
+		\cite{zhang_inversion_2016}		& \X		& \X			& \X	& \X			& --		& Considera reflexões			
+	\end{tabular}
+\end{table}
+
+\subsection{Fundamentos da \textsl{Travel-Time Tomography}}
+Na TTT, o ambiente é divido em uma grade de células (também aplicável para 3D ou 4D; e também para casos 1D, em que se divide o ambiente em camadas), e uma \gls{distribuição de dispositivos} (fontes e receptores) dentro do ambiente (geralmente no entorno dele). Assumiremos um caso 2D com múltiplas fontes e receptores, por praticidade. Assume-se que o SSF é portanto \gls{discretizado espacialmente}, com a velocidade de cada célula sendo constante.
+
+Cada fonte produz um sinal sonoro, que é captado pelos receptores\footnote{A mecânica de produção, captação, ou demultiplexação dos sinais não entra no escopo da TTT.}, onde mensura-se o \gls{tempo de trânsito} (ou tempo de primeira chegada) entre a fonte e o receptor; esse tempo de trânsito é a informação primária utilizada na estimação do SSF dentro da TTT.
+
+A modelagem da TTT parte do \gls{princípio de Fermat de tempo mínimo}, em que o tempo de primeira chegada da onda no trajeto fonte-receptor será o caminho direto (mas curvado) entre os dois dispositivos. Para o funcionamento dessa técnica, também assume-se a ausência de reflexões (internas ou externas) das ondas.
+
+\subsection{Problema direto}
+
+O processo de estimação do SSF pela TTT pode ser separado em duas etapas: o \gls{problema direto}, em que estima-se os tempos de trânsito entre as fontes e receptores, dado uma estimativa do SSF; e o \gls{problema inverso}, em que é construído um SSF baseado nos tempo de trânsito (e nas distâncias percorridas por cada raio em cada célula). Essas duas etapas são repetidas iteradamente, utilizando a solução anterior de uma como os dados de entrada da outra, até alcançar convergência.
+
+No problema direto, é necessário algum solver da equação Eikonal, essa sendo a equação que rege a relação entre o SSF e os tempos de primeira chegada considerando também curvas. Na literatura, é amplamente utilizado o solver Eikonal \ingles{Fast Marching Method} (FMM), que baseia-se em uma otimização por grafos; e ocasionalmente o \ingles{Fast Sweeping Method} (FSM). Raramente também surgem outros artigos com solvers da equação Eikonal autorais, porém esses são geralmente desenhados para aplicações específicas.
+
+\subsection{Problema inverso}
+
+Como já descrito, o problema inverso objetiva estimar o SSF utilizando: a solução obtida para a equação Eikonal, os tempos de trânsito medidos, e as simplificações provenientes da discretização espacial do ambiente. Também é comum encontrar na literatura termos de regularização (de forma a condicionar a solução obtida, trabalhando alguma métrica secundária) e por vezes algum método de \ingles{blur} (também uma alternativa para melhorar a qualidade dos dados de entrada).
+
+Na literatura, há dois caminhos que podem ser seguidos para encontrar a solução desse problema inverso: embora a maioria utilize formas fechadas para obtenção da solução em termos das variáveis conhecidas (solução da equação Eikonal, e tempos de trânsito medidos) através de uma modelagem quadrática do erro e minimização pelo Jacobiano; algumas seguem um caminho iterativo dentro do problema inverso, geralmente motivadas por alguma outra informação adicional considerada. Contudo, a maioria dos problemas que utilizam a solução iterativa podem ser retrabalhados de forma a encontrar uma solução fechada.
+
+\subsection{\textsl{Mindmap}}
+
+A \cref{fig:mindmap_sec2} apresenta um \textsl{mindmap} dos conceitos expostos até o momento na \cref{sec:travel-time_tomography}, dispondo graficamente a organização das informações apresentadas. A cor de cada nó indica o conceito-pai dele. Note que alguns nós (em específico: tempo de trânsito, solução Eikonal, e estimação do SSF) estão ligados a mais um nó; nesses casos a cor ainda indica o nó-pai, e a conexão indica que o outro nó está intrinsecamente ligado a esse conceito.
+
+\input{figures/2.Mindmap}
+
+%\subsection{Modelo-padrão para TTT}
+%\label{subsec:sec2:modelo-padrao}
+%
+%No \cref{app:modelo-padrão-TTT}, é apresentado um modelo-padrão matemático para a TTT, estabelecendo o método mediano entre os artigos apresentados, e uma discussão de todas as considerações relevantes e razões para a modelagem matemática tomada.
+%
+%De maneira sucinta, seja $\bvR{i}$ a solução Eikonal da $i$-ésima iteração dos problemas direto e inverso (essa sendo uma matriz com as distâncias percorridas por cada raio, em cada célula); $\bvt{\obs}$ o vetor de tempos de trânsito observados (contendo o tempo de primeira chegada de cada raio produzido); e $\bvD$ uma matriz de regularização (geralmente utilizada como regularização Tikhonov), com parâmetro $\alpha$. Então, a solução para o problema inverso $\bvs{i+1}$ na $(i+1)$-ésima iteração ($\bvs{i+1}$ é um vetor de vagarosidades em cada célula) será
+%\begin{equation}
+%	\bvs{i+1} = \inv*{\bvR[T]{i} \bvR{i} + \alpha^2 \bvD[T] \bvD} \bvR[T]{i} \bvt{\obs}
+%\end{equation}
+%
+%A solução apresentada aqui não inclui o \textsl{blur} ou regularizações secundárias, ambos discutidos no apêndice.
+

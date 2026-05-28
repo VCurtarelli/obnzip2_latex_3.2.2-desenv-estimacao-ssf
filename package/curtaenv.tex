@@ -1,0 +1,31 @@
+\NewDocumentEnvironment{subalign}{g}{%
+	\subequations%
+	\IfValueT{#1}{\label{#1}}%
+	\allowdisplaybreaks%
+	\align%
+}{%
+	\endalign%
+	\endsubequations%
+}%
+\NewDocumentEnvironment{subgather}{g}{%
+	\subequations%
+	\IfValueT{#1}{\label{#1}}%
+	\allowdisplaybreaks%
+	\gather%
+}{%
+	\endgather%
+	\endsubequations%
+}%
+\NewDocumentEnvironment{equations}{g}{%
+	\equation%
+	\IfValueT{#1}{\label{#1}}%
+	\allowdisplaybreaks%
+	\aligned%
+}{%
+	\endaligned%
+	\endequation%
+}
+
+% Define hlines com espaço mínimo depois, para o texto não ficar colado
+\def\tline{\hline\vphantom{\rule{0.4pt}{1.2em}}}
+\def\ttline{\hline\hline\vphantom{\rule{0.4pt}{1.2em}}}

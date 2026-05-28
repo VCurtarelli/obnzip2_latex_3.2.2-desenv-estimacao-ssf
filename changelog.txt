@@ -1,0 +1,31 @@
+v1.0.260429
+	Inicialização.
+	Juntados os relatórios 3.1.1.a (parte do método-padrão para TTT), 3.1.1.b, e 3.1.1.d.
+	Resultados novos, reescrita, e reestruturação textual.
+v1.0.260514
+	Pequenas modificações no texto.
+	Grandes modificações na Seção V.
+	Adicionadas Seção VI de resultados dos métodos das Seções IV e V.
+	Iniciada Seção VII de métricas de qualidade.
+	v1.0.260514b - Reload manual no Overleaf para re-sincronizar.
+	v1.0.260514c - Atualizando o package Curtatex na fonte.
+	Iniciado Apêndice A de novos resultados.
+    Continuado Apêndice A, com discussões, figuras, etc.
+v1.0.260516
+	Continuando Apêndice A.
+v1.0.260518
+	Finalizado Apêndice A.
+	Começando Apêndice B, com resultados até 5000m.
+	Continuando resultados do Apêndice B.
+v1.0.260520
+	Pequena reestruturação de arquivos.
+	Mudados Apêndices A e B para Seções 7 e 8.
+	Adicionada Seção 9 - Conclusões.
+	Pequenas alterações em figuras.
+v1.1.260521
+	Adicionando novos resultados nas simulações das Seções 7 e 8.
+	Reestruturação na maneira de apresentar os resultados das Seções 7 e 8.
+v1.1.260522
+	Adicionando novos resultados nas simulações das Seções 7 e 8.
+	Adicionando novas discussões nas Seções 7 e 8.
+	Pequenas alterações de estilo dos gráficos.

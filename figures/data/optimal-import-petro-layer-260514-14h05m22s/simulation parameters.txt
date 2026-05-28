@@ -1,0 +1,12 @@
+pos_name: layer/layer
+num_cells_x: 9
+num_cells_y: 29
+width: 2000
+height: 1500
+pos_receivers_x: [ 111.111111 1666.666667 1000.        555.555556 1222.222222  777.777778 1888.888889  333.333333 1444.444444]
+pos_receivers_y: [25.862069 25.862069 25.862069 25.862069 25.862069 25.862069 25.862069 25.862069 25.862069]
+pos_sources_x: [ 777.777778 1888.888889 1444.444444  333.333333  111.111111 1666.666667  555.555556 1222.222222 1000.      ]
+pos_sources_y: [1474.137931 1474.137931 1474.137931 1474.137931 1474.137931 1474.137931 1474.137931 1474.137931 1474.137931]
+method_params: {'classic': [MethodParameters(alpha=0.99, beta=None, masking_depth=None)], 'svd': [MethodParameters(alpha=0.6735, beta=None, masking_depth=None)]}
+code: h8ac5
+n_rays: 81

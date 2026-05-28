@@ -1,0 +1,54 @@
+\section{Objetivos}
+
+O objetivo dessa linha de pesquisa dentro do projeto é estabelecer técnicas de estimação do SSF na coluna d'água que estejam dentro das limitações práticas do projeto (estabelecidas anteriormente), e que sejam capazes de reconstruir o SSF com fidedignidade suficiente.
+
+Dentro disso, o objetivo do presente relatório é estabelecer uma revisão bibliográfica do estado da arte em relação a técnicas de inversão do SSF na coluna d'água utilizando informação de tempo de trânsito, preferencialmente se atendo às restrições de posicionamento dos dispositivos que foram estabelecidas anteriormente. Essa revisão bibliográfica será separada em 3 revisões, com os resultados sendo apresentados conjuntamente.
+
+\subsubsection*{Tomografia de Tempo de Trânsito}
+
+A primeira revisão trata da técnica de \gls{Tomografia de Tempo de Trânsito} (TTT). Essa é a técnica mais comum para estimação do SSF utilizando exclusivamente informação de tempo de trânsito, estando também entre as técnicas mais simples para estimação do SSF. Ela é comumente utilizada em aplicações como biomédica, e ocasionalmente na sismologia acústica e estimação de propriedades da água.
+
+\subsubsection*{Estimação do SSF utilizando informação de tempo de trânsito}
+
+A segunda revisão busca por diferentes técnicas para estimação do SSF (não somente na água) que utilizem primariamente informação de tempo de trânsito, mas que não se limitem à técnica TTT tradicional (estabelecida na primeira revisão). Embora deseja-se o tempo de trânsito como informação obtida nas expedições e medida pelos receptores, é possível utilizar outras informações que não estejam atreladas aos dispositivos. Opções envolvem modelos teóricos para o SSF (como o perfil de Munk \cite{munk_sound_1974}), e utilização de perfis obtidos previamente.
+
+\subsubsection*{Estimação do SSF na coluna d'água}
+
+A terceira revisão objetiva estabelecer diferentes técnicas da literatura que realizem a estimação do SSF na coluna d'água, independente do tipo de informação utilizado ou alocação dos dispositivos.
+
+\subsection{Classificações dos artigos}
+
+Os artigos serão organizados nas seguintes classificações:
+\begin{itemize}[itemsep=0pt]
+	\item Dado de entrada
+	\begin{itemize}
+		\item Tempo de trânsito
+		\item Forma de onda
+		\item Modelo inicial
+		\item Outros
+	\end{itemize}
+	\item Dado de saída
+	\begin{itemize}
+		\item SSF ou imageamento
+		\item Pesos para SSF-referência
+		\item Parâmetros (funções parametrizadas ou redes neurais)
+		\item Outros
+	\end{itemize}
+	\item Abordagem ou método
+	\begin{itemize}
+		\item TTT
+		\item Outros modelos diretos
+		\item Modelagem estatística
+		\item Combinação de SSF-referências
+		\item Parametrização
+		\item \textsl{Machine Learning} e redes neurais
+		\item Outros
+	\end{itemize}
+	\item Aplicação
+	\begin{itemize}
+		\item Acústica submarina rasa
+		\item Acústica submarina profunda
+		\item Imageamento geológico
+		\item Imageamento biomédico
+	\end{itemize}
+\end{itemize}

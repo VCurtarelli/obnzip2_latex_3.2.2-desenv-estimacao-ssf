@@ -1,0 +1,74 @@
+\pgfplotsset{
+	hmstyle/.style={
+		ytick={0, 1000, ..., 5000},
+		yticklabels={0, 1, ..., 5},
+%		xtick={0, 1000, 2000},
+%		xticklabels={0, 1, 2},
+		xtick={\empty},
+		xmin=0, xmax=2000,
+		ymin=0, ymax=5000,
+		% xlabel={Deslocamento ($\si{\kilo\meter}$)},
+		% ylabel={Profundidade ($\si{\kilo\meter}$)},
+	}
+}
+
+\pgfplotsset{
+	profile*/.style={
+		y dir=reverse,
+		ytick={0, 1000, ..., 5000},
+		yticklabels={0, 1, ..., 5},
+		xmin = 1440,
+		xmax = 1560,
+		xtick = {1450, 1500, 1550},
+		xticklabels={1.45, 1.5, 1.55},
+	}
+}
+
+\pgfplotsset{
+	profile/.style={
+		y dir=reverse,
+		%		ytick={0, 500, 1000, 1500, 2000},
+		%		yticklabels={0, 0.5, 1, 1.5, 2},
+		ytick={\empty},
+		xmin = 1440,
+		xmax = 1560,
+		xtick = {1450, 1500, 1550},
+		xticklabels={1.45, 1.5, 1.55},
+	}
+}
+
+\def\sympathA{optimal-import-deep--petro/optimal-import--petro-deep--260522-14h37m59s--layer}
+\def\sympathB{optimal-import-deep--petro/optimal-import--petro-deep--260522-14h38m05s--layer;blob}
+\def\sympathC{optimal-import-deep--petro/optimal-import--petro-deep--260522-14h38m11s--layer;layer+diag}
+\def\sympathD{optimal-import-deep--petro/optimal-import--petro-deep--260522-14h38m16s--layer;layer+appendix}
+\def\sympathE{optimal-import-deep--petro/optimal-import--petro-deep--260522-14h38m21s--layer;bracket}
+\def\sympathF{optimal-import-deep--petro/optimal-import--petro-deep--260522-14h38m27s--layer+column;layer+column}
+\def\sympathG{optimal-import-deep--petro/optimal-import--petro-deep--260522-14h38m34s--layer;cap}
+\def\sympathH{optimal-import-deep--petro/optimal-import--petro-deep--260522-14h38m39s--layer+column;layer}
+\def\sympathI{optimal-import-deep--petro/optimal-import--petro-deep--260522-14h38m44s--layer;layer+column}
+\def\sympathJ{optimal-import-deep--petro/optimal-import--petro-deep--260522-14h38m49s--layer+vertical;layer+vertical}
+\def\sympathK{optimal-import-deep--petro/optimal-import--petro-deep--260522-14h38m53s--layer+vertical;layer}
+\def\sympathL{optimal-import-deep--petro/optimal-import--petro-deep--260522-14h38m57s--layer;layer+vertical}
+\def\sympathM{optimal-import-deep--petro/optimal-import--petro-deep--260522-14h39m01s--layer+sparse;layer}
+\def\sympathN{optimal-import-deep--petro/optimal-import--petro-deep--260522-14h39m05s--layer;layer+sparse}
+\def\sympathO{optimal-import-deep--petro/optimal-import--petro-deep--260522-14h39m08s--cup;layer}
+
+\input{figures/data/\sympathA/params.tex}
+
+\pgfplotstableread[col sep=comma]{figures/data/\sympathA/0_profiles_observed.csv}\datatable
+% Create a new column "avg"
+\pgfplotstablecreatecol[
+create col/expr={
+	(
+	\thisrowno{1} +
+	\thisrowno{2} +
+	\thisrowno{3} +
+	\thisrowno{4} +
+	\thisrowno{5} +
+	\thisrowno{6} +
+	\thisrowno{7} +
+	\thisrowno{8} +
+	\thisrowno{9}
+	) / 9
+}
+]{avg}\datatable

@@ -1,0 +1,41 @@
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{shapes.geometric}
+\tikzset{->-/.style={
+		decoration={
+			markings,
+			mark={at position .5 with {\pgftransformscale{2}\arrow{>}}}
+		},
+		postaction={decorate}
+	}
+}
+\tikzset{
+	square/.style={
+		regular polygon,
+		regular polygon sides=4,
+		minimum size=0.5cm,
+		draw
+	},
+	triangle/.style={
+		regular polygon,
+		regular polygon sides=3,
+		minimum size=0.5cm,scale=0.7,
+		draw
+	}
+}
+\tikzstyle{snake it}=[decorate,decoration={snake, #1,}]
+\usetikzlibrary{angles,quotes,calc,positioning} % Load the calc library
+
+
+\pgfplotsset{
+	hmstyle/.style={
+		ytick={0, 500, ..., 1500},
+		yticklabels={0, 0.5, ..., 1.5},
+		xtick={0, 1000, 2000},
+		xticklabels={0, 1, 2},
+		xmin=0, xmax=2000,
+		ymin=0, ymax=1500,
+		xlabel={Deslocamento ($\si{\kilo\meter}$)},
+		ylabel={Profundidade ($\si{\kilo\meter}$)},
+	}
+}
