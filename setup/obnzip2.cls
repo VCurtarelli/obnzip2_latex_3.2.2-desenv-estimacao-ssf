@@ -16,7 +16,7 @@
 
 \ProvidesClass{setup/obnzip2}[2026/03/02 Template do OBNZip II]
 
-\LoadClass{article}
+\LoadClass{report}
 
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{fontenc}
@@ -92,7 +92,6 @@ sortcites=true]{biblatex}
 \DeclareDocumentCommand{\comentario}{m}{\def\@comentario{#1}}
 
 \DeclareDocumentCommand{\formarcabecalho}{}{
-	\thispagestyle{firstpage}
 	\IfEmpty{\@titulo}{\errmessage{Título vazio}}
 	\IfEmpty{\@autor}{\errmessage{Autor vazio}}
 	\IfEmpty{\@entregavel}{\errmessage{Atividade do projeto vazia}}
@@ -118,6 +117,7 @@ sortcites=true]{biblatex}
     \IfEmpty{\@comentario}{}{\vspace*{1em}\noindent\justifying\@comentario}
 	\end{minipage}
     \end{center}
+    \thispagestyle{firstpage}
 }
 
 \input{setup/0.RelatorioInfo}
@@ -133,7 +133,7 @@ sortcites=true]{biblatex}
 	\includegraphics[height=0.5cm]{setup/logos/ufsc} \includegraphics[height=0.5cm]{setup/logos/obnzip} \includegraphics[height=0.5cm]{setup/logos/petrobras}
 }
 \setlength{\headheight}{18pt}%
-\fancyhead[C]{\small{OBNZip II - \textit{\@entregavelcodigo~- \@shorttitulo}}}%
+\fancyhead[C]{\small{OBNZip II - \textsc{\@entregavelcodigo~- \@shorttitulo}}}%
 \fancyhead[R]{\small{\thepage}}%
 \fancyfoot{}%
 
@@ -147,6 +147,10 @@ sortcites=true]{biblatex}
 	\fancyhead[R]{\small{\thepage}}%
 	\fancyfoot{}%
 }
+%\fancypagestyle{plain}{
+%	\fancyhf{} % clear all header and footer fields
+%	\fancyfoot[C]{\thepage} % custom footer
+%}
 
 %%%%%
 %

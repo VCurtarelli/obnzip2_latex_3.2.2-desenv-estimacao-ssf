@@ -9,6 +9,7 @@
 \captionsetup[subfigure]{justification=raggedleft,singlelinecheck=false}
 \usepackage{pgfplotstable}
 \usepackage{alphalph}
+\usepackage{tocloft}
 
 \input{setup/commands}
 \input{setup/comm_tikz}
@@ -23,17 +24,26 @@
 \begin{document}	
 	\formarcabecalho
 	\input{parts/0.Introducao}
+	\clearpage
+	\tableofcontents
+	\thispagestyle{plain}
+	
+	\chapter{Investigação inicial utilizando tempo de trânsito}
 	\input{parts/1.ModeloPadrao_TTT}
 	\input{parts/2.SVD_proposed}
 	\input{parts/3.Sims}
+	
+	\chapter{Métodos com informação \textsl{a priori}}
 	\input{parts/4.Modelos_Adap_TTT}
 	\input{parts/5.Modelos_Usando_TT}
 	\input{parts/6.Sims2}
+	
+	\chapter{Estudo de diferentes configurações de dispositivos}
 	\input{parts/7.MaisResultadosSec3}
 	\input{parts/8.MaisResultadosProfundo}
-%	\input{parts/9.Conclusoes}
+	\input{parts/9.Conclusoes}
 	\clearpage
-	\printbibliography[]	
+	\printbibliography
 	\appendix
 	\crefalias{section}{appendix}
 	\crefname{appendix}{Apêndice}{Apêndices}

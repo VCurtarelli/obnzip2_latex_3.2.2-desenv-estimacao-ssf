@@ -38,3 +38,7 @@ v1.1.260527
 	Mais resultados na Seção 8.
 	Adicionada Seção "0" de introdução, explicando a estrutura do texto.
 	Re-estruturadas imagens para melhor se encaixarem no espaço.
+v1.1.260528
+	Pequenas mudanças nas figuras.
+	Reestruturação em capítulos (I: TTT e SVD; II: Com info a priori; III: Configs de dispositivos).
+	Adicionado Sumário, e resumo.

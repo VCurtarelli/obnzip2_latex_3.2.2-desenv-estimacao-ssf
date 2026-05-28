@@ -3,11 +3,11 @@
 	\def\sympath{\sympathA}
 	\begin{minipage}[b]{0.48\linewidth}
 		\begin{tikzpicture}
-			\begin{heatmap}{\ncols}[colorbar to name={velocityHeatmap},hmstyle][fill opacity=0.8]
+			\begin{heatmap}{\ncols}[colorbar to name={velocityHeatmap2},hmstyle][fill opacity=0.8]
 				\addplot3[surf, mesh/cols={\ncols}, mesh/rows={\nrows}, opacity=0.8, draw opacity=0.0] table[x=x, y=y, z=val, col sep=comma] {figures/data/\sympath/0_field_observed.csv};
 			\end{heatmap}
 		\end{tikzpicture}
-		\colorbar{velocityHeatmap}
+		\colorbar{velocityHeatmap2}
 		\caption{SSF discreto.}
 		\label{fig:sec8:discretized_ssf_true}
 	\end{minipage}
