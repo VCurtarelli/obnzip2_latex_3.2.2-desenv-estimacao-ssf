@@ -133,7 +133,7 @@ sortcites=true]{biblatex}
 	\includegraphics[height=0.5cm]{setup/logos/ufsc} \includegraphics[height=0.5cm]{setup/logos/obnzip} \includegraphics[height=0.5cm]{setup/logos/petrobras}
 }
 \setlength{\headheight}{18pt}%
-\fancyhead[C]{\small{OBNZip II - \textsc{\@entregavelcodigo~- \@shorttitulo}}}%
+\fancyhead[C]{\small{OBNZip II - \textsl{\@entregavelcodigo~- \@shorttitulo}}}%
 \fancyhead[R]{\small{\thepage}}%
 \fancyfoot{}%
 
