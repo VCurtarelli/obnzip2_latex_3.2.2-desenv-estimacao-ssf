@@ -7,8 +7,7 @@
 \usetikzlibrary{positioning,trees,mindmap}
 \usepackage{subcaption}
 \captionsetup[subfigure]{justification=raggedleft,singlelinecheck=false}
-\usepackage{pgfplotstable}
-\usepackage{alphalph}
+
 
 \input{setup/commands}
 \input{setup/comm_tikz}
@@ -17,7 +16,6 @@
 \let\gls\textsc
 \let\ingles\textsl
 
-\addbibresource{setup/RelatorioReferencias.bib}
 \addbibresource{setup/RelatorioExtReferencias.bib}
 
 \begin{document}	
@@ -28,14 +26,18 @@
 	\input{parts/4.Modelos_Adap_TTT}
 	\input{parts/5.Modelos_Usando_TT}
 	\input{parts/6.Sims2}
-	\input{parts/7.MaisResultadosSec3}
-	\input{parts/8.MaisResultadosProfundo}
-%	\input{parts/9.Conclusoes}
-	\clearpage
+	\input{parts/7.MetricasQualidade}
+%	\input{parts/1.Intro}
+%	\input{parts/2.Revisao_TTT}
+%	\input{parts/3.Revisao_invTT}
+%	\input{parts/4.Revisao_iSSF}
+%	\input{parts/5.Analise_revs}
+%	\input{parts/6.Conclusao}
 	\printbibliography[]	
 	\appendix
 	\crefalias{section}{appendix}
 	\crefname{appendix}{Apêndice}{Apêndices}
+	\input{parts/A.MaisResultadosSec3}
 %	\input{parts/A.ModeloPadrao_TTT}
 \end{document}
 

@@ -2,11 +2,11 @@
 \usetikzlibrary{decorations.pathmorphing}
 \usetikzlibrary{shapes.geometric}
 \tikzset{->-/.style={
-		postaction={decorate, decoration={
-				markings,
-				mark=at position 0.5 with {\arrow{>}},
-				mark=at position 0.8 with {\arrow{>}}
-		}}
+		decoration={
+			markings,
+			mark={at position .5 with {\pgftransformscale{2}\arrow{>}}}
+		},
+		postaction={decorate}
 	}
 }
 \tikzset{
@@ -23,17 +23,6 @@
 		draw
 	}
 }
-\pgfplotsset{last/.style={
-		x filter/.code={
-			\ifnum\coordindex=9\else\def\pgfmathresult{}\fi
-		},
-		big mark%, line width=4pt
-	}
-}
-\pgfplotsset{big mark/.style={
-		every mark/.append style={scale=1.5, line width=1.5pt, fill opacity=0.7}%, line width=4pt
-	}
-}
 \tikzstyle{snake it}=[decorate,decoration={snake, #1,}]
 \usetikzlibrary{angles,quotes,calc,positioning} % Load the calc library
 
@@ -42,9 +31,8 @@
 	hmstyle/.style={
 		ytick={0, 500, ..., 1500},
 		yticklabels={0, 0.5, ..., 1.5},
-%		xtick={0, 1000, 2000},
-%		xticklabels={0, 1, 2},
-		xtick={\empty},
+		xtick={0, 1000, 2000},
+		xticklabels={0, 1, 2},
 		xmin=0, xmax=2000,
 		ymin=0, ymax=1500,
 		xlabel={Deslocamento ($\si{\kilo\meter}$)},

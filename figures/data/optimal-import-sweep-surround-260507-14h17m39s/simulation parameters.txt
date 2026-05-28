@@ -1,0 +1,12 @@
+pos_name: surround
+num_cells_x: 9
+num_cells_y: 29
+width: 2000
+height: 1500
+pos_receivers_x: [ 111.111111  111.111111 1222.222222  111.111111  777.777778 1888.888889  111.111111  111.111111  111.111111]
+pos_receivers_y: [  25.862069  491.37931    25.862069 1215.517241   25.862069   25.862069 1008.62069   284.482759  750.      ]
+pos_sources_x: [1888.888889 1888.888889 1888.888889 1888.888889 1888.888889  111.111111 1222.222222 1888.888889  777.777778]
+pos_sources_y: [1008.62069  1474.137931  750.        284.482759  491.37931  1474.137931 1474.137931 1215.517241 1474.137931]
+method_params: {'classic': [MethodParameters(alpha=0.9618, beta=None, masking_depth=None)], 'svd': [MethodParameters(alpha=0.2622, beta=None, masking_depth=None)], 'trade': [MethodParameters(alpha=0.9, beta=0.2, masking_depth=0)], 'split': [MethodParameters(alpha=0.98, beta=None, masking_depth=1000)], 'param': [MethodParameters(alpha=(0.001, 0.9, 0.01, 0.0001), beta=None, masking_depth=None)], 'eof1': [MethodParameters(alpha=0.6063, beta=None, masking_depth=None)], 'eof2': [MethodParameters(alpha=0.9516, beta=None, masking_depth=None)], 'mean': [None]}
+code: h10d0a
+n_rays: 81
