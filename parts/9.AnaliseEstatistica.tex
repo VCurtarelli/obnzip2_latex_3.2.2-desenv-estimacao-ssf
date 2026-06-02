@@ -1,0 +1,33 @@
+Ao longo do \cref{chp:estudo_diferentes_configs}, foram utilizados dois perfis diferentes nas simulações: um raso, estendendo-se a até $1500\si{\meter}$; e outro mais profundo, alcançando quase $4900\si{\meter}$ de profundidade. Embora os resultados alcançados nas simulações com esses perfis se alinhem com os esperados de uma análise teórica dos mesmos, eles não são suficientes para extrair afirmações fortes quantos às configurações utilizadas, mais servindo como um guia para a análise feita por grupos.
+
+\section{\textsl{Setup} para análise}
+
+Semelhante às análises anteriores, nós novamente analisaremos dois casos diferentes de profundidade: um caso raso até $1500\si{\meter}$, e outro profundo até $4500\si{\meter}$. Essa mudança na profundidade máxima do caso profundo se dá pela disponibilidade de perfis, que será discutida adiante.
+
+\subsection{Configurações de dispositivos}
+
+Também usaremos configurações de dispositivos previamente apresentadas: em particular, para o caso raso usaremos as configurações (b,e,h,k,o), e para o caso profundo as configurações (b,e,h,k,o,p). Essas foram selecionadas por cumprirem alguns requisitos: utilizarem somente fontes ao longo da coluna d'água, dado que a utilização de fontes ou receptores na coluna leva a desempenhos semelhantes, e o uso de fontes é mais alinhado com os interesses do projeto; e as fontes estarem alinhadas verticalmente, pois como foi visto a alocação ``aleatória'' na coluna não traz ganhos relevantes de performance.%; e possuem poucos dispositivos ao longo da coluna d'água, permitindo uma otimização do seu posicionamento, que não seria possível nos outros casos (por serem mais densos e portanto mais ``rígidos'' quanto à alocação).
+
+Vale ressaltar que nós não realizaremos uma otimização da posição dos dispositivos, sendo utilizadas configurações idênticas (ou semelhantes) às apresentadas anteriormente, com os dispositivos (em particular os alocados verticalmente na coluna d'água) sendo posicionados de maneira natural/``ingênua''.
+
+\subsection{Técnicas de otimização}
+
+Serão utilizadas as técnicas TTT e SVD já apresentadas e exploradas anteriormente, a serem implementadas de maneira semelhante.
+
+\subsection{Recortes de SSF}
+
+Será utilizado um recorte da costa do Brasil, de ($36.625\si{\south},~56.625\si{\west}$) até ($7.625\si{\north},~30.375\si{\west}$). Desse recorte, serão selecionados blocos $\sz{3}{3}$ (sem sobreposição), que alcancem a profundidade necessária. Ao todo, de 2160 blocos disponíveis, serão utilizados $982$ para o caso raso, e $229$ para o caso profundo\footnote{Caso fosse utilizada a mesma profundidade que anteriormente, até $4900\si{\meter}$, haveria somente $66$ blocos disponíveis.} (devido à maior indisponibilidade de informação até a profundidade de $4500\si{\meter}$).
+
+Esses conjuntos de recortes serão separados em dois grupos (para cada profundidade): um conjunto de treinamento, com 20\% dos perfis disponíveis selecionados semi-aleatoriamente; e conjunto de testes, sendo composto dos 80\% restantes.
+
+\subsection{Otimização de parâmetros}
+
+Será calculado um único hiper-parâmetro para cada configuração, obtido a partir do conjunto de treinamento. Para tal, será feita a mesma busca de hiper-parâmetros que anteriormente, e será selecionado o valor mediano dentre os parâmetros obtidos dos diferentes blocos do conjunto de treinamento.
+
+Dada a variabilidade grande dentre os perfis que existem na costa brasileira, acreditasse que essa hiperotimização levará a parâmetros que não sofram de \ingles{overfitting} a uma determinada estrutura do perfil. Os conjuntos de treinamento devem ser construídos de forma a não ocorrer uma sobre-representação de nenhum perfil específico, capturando comportamentos diferentes. Também vale ressaltar que o mesmo conjunto de treinamento (para cada profundidade) será utilizado para todas as configurações de casa caso.
+
+\subsection{Métricas}
+
+Dados os hiper-parâmetros obtidos dos conjuntos de treinamento, esses mesmos serão utilizados no conjunto de testes, a partir do qual obteremos as métricas de erro residual e erro de SSF, como apresentadas na \cref{subsec:sec3:metricas}. Tendo essas métricas, será realizada uma análise estatística dos resultados.
+
+Em particular, serão analisadas propriedades como acurácia (variância) e precisão (média/mediana) de cada método e configuração, buscando estabelecer qual alcança os melhores resultados de forma geral e não somente para um bloco específico (como realizado anteriormente).

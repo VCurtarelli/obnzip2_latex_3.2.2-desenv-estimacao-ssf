@@ -96,6 +96,10 @@ A \cref{fig:sec7:tt_ssf_rms_errors} apresenta os resultados globais das métrica
 %
 \input{figures/7.f.estimated_ssfs}
 
+\const Dos resultados apresentados, outra observação que pode ser feita é quanto ao tipo de dispositivo utilizado ao longo da coluna d'água. Comparando os resultados para as configurações (h,i), (k,l), e (m,n), vemos que (aos pares) elas tem desempenhos muito semelhantes. Isso indica que o tipo de dispositivo alocado na coluna não afeta tanto o resultado, com as diferenças podendo ser atribuídas às peculiaridades do processo iterativo.
+
+\const Outra comparação que pode ser feita é quanto ao modo de alocação dos dispositivos na coluna, organizado ou aleatório. Dos resultados apresentados, nota-se que não há uma variação significativa entre os dois modos, podendo novamente ser atribuído ao método iterativo.
+
 \subsection{Resultados para parâmetros médios}
 
 Nas simulações anteriores dessa seção, em cada método (TTT e SVD) e configuração, foi utilizado o parâmetro obtido pela hiper-otimização, buscando minimizar o $\rmse_{\ssf}$ final. Agora apresentaremos resultados para os valores médios dos parâmetros (para cada técnica), com a média sendo realizada sobre as configurações de cada grupo, e aplicada àquele grupo. O objetivo desse resultado é comparar a robustez das técnicas à utilização de um parâmetro que não tenha sido escolhido especificamente para aquela configuração, e ver como ela se comporta para um parâmetro escolhido de maneira ``genérica''.
@@ -116,26 +120,10 @@ Nas simulações anteriores dessa seção, em cada método (TTT e SVD) e configu
 \def\sympathN{meanpar-import--petro/260527-14h15m17s-n--layer;layer+sparse}
 \def\sympathO{meanpar-import--petro/260527-14h15m17s-o--cup;layer}
 
-\const Os resultados de RMSE de SSF, para os dois métodos, e todas as configurações, para o caso sem hiper-otimização de parâmetros, estão na \cref{fig:sec7:tt_ssf_rms_errors_no-pho}. Apresentamos apenas o erro de SSF, já que o resultadao de tempo de trânsito não é tão relevante de ser discutido. Comparando com os resultados da \cref{fig:sec7:tt_ssf_rms_errors}, é notável uma piora dos desempenhos. Em particular na para a SVD, enquanto antes havia um comportamento monotônico decrescente nos erros, aqui isso já não é visto.
+\const Os resultados de RMSE de SSF, para os dois métodos, e todas as configurações, para o caso sem hiper-otimização de parâmetros, estão na \cref{fig:sec7:tt_ssf_rms_errors_no-pho}. Apresentamos apenas o erro de SSF, já que o resultado de tempo de trânsito não é tão relevante de ser discutido. Comparando com os resultados da \cref{fig:sec7:tt_ssf_rms_errors}, é notável uma piora dos desempenhos. Em particular na para a SVD, enquanto antes havia um comportamento monotônico decrescente nos erros, aqui isso já não é visto.
 
 \input{figures/7.g.tt_ssf_rms_errors_no-pho}
 
 \const Comparando as duas técnicas, nota-se que a SVD teve um desempenho superior no grupo 3, a TTT no grupo 2, e ambas tiveram desempenhos semelhantes no grupo 1. Isso é reiterado na \cref{fig:sec7:tt_ssf_rms_errors_no-pho}.
 
 \input{figures/7.h.tt_vs_ssf_no-pho}
-%\subsection{Resultados para parâmetros médios}
-%
-%Nas simulações anteriores dessa seção, em cada método (TTT e SVD) e configuração, foi utilizado o parâmetro obtido pela hiper-otimização, buscando minimizar o $\rmse_{\ssf}$ final. Agora apresentaremos resultados para os valores médios dos parâmetros (para cada técnica), com a média sendo realizada sobre as 10 configurações realizadas. Para a TTT, foi usado $\alpha = 1.5437$, e para a SVD foi usado $\beta = 0.3671$. O objetivo desse resultado é comparar a robustez das técnicas à utilização de um parâmetro que não tenha sido escolhido especificamente para aquela configuração, e ver como ela se comporta para um parâmetro escolhido de maneira ``genérica''.
-%
-%
-%\const
-%
-%A \cref{fig:sec7:tt_ssf_rms_errors_sem-hiper-otimizacao} mostra os resultados de erro de tempo de trânsito e de erro de SSF para todas as configurações, as técnicas de TTT e SVD, para a situação sem otimização. Nota-se há um comportamento semelhante ao que foi visto anteriormente, em que o desempenho de ambos os métodos para as configurações do grupo 1 são inferiores. Contudo, há também uma deterioração da performance dos métodos no grupo 2 que, embora ainda tenham um desempenho aceitável, são inferiores aos seus respectivos com hiper-otimização.
-%
-%Também tem-se o mesmo resultado que anteriormente, em que a SVD obteve resultados melhores (no grupo 1) ou semelhantes (no grupo 2) à TTT.
-%
-%\input{figures/7.h.estimated_ssps}
-%
-%\const
-%
-%A \cref{fig:sec7:estimated_ssps_sem-hiper-otimizacao} mostra os \ingles{scatterplots} para todas as configurações, com a SVD (por possuir desempenho superior ou igual), para o novo caso sem hiper-otimização.
